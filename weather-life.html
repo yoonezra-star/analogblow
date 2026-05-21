@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1441018945572157" crossorigin="anonymous"></script>
+    <title>운정 날씨 생활 가이드 | 운정라이프</title>
+    <meta name="description" content="기상청 단기예보를 바탕으로 운정 등원, 통학, 주말 나들이, 차량 이동에 필요한 날씨 기준을 정리합니다.">
+    <link rel="canonical" href="https://analogblow.com/weather-life.html">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="./logo.svg" type="image/svg+xml">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="운정라이프 홈"><img class="brand-logo" src="./logo.svg" alt="운정라이프 로고"><span class="brand-copy"><strong>운정라이프</strong><small>Unjeong Life Guide</small></span></a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="./kids.html">아이생활</a>
+        <a href="./map-search.html">지도검색</a>
+        <a href="./policy-news.html">정책뉴스</a>
+        <a href="./culture-leisure.html">여가·문화</a>
+        <a href="./mobility.html">교통·주차</a>
+        <a href="./data.html">공공데이터</a>
+      </nav>
+    </header>
+
+    <main class="page-main">
+      <article class="page-card wide">
+        <p class="eyebrow">Weather Life</p>
+        <h1>운정 날씨는 등원, 주차, 주말 코스 선택에 바로 연결됩니다.</h1>
+        <p>
+          비가 오는 날에는 실내 코스와 주차가 중요하고, 바람이 강한 날에는 호수공원·야외 놀이터보다 도서관과 문화시설이 편합니다.
+          이 페이지는 기상청 단기예보를 생활 판단 기준으로 바꿔 보여줍니다.
+        </p>
+
+        <section class="weather-live-card">
+          <div>
+            <span id="weatherStatus" class="feed-status">기상청 예보 확인 중</span>
+            <h3>현재 운정 생활 예보</h3>
+            <p id="weatherSummary">공식 예보 데이터를 불러오고 있습니다.</p>
+          </div>
+          <div class="weather-metrics">
+            <span><b id="weatherTemp">-</b><small>기온</small></span>
+            <span><b id="weatherSky">확인 중</b><small>하늘</small></span>
+            <span><b id="weatherRain">-</b><small>강수</small></span>
+            <span><b id="weatherWind">-</b><small>바람</small></span>
+          </div>
+        </section>
+
+        <div id="weatherTips" class="insight-grid four">
+          <article><b>등원·등교</b><p>아침 기온, 비, 바람을 보고 우산·겉옷·실내화 여분을 판단합니다.</p></article>
+          <article><b>학원·하원</b><p>저녁 강수 예보가 있으면 픽업 지점과 차량 정차 위치를 미리 정합니다.</p></article>
+          <article><b>주말 코스</b><p>비 또는 강풍이면 공원보다 도서관, 쇼핑몰, 문화시설을 우선합니다.</p></article>
+          <article><b>차량 이동</b><p>비·눈 예보에는 야외 주차장보다 실내·지하 주차 동선을 먼저 확인합니다.</p></article>
+        </div>
+
+        <h3>날씨별 운정 생활 선택</h3>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead><tr><th>날씨</th><th>추천 생활 선택</th><th>연결 페이지</th></tr></thead>
+            <tbody>
+              <tr><td>비</td><td>도서관, 실내 문화시설, 주차가 편한 상권을 우선합니다.</td><td><a href="./culture-leisure.html">여가·문화</a></td></tr>
+              <tr><td>맑음</td><td>호수공원, 산책, 야외 놀이터, 가족 나들이 코스를 봅니다.</td><td><a href="./weekend.html">주말 코스</a></td></tr>
+              <tr><td>강풍·추위</td><td>아이 동반 이동 시간을 줄이고 실내 시설을 우선합니다.</td><td><a href="./public-facilities.html">공공시설</a></td></tr>
+              <tr><td>눈·도로 결빙</td><td>대중교통, 지하주차장, 병원·약국 이동 시간을 넉넉히 봅니다.</td><td><a href="./mobility.html">교통·주차</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>공공데이터 연결 방식</h3>
+        <p>
+          기상청 단기예보 조회서비스를 Cloudflare Functions에서 호출하고, 운정 좌표를 기상청 격자 좌표로 변환해 예보를 가져옵니다.
+          화면에는 원본 수치보다 생활 판단에 필요한 기온, 하늘 상태, 강수, 바람을 우선 표시합니다.
+        </p>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <section><a class="footer-logo" href="./index.html"><img src="./logo.svg" alt="운정라이프 로고"><span class="brand-copy"><strong>운정라이프</strong><small>Unjeong Life Guide</small></span></a></section>
+        <section><h4>주요 서비스</h4><ul><li><a href="./map-search.html">지도검색</a></li><li><a href="./kids.html">아이생활</a></li><li><a href="./policy-news.html">정책뉴스</a></li><li><a href="./culture-leisure.html">여가·문화</a></li></ul></section>
+        <section><h4>사업자 정보</h4><p class="company-name">운정라이프 운영팀</p><ul><li>사업자번호: 564-04-03514</li><li>로컬 생활정보 편집 및 웹 서비스 운영</li></ul></section>
+        <section><h4>고객지원</h4><ul><li>이메일: <a href="mailto:yoonezra@gmail.com">yoonezra@gmail.com</a></li><li>운영시간: 평일 09:00 ~ 18:00</li></ul></section>
+      </div>
+      <div class="footer-bottom"><span>&copy; Since 2026 운정라이프. All rights reserved.</span><nav><a href="./about.html">소개</a><a href="./contact.html">문의</a><a href="./privacy.html">개인정보처리방침</a></nav></div>
+    </footer>
+
+    <script>
+      function setWeather(data) {
+        const summary = data.summary || {};
+        document.getElementById('weatherStatus').textContent = data.mode === 'live' ? '기상청 API 연결됨' : '공식 예보 확인 필요';
+        document.getElementById('weatherTemp').textContent = summary.temperature || '-';
+        document.getElementById('weatherSky').textContent = summary.sky || '확인';
+        document.getElementById('weatherRain').textContent = summary.rain || '-';
+        document.getElementById('weatherWind').textContent = summary.wind || '-';
+        document.getElementById('weatherSummary').textContent = `운정 생활권 기준으로 ${summary.sky || '예보'} 상태입니다. ${summary.rain ? '강수: ' + summary.rain + '. ' : ''}${summary.wind ? '바람: ' + summary.wind + '. ' : ''}등원, 주차, 주말 코스를 함께 조정하세요.`;
+      }
+
+      fetch('/api/weather')
+        .then((response) => response.ok ? response.json() : Promise.reject())
+        .then(setWeather)
+        .catch(() => setWeather({ mode: 'fallback', summary: { sky: '공식 예보 확인', temperature: '-', rain: '-', wind: '-' } }));
+    </script>
+  </body>
+</html>

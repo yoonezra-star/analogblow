@@ -36,11 +36,25 @@
       <description>파주시 공식 주차 자료를 바탕으로 운정권 공영주차장, 노상주차장, GTX 운정중앙역 주차 후보를 정리합니다.</description>
     </item>
     <item>
-      <title>운정 공공데이터 활용 계획</title>
+      <title>운정 공식 데이터 출처</title>
       <link>https://analogblow.com/data.html</link>
       <guid>https://analogblow.com/data.html</guid>
       <pubDate>Thu, 21 May 2026 09:00:00 +0900</pubDate>
-      <description>운정라이프의 공공데이터 활용 분야, 생활권 분류 기준, 업데이트 우선순위와 주요 출처를 설명합니다.</description>
+      <description>운정라이프가 확인하는 공공데이터, 생활권 분류 기준, 주요 공식 출처를 정리합니다.</description>
+    </item>
+    <item>
+      <title>운정 정책뉴스 생활 브리핑</title>
+      <link>https://analogblow.com/policy-news.html</link>
+      <guid>https://analogblow.com/policy-news.html</guid>
+      <pubDate>Thu, 21 May 2026 09:00:00 +0900</pubDate>
+      <description>교육, 복지, 교통, 문화 정책뉴스를 운정 가족 관점으로 확인하는 생활 브리핑입니다.</description>
+    </item>
+    <item>
+      <title>운정 날씨 생활 가이드</title>
+      <link>https://analogblow.com/weather-life.html</link>
+      <guid>https://analogblow.com/weather-life.html</guid>
+      <pubDate>Thu, 21 May 2026 09:00:00 +0900</pubDate>
+      <description>기상청 단기예보를 바탕으로 등원, 통학, 주말 나들이, 차량 이동 기준을 정리합니다.</description>
     </item>
   </channel>
 </rss>
