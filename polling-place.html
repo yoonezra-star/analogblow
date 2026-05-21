@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1441018945572157" crossorigin="anonymous"></script>
+    <title>운정 투표소 위치 확인 | 운정라이프</title>
+    <meta name="description" content="중앙선거관리위원회 투표소 정보 API와 공식 선거 정보를 기준으로 파주 운정 투표소 확인 방법을 정리합니다.">
+    <link rel="canonical" href="https://analogblow.com/polling-place.html">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="./logo.svg" type="image/svg+xml">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="운정라이프 홈"><img class="brand-logo" src="./logo.svg" alt="운정라이프 로고"><span class="brand-copy"><strong>운정라이프</strong><small>Unjeong Life Guide</small></span></a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="./map-search.html">지도검색</a>
+        <a href="./public-facilities.html">공공시설</a>
+        <a href="./mobility.html">교통·주차</a>
+        <a href="./data.html">공공데이터</a>
+        <a href="./contact.html">제보</a>
+      </nav>
+    </header>
+
+    <main class="page-main">
+      <article class="page-card wide">
+        <p class="eyebrow">Polling Place</p>
+        <h1>운정 투표소는 선거ID와 주소 기준으로 공식 확인해야 합니다.</h1>
+        <p>
+          사전투표소와 선거일 투표소는 선거 종류, 선거ID, 선거인명부, 행정동에 따라 달라질 수 있습니다.
+          운정라이프는 중앙선거관리위원회 투표소 정보 API와 공식 선거 안내를 기준으로 확인 순서를 정리합니다.
+        </p>
+
+        <section class="api-live-panel">
+          <div class="api-live-head">
+            <div>
+              <h3>파주시 투표소 정보 확인</h3>
+              <p>선거 기간에는 선거ID를 넣으면 중앙선거관리위원회 투표소 API를 통해 조회할 수 있습니다.</p>
+            </div>
+            <span id="pollingStatus" class="feed-status">공식 링크 우선 표시</span>
+          </div>
+          <form class="polling-form" id="pollingForm">
+            <label>
+              선거ID
+              <input type="text" id="sgId" name="sgId" placeholder="예: 20240410">
+            </label>
+            <label>
+              투표 유형
+              <select id="pollingMode" name="mode">
+                <option value="early">사전투표소</option>
+                <option value="day">선거일 투표소</option>
+              </select>
+            </label>
+            <button type="submit">투표소 확인</button>
+          </form>
+          <div id="pollingFeed" class="live-feed" aria-live="polite"></div>
+        </section>
+
+        <h3>운정에서 투표소 확인할 때 볼 것</h3>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead><tr><th>확인 항목</th><th>이유</th><th>운정 생활 팁</th></tr></thead>
+            <tbody>
+              <tr><td>사전투표소와 선거일 투표소 구분</td><td>사전투표는 전국 사전투표소 이용이 가능하지만 선거일 투표소는 지정 장소가 중요합니다.</td><td>아이 등하원, 출근 동선과 가까운 사전투표소를 먼저 봅니다.</td></tr>
+              <tr><td>주소와 행정동</td><td>운정1·2·3동, 야당·와동·동패·목동 생활권에 따라 투표 안내가 달라질 수 있습니다.</td><td>아파트명보다 주민등록 주소와 선거 안내문을 기준으로 확인합니다.</td></tr>
+              <tr><td>주차와 보행 동선</td><td>학교, 행정복지센터, 공공시설 투표소는 주차가 제한될 수 있습니다.</td><td><a href="./mobility.html">교통·주차</a>와 함께 대중교통·도보 이동을 확인합니다.</td></tr>
+              <tr><td>아이 동반 방문</td><td>대기 시간과 계단·엘리베이터 동선이 영향을 줍니다.</td><td>유모차, 우천, 주말 혼잡 가능성을 미리 봅니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>공식 데이터 연결 방식</h3>
+        <p>
+          중앙선거관리위원회 투표소 정보 API는 선거ID, 시도명, 구시군명을 기준으로 사전투표소와 선거일 투표소 정보를 제공합니다.
+          운정라이프에서는 `경기도`, `파주시`를 기본값으로 두고, 선거ID가 있는 선거 기간에 투표소명, 건물명, 주소, 층 정보를 표시합니다.
+        </p>
+
+        <div class="notice-box">
+          <strong>최종 확인 안내</strong>
+          <p>
+            투표소는 선거별로 달라질 수 있습니다. 실제 투표 전에는 중앙선거관리위원회, 파주시 선거 공지,
+            선거 안내문, 주민등록 주소 기준 투표소를 반드시 확인하세요.
+          </p>
+        </div>
+
+        <h3>출처</h3>
+        <ul class="source-list">
+          <li><a href="https://www.data.go.kr/data/15000836/openapi.do" target="_blank" rel="noopener">공공데이터포털 중앙선거관리위원회 투표소 정보 API</a></li>
+          <li><a href="https://www.nec.go.kr/site/nec/main.do" target="_blank" rel="noopener">중앙선거관리위원회</a></li>
+          <li><a href="https://data.nec.go.kr" target="_blank" rel="noopener">중앙선거관리위원회 선거정보 개방포털</a></li>
+          <li><a href="https://www.paju.go.kr/index.do" target="_blank" rel="noopener">파주시청</a></li>
+        </ul>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <section><a class="footer-logo" href="./index.html"><img src="./logo.svg" alt="운정라이프 로고"><span class="brand-copy"><strong>운정라이프</strong><small>Unjeong Life Guide</small></span></a></section>
+        <section><h4>주요 서비스</h4><ul><li><a href="./map-search.html">지도검색</a></li><li><a href="./public-facilities.html">공공시설</a></li><li><a href="./mobility.html">교통·주차</a></li><li><a href="./data.html">공공데이터</a></li></ul></section>
+        <section><h4>사업자 정보</h4><p class="company-name">운정라이프 운영팀</p><ul><li>사업자번호: 564-04-03514</li><li>로컬 생활정보 편집 및 웹 서비스 운영</li></ul></section>
+        <section><h4>고객지원</h4><ul><li>이메일: <a href="mailto:yoonezra@gmail.com">yoonezra@gmail.com</a></li><li>운영시간: 평일 09:00 ~ 18:00</li></ul></section>
+      </div>
+      <div class="footer-bottom"><span>&copy; Since 2026 운정라이프. All rights reserved.</span><nav><a href="./about.html">소개</a><a href="./contact.html">문의</a><a href="./privacy.html">개인정보처리방침</a></nav></div>
+    </footer>
+
+    <script>
+      const fallbackPollingItems = [
+        { name: '중앙선거관리위원회 투표소 찾기', town: '공식 확인', place: '선거별 투표소 조회', address: '선거ID와 주소 기준으로 공식 조회하세요.', floor: '', link: 'https://www.nec.go.kr/site/nec/main.do' },
+        { name: '파주시 선거 공지 확인', town: '파주시', place: '파주시청 공지', address: '운정1·2·3동 선거 관련 안내를 확인하세요.', floor: '', link: 'https://www.paju.go.kr/index.do' }
+      ];
+
+      function renderPolling(items, mode) {
+        const feed = document.getElementById('pollingFeed');
+        document.getElementById('pollingStatus').textContent = mode === 'live' ? '공식 API 연결됨' : '공식 링크 우선 표시';
+        feed.innerHTML = items.map((item) => `
+          <article class="feed-card">
+            <span>${item.town || item.district || '파주시'} ${item.floor ? '· ' + item.floor : ''}</span>
+            <strong>${item.name || item.place}</strong>
+            <p>${item.place ? item.place + ' · ' : ''}${item.address || '공식 투표소 조회에서 확인하세요.'}</p>
+            <a href="${item.link || 'https://www.nec.go.kr/site/nec/main.do'}" target="_blank" rel="noopener">공식 확인</a>
+          </article>
+        `).join('');
+      }
+
+      renderPolling(fallbackPollingItems, 'fallback');
+
+      document.getElementById('pollingForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const sgId = document.getElementById('sgId').value.trim();
+        const mode = document.getElementById('pollingMode').value;
+        if (!sgId) {
+          renderPolling(fallbackPollingItems, 'fallback');
+          return;
+        }
+        fetch(`/api/polling-place?sgId=${encodeURIComponent(sgId)}&mode=${encodeURIComponent(mode)}&sdName=${encodeURIComponent('경기도')}&wiwName=${encodeURIComponent('파주시')}`)
+          .then((response) => response.ok ? response.json() : Promise.reject())
+          .then((data) => renderPolling(data.items && data.items.length ? data.items : fallbackPollingItems, data.mode))
+          .catch(() => renderPolling(fallbackPollingItems, 'fallback'));
+      });
+    </script>
+  </body>
+</html>

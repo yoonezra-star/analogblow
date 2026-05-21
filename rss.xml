@@ -56,5 +56,12 @@
       <pubDate>Thu, 21 May 2026 09:00:00 +0900</pubDate>
       <description>기상청 단기예보를 바탕으로 등원, 통학, 주말 나들이, 차량 이동 기준을 정리합니다.</description>
     </item>
+    <item>
+      <title>운정 투표소 위치 확인</title>
+      <link>https://analogblow.com/polling-place.html</link>
+      <guid>https://analogblow.com/polling-place.html</guid>
+      <pubDate>Thu, 21 May 2026 09:00:00 +0900</pubDate>
+      <description>중앙선거관리위원회 투표소 정보 API와 공식 선거 정보를 기준으로 파주 운정 투표소 확인 방법을 정리합니다.</description>
+    </item>
   </channel>
 </rss>
