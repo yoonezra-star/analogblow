@@ -112,7 +112,7 @@
         <section class="rich-section">
           <h3>함께 보면 좋은 운정 생활 정보</h3>
           <div class="insight-grid">
-            <article><b><a href="./map-search.html">지도검색</a></b><p>투표소 주변 공공시설, 주차 후보, 도보 동선을 함께 확인합니다.</p></article>
+            <article><b><a href="./map-search.html">지도검색</a></b><p>투표소 주변 공공시설, 주차 장소, 도보 동선을 함께 확인합니다.</p></article>
             <article><b><a href="./mobility.html">교통·주차</a></b><p>주말 또는 퇴근 시간대 차량 이동이 필요한 경우 주차 스트레스를 줄입니다.</p></article>
             <article><b><a href="./weather-life.html">날씨</a></b><p>우천, 폭염, 한파에는 아이 동반 방문 시간과 이동 수단을 조정합니다.</p></article>
           </div>
@@ -167,8 +167,14 @@
             <strong>${item.name || item.place}</strong>
             <p>${item.place ? item.place + ' · ' : ''}${item.address || '공식 투표소 조회에서 확인하세요.'}</p>
             <a href="${item.link || 'https://www.nec.go.kr/site/nec/main.do'}" target="_blank" rel="noopener">공식 확인</a>
+            <a href="${naverMapUrl(item)}" target="_blank" rel="noopener">네이버 지도 검색</a>
           </article>
         `).join('');
+      }
+
+      function naverMapUrl(item) {
+        const keyword = [item.address, item.place, item.name, '파주시'].filter(Boolean).join(' ');
+        return `https://map.naver.com/p/search/${encodeURIComponent(keyword)}`;
       }
 
       renderPolling(fallbackPollingItems, 'fallback');
