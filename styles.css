@@ -690,6 +690,82 @@ h3 { margin: 0; font-size: 20px; }
   border-radius: 16px;
   background: #f7fbf8;
 }
+.rich-section {
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: 1px solid #edf2f5;
+}
+.rich-section h3 {
+  margin-top: 0;
+}
+.insight-grid,
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+.insight-grid.four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.insight-grid article,
+.timeline-grid article {
+  padding: 18px;
+  border: 1px solid #e8eef2;
+  border-radius: 18px;
+  background: #fbfdfb;
+}
+.insight-grid b,
+.timeline-grid b {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-size: 17px;
+}
+.insight-grid p,
+.timeline-grid p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.timeline-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.timeline-grid span {
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+}
+.callout-strip {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 18px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--green), var(--blue));
+}
+.callout-strip span {
+  font-weight: 900;
+}
+.callout-strip p {
+  margin: 0;
+  color: #eef7ff;
+}
+.editor-note {
+  margin-top: 18px;
+  padding: 18px;
+  border-left: 4px solid var(--green);
+  border-radius: 14px;
+  background: #f7fbf8;
+}
 .map-page {
   padding: 0;
   background: #fffaf1;
@@ -902,6 +978,9 @@ h3 { margin: 0; font-size: 20px; }
   .guide-grid,
   .hub-grid,
   .board-grid,
+  .insight-grid,
+  .insight-grid.four,
+  .timeline-grid,
   .route-board,
   .footer-content {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -951,8 +1030,14 @@ h3 { margin: 0; font-size: 20px; }
   .guide-grid,
   .hub-grid,
   .board-grid,
+  .insight-grid,
+  .insight-grid.four,
+  .timeline-grid,
   .route-board,
   .footer-content {
+    grid-template-columns: 1fr;
+  }
+  .callout-strip {
     grid-template-columns: 1fr;
   }
   .today-list li {
