@@ -109,7 +109,7 @@
         <div class="map-stage" id="mapStage">
           <div class="provider-map-canvas" id="naverMap" aria-label="네이버 지도"></div>
           <div class="map-api-notice" id="mapApiNotice">
-            네이버 지도를 불러오는 중입니다. 로딩이 완료되지 않으면 백업 생활권 지도가 표시됩니다.
+            네이버 지도를 불러오는 중입니다. 잠시 후 생활권 핀이 실제 지도 위에 표시됩니다.
           </div>
           <div class="fallback-map-layer" id="fallbackMapLayer">
             <span class="map-road road-a"></span>
@@ -354,6 +354,7 @@
         naverMapInitStarted = true;
 
         const container = document.getElementById("naverMap");
+        mapStage.dataset.mapStatus = "initializing";
         mapStage.classList.add("map-ready");
         naverMap = new naver.maps.Map(container, {
           center: new naver.maps.LatLng(37.7243, 126.7499),
@@ -380,6 +381,7 @@
         naver.maps.Event.trigger(naverMap, "resize");
         updateNaverMarkers(document.querySelector(".map-filter.active")?.dataset.filter || "all");
 
+        mapStage.dataset.mapStatus = "ready";
         mapApiNotice.textContent = "네이버 지도 기준으로 표시 중입니다. 위치는 공식 자료와 지도 검색을 함께 확인하세요.";
       }
 
@@ -391,12 +393,16 @@
         }
 
         const script = document.createElement("script");
-        window.initUnjeongNaverMap = initNaverMap;
+        window.initUnjeongNaverMap = function() {
+          window.requestAnimationFrame(initNaverMap);
+        };
         window.navermap_authFailure = function() {
           naverMapInitStarted = false;
           mapStage.classList.remove("map-ready");
+          mapStage.dataset.mapStatus = "auth-failed";
           mapApiNotice.textContent = "네이버 지도 인증이 실패했습니다. NCP Key ID와 Web 서비스 URL 등록을 확인하세요.";
         };
+        mapStage.dataset.mapStatus = "loading";
         mapApiNotice.textContent = "네이버 지도를 불러오는 중입니다.";
         script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(key)}&callback=initUnjeongNaverMap`;
         script.async = true;
@@ -411,9 +417,11 @@
             initNaverMap();
             return;
           }
-          mapApiNotice.textContent = "네이버 지도 로딩이 지연되어 백업 생활권 지도를 표시합니다. 새로고침 후에도 반복되면 NCP Key ID와 Web 서비스 URL 등록을 확인하세요.";
+          mapStage.dataset.mapStatus = "delayed";
+          mapApiNotice.textContent = "네이버 지도 로딩이 지연되어 생활권 백업 지도를 함께 표시합니다. 목록의 네이버 지도 검색 링크는 정상 사용 가능합니다.";
         }, 12000);
         script.onerror = () => {
+          mapStage.dataset.mapStatus = "script-error";
           mapApiNotice.textContent = "네이버 지도 스크립트를 불러오지 못했습니다. NCP Key ID와 Web 서비스 URL 등록을 확인하세요.";
         };
         document.head.appendChild(script);
