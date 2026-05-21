@@ -555,6 +555,12 @@ h3 { margin: 0; font-size: 20px; }
   color: #fff;
   text-decoration: none;
 }
+.footer-logo .brand-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
 .footer-logo img {
   width: 46px;
   height: 46px;
@@ -562,13 +568,19 @@ h3 { margin: 0; font-size: 20px; }
   border-radius: 50%;
 }
 .footer-logo .brand-copy strong {
+  display: block;
   color: #fff;
   font-size: 22px;
   font-weight: 900;
+  line-height: 1.15;
+  white-space: nowrap;
 }
 .footer-logo .brand-copy small {
+  display: block;
   color: #a8b5c6;
   font-size: 13px;
+  line-height: 1.25;
+  white-space: nowrap;
 }
 .footer h4 {
   margin: 0 0 14px;
@@ -1005,12 +1017,18 @@ h3 { margin: 0; font-size: 20px; }
   .brand-copy strong { font-size: 19px; }
   .brand-copy small { font-size: 13px; }
   .footer-logo {
+    display: flex;
     align-items: center;
+    justify-content: flex-start;
+    width: 100%;
     margin-bottom: 16px;
   }
   .footer-logo img {
     width: 52px;
     height: 52px;
+  }
+  .footer-logo .brand-copy {
+    flex: 1 1 auto;
   }
   .footer-logo .brand-copy strong { font-size: 24px; }
   .footer-logo .brand-copy small { font-size: 14px; }
