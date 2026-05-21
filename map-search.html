@@ -312,6 +312,10 @@
         mapApiNotice.textContent = "네이버 지도를 불러오는 중입니다.";
         script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(key)}&callback=initUnjeongNaverMap`;
         script.async = true;
+        window.setTimeout(() => {
+          if (mapStage.classList.contains("map-ready")) return;
+          mapApiNotice.textContent = "네이버 지도 로딩이 완료되지 않아 백업 생활권 지도를 표시합니다. 네이버 검색 링크는 정상 사용 가능합니다.";
+        }, 4500);
         script.onerror = () => {
           mapApiNotice.textContent = "네이버 지도 스크립트를 불러오지 못했습니다. NCP Key ID와 Web 서비스 URL 등록을 확인하세요.";
         };
