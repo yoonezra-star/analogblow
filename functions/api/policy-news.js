@@ -1,17 +1,45 @@
 const FALLBACK_ITEMS = [
   {
-    title: '운정 가족 생활과 관련된 정책 소식을 공식 출처 기준으로 확인합니다.',
+    title: '운정 가족 생활과 관련된 중앙정부 정책뉴스',
     department: '정책브리핑',
     date: '',
     link: 'https://www.korea.kr/news/policyNewsList.do',
-    summary: '교육, 보육, 교통, 복지, 문화 분야의 최신 정책은 대한민국 정책브리핑 공식 페이지에서 함께 확인할 수 있습니다.'
+    summary: '교육, 보육, 교통, 복지, 문화 분야의 최신 정책은 대한민국 정책브리핑 원문에서 확인합니다.'
   },
   {
-    title: '보도자료는 부처별 공식 발표 기준으로 확인합니다.',
+    title: '부처별 보도자료와 시행일 확인',
     department: '정책브리핑 보도자료',
     date: '',
     link: 'https://www.korea.kr/briefing/pressReleaseList.do',
-    summary: '생활에 영향이 큰 정책 발표는 원문 출처와 발표 부처를 우선 확인하는 방식으로 정리합니다.'
+    summary: '지원 대상, 신청 기간, 시행일은 보도자료 원문과 담당 부처 안내를 함께 확인합니다.'
+  },
+  {
+    title: '파주시 공지와 운정 생활권 행정 안내',
+    department: '파주시청',
+    date: '',
+    link: 'https://www.paju.go.kr/index.do',
+    summary: '운정 행정복지센터, 보건소, 도서관, 문화행사, 지역 시설 관련 공지는 파주시청 공지가 가장 직접적입니다.'
+  },
+  {
+    title: '경기도 교통·복지·가족 정책 뉴스',
+    department: '경기도 뉴스',
+    date: '',
+    link: 'https://gnews.gg.go.kr/',
+    summary: '광역교통, 경기지역화폐, 청년·가족 지원처럼 운정 생활에 영향을 주는 경기도 정책을 확인합니다.'
+  },
+  {
+    title: '교육청과 학교 공지 확인',
+    department: '경기도교육청',
+    date: '',
+    link: 'https://www.goe.go.kr/',
+    summary: '학사 일정, 통학 안전, 학교 신설, 방과후·돌봄 관련 정보는 교육청과 학교 공지를 우선 확인합니다.'
+  },
+  {
+    title: '정부24·복지로 신청 가능 여부 확인',
+    department: '정부24·복지로',
+    date: '',
+    link: 'https://www.gov.kr/portal/main',
+    summary: '민원, 증명, 복지서비스, 가족 지원 신청은 정부24와 복지로에서 대상 조건과 신청 방법을 최종 확인합니다.'
   }
 ];
 
