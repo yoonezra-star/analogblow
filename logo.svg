@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title desc">
+  <title id="title">운정라이프 로고</title>
+  <desc id="desc">UG 이니셜과 잎 장식을 담은 Unjeong Life Guide 원형 로고</desc>
+  <defs>
+    <linearGradient id="markGradient" x1="42" y1="34" x2="204" y2="214" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12775f"/>
+      <stop offset="0.55" stop-color="#2769b4"/>
+      <stop offset="1" stop-color="#e26d45"/>
+    </linearGradient>
+    <linearGradient id="softFill" x1="54" y1="44" x2="186" y2="202" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fffaf1"/>
+      <stop offset="1" stop-color="#eaf5ee"/>
+    </linearGradient>
+  </defs>
+  <circle cx="120" cy="120" r="104" fill="url(#softFill)" stroke="url(#markGradient)" stroke-width="9"/>
+  <circle cx="120" cy="120" r="88" fill="none" stroke="#142033" stroke-opacity="0.16" stroke-width="3"/>
+  <path d="M70 84v47c0 26 16 42 42 42 25 0 42-16 42-42V84h-18v46c0 16-9 26-24 26-16 0-25-10-25-26V84H70Z" fill="#142033"/>
+  <path d="M150 121h44v12c0 27-19 45-47 45-35 0-58-25-58-58 0-34 24-58 58-58 18 0 33 7 44 20l-13 12c-8-9-18-14-31-14-23 0-40 17-40 40 0 24 17 41 40 41 16 0 27-8 31-22h-28v-18Z" fill="#142033" opacity="0.86"/>
+  <path d="M151 83c17-23 34-34 52-34-2 19-14 34-36 46" fill="none" stroke="url(#markGradient)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M167 95c17-15 33-21 50-18-7 17-21 27-43 31" fill="none" stroke="url(#markGradient)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M67 173c24 18 52 25 83 21" fill="none" stroke="url(#markGradient)" stroke-width="7" stroke-linecap="round"/>
+  <path d="M78 166c2 13 8 22 19 28M102 181c2 11 8 18 18 22M126 188c4 9 11 15 21 17" fill="none" stroke="url(#markGradient)" stroke-width="6" stroke-linecap="round"/>
+</svg>

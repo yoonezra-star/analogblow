@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>운정생활지도</title>
+    <title>운정라이프</title>
     <link>https://analogblow.com/</link>
     <description>파주 운정 신도시 가족을 위한 학교, 병원, 약국, 주차, 교통, 공원, 도서관 생활정보 업데이트입니다.</description>
     <language>ko</language>
@@ -40,7 +40,7 @@
       <link>https://analogblow.com/data.html</link>
       <guid>https://analogblow.com/data.html</guid>
       <pubDate>Thu, 21 May 2026 09:00:00 +0900</pubDate>
-      <description>운정생활지도의 공공데이터 활용 분야, 생활권 분류 기준, 업데이트 우선순위와 주요 출처를 설명합니다.</description>
+      <description>운정라이프의 공공데이터 활용 분야, 생활권 분류 기준, 업데이트 우선순위와 주요 출처를 설명합니다.</description>
     </item>
   </channel>
 </rss>
