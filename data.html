@@ -16,13 +16,14 @@
       <nav class="nav" aria-label="주요 메뉴">
         <a href="./index.html">홈</a>
         <a href="./kids.html">아이생활</a>
+        <a href="./map-search.html">지도검색</a>
         <a href="./health.html">병원·약국</a>
         <a href="./mobility.html">교통·주차</a>
         <a href="./contact.html">문의</a>
       </nav>
     </header>
     <main class="page-main">
-      <article class="page-card">
+      <article class="page-card wide">
         <p class="eyebrow">Data Plan</p>
         <h1>공공데이터를 운정 생활 언어로 다시 편집합니다.</h1>
         <p>
@@ -30,30 +31,98 @@
           주민이 바로 이해할 수 있는 생활 기준으로 재구성할 계획입니다.
         </p>
         <h3>우선 활용 대상</h3>
-        <ul>
-          <li>주차: 공영주차장, 거주자우선주차, 생활권별 주차 가능 구역</li>
-          <li>교육·돌봄: 어린이집, 유치원, 학교, 도서관, 아동센터 공개 정보</li>
-          <li>의료·약국: 병원, 약국, 휴일·야간 운영 확인 정보</li>
-          <li>교통: 역세권, 버스, 환승, 출퇴근 동선 관련 공개 정보</li>
-          <li>문화·생활시설: 공원, 공공시설, 체육·문화 공간</li>
-        </ul>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>분야</th><th>활용 데이터</th><th>주요 출처</th><th>운정생활지도에서 바꾸는 방식</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>주차</td><td>공영주차장, 노상주차장, 환승 주차, 거주자우선주차</td><td>파주시, 파주시 통합주차포털</td><td>역세권, 호수공원, 상가권, 학원 픽업 기준으로 재분류합니다.</td></tr>
+              <tr><td>교육·돌봄</td><td>학교, 통학구역, 어린이집, 도서관, 돌봄 관련 공개 정보</td><td>파주교육지원청, 학교알리미, 어린이집 정보공개포털</td><td>입학, 전학, 방과후 이동, 도서관 루틴 기준으로 설명합니다.</td></tr>
+              <tr><td>의료·약국</td><td>병원, 약국, 휴일·야간 운영, 보건소 업무</td><td>E-Gen, 휴일지킴이약국, 파주시 보건소</td><td>오늘 갈 수 있는지, 접수 마감, 약국 이동거리 기준으로 정리합니다.</td></tr>
+              <tr><td>교통</td><td>역세권, 버스, 환승, 출퇴근, GTX 연계 정보</td><td>철도·버스 공개 정보, 파주시 교통 안내</td><td>운정역, 야당역, 운정중앙역, 산내·해솔권 생활 동선으로 나눕니다.</td></tr>
+              <tr><td>문화·생활시설</td><td>도서관, 공원, 복지관, 문화시설, 공공시설</td><td>파주시, 파주시도서관, 파주문화재단</td><td>아이 동반, 주말, 비 오는 날, 주차·화장실 기준을 붙입니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
         <h3>가공 방식</h3>
         <p>
           원본 데이터를 그대로 나열하지 않고 야당권, 해솔권, 산내권, 초롱꽃권, 동패권처럼 생활권 기준으로
           분류합니다. 이후 아이 동반 가능성, 주차 편의, 방문 전 확인 사항, 주말 활용성 같은 실제 판단 기준을
           붙입니다.
         </p>
+
+        <h3>생활권 분류 기준</h3>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>생활권</th><th>대략적인 기준</th><th>자주 묶는 정보</th><th>주의점</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>야당권</td><td>야당역과 주변 상권</td><td>외식, 병원, 약국, 저녁 주차, 학원</td><td>상권 혼잡과 주차 변동이 큽니다.</td></tr>
+              <tr><td>운정역권</td><td>운정역, 와동·가람 생활권</td><td>환승, 도서관, 공원, 행정·보건 시설</td><td>출퇴근 시간 환승 주차 확인이 필요합니다.</td></tr>
+              <tr><td>산내·해솔권</td><td>학교, 도서관, 주거 단지 중심 생활권</td><td>초등 통학, 학원, 도서관, 공원</td><td>야간 귀가와 픽업 동선이 중요합니다.</td></tr>
+              <tr><td>동패·초롱꽃권</td><td>운정중앙역, 신규 입주·확장 생활권</td><td>GTX, 신설학교, 신규 상권, 공원</td><td>공사·개통·입주 일정에 따라 정보가 자주 바뀝니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>업데이트 우선순위</h3>
+        <ol>
+          <li>운영시간과 이용 가능 여부가 자주 바뀌는 병원·약국·주차 정보를 우선 확인합니다.</li>
+          <li>학교 배정, 통학구역, 신설학교처럼 생활 결정에 영향이 큰 정보는 공식 공고 기준으로 반영합니다.</li>
+          <li>도서관, 공원, 문화시설은 가족 사용성 기준을 붙여 주말·방과후 페이지와 연결합니다.</li>
+          <li>제보 정보는 공식 출처나 현장 확인이 가능한 내용부터 반영합니다.</li>
+        </ol>
+
+        <h3>페이지별 데이터 연결</h3>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>페이지</th><th>데이터 역할</th><th>연결 기준</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="./map-search.html">지도검색</a></td><td>생활권별 장소를 한 화면에서 훑는 허브</td><td>카카오 지도, 공공 출처, 가족 생활 기준</td></tr>
+              <tr><td><a href="./kids.html">아이생활</a></td><td>입학·통학·돌봄·도서관 루틴 설명</td><td>학교, 도서관, 보건, 지도검색 연결</td></tr>
+              <tr><td><a href="./health.html">병원·약국</a></td><td>오늘 갈 수 있는 병원·약국 판단 가이드</td><td>E-Gen, 휴일지킴이약국, 보건소</td></tr>
+              <tr><td><a href="./parking-data.html">주차 데이터</a></td><td>공영주차장과 노상주차장 공식 자료 정리</td><td>파주시 주차 자료, 통합주차포털</td></tr>
+              <tr><td><a href="./public-facilities.html">공공 생활시설</a></td><td>도서관·공원·복지·행정시설 생활 활용</td><td>파주시, 도서관, 문화재단, 보건소</td></tr>
+            </tbody>
+          </table>
+        </div>
+
         <h3>정확성 안내</h3>
         <p>
           공공데이터와 공개 정보는 업데이트 시점 차이가 있을 수 있습니다. 병원, 약국, 학교, 행정 정보는
           방문 전 공식 채널 확인을 권장합니다.
         </p>
+
+        <div class="notice-box">
+          <strong>편집 원칙</strong>
+          <p>
+            운정생활지도는 특정 업체나 기관을 임의로 추천하지 않습니다. 공식 출처, 공개 정보, 생활권 기준,
+            방문 전 확인 사항을 함께 제공해 사용자가 직접 판단할 수 있도록 구성합니다.
+          </p>
+        </div>
+
+        <h3>주요 출처</h3>
+        <ul class="source-list">
+          <li><a href="https://www.paju.go.kr" target="_blank" rel="noopener">파주시청</a> - 행정, 도시, 공공시설, 주차 관련 공식 자료</li>
+          <li><a href="https://parking.paju.go.kr" target="_blank" rel="noopener">파주시 통합주차포털</a> - 주차장 이용과 정기권 확인</li>
+          <li><a href="https://goepj.kr/goepj/main.do" target="_blank" rel="noopener">경기도파주교육지원청</a> - 학교, 통학구역, 교육 공지</li>
+          <li><a href="https://www.schoolinfo.go.kr" target="_blank" rel="noopener">학교알리미</a> - 학교 공시 정보</li>
+          <li><a href="https://info.childcare.go.kr" target="_blank" rel="noopener">어린이집 정보공개포털</a> - 어린이집 정보</li>
+          <li><a href="https://www.e-gen.or.kr" target="_blank" rel="noopener">응급의료포털 E-Gen</a> - 병원·약국·응급실 정보</li>
+          <li><a href="https://lib.paju.go.kr/intro/index.do" target="_blank" rel="noopener">파주시도서관</a> - 도서관과 문화 프로그램</li>
+          <li><a href="https://www.pajucf.or.kr" target="_blank" rel="noopener">파주문화재단</a> - 문화공연과 행사</li>
+        </ul>
       </article>
     </main>
     <footer class="footer">
       <div class="footer-content">
         <section><a class="footer-logo" href="./index.html">운정생활지도</a><p>운정 가족 생활 가이드</p></section>
-        <section><h4>주요 서비스</h4><ul><li><a href="./kids.html">아이생활·학교</a></li><li><a href="./health.html">병원·약국</a></li><li><a href="./mobility.html">교통·주차</a></li></ul></section>
+        <section><h4>주요 서비스</h4><ul><li><a href="./map-search.html">지도검색</a></li><li><a href="./kids.html">아이생활·학교</a></li><li><a href="./health.html">병원·약국</a></li><li><a href="./mobility.html">교통·주차</a></li></ul></section>
         <section><h4>사업자 정보</h4><p class="company-name">운정생활지도 운영팀</p><ul><li>사업자번호: 564-04-03514</li><li>로컬 생활정보 편집 및 웹 서비스 운영</li></ul></section>
         <section><h4>고객지원</h4><ul><li>이메일: <a href="mailto:yoonezra@gmail.com">yoonezra@gmail.com</a></li><li>운영시간: 평일 09:00 ~ 18:00</li></ul></section>
       </div>
