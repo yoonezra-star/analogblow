@@ -676,6 +676,40 @@ h3 { margin: 0; font-size: 20px; }
     linear-gradient(135deg, #eaf5ee, #f7efe4);
   background-size: 56px 56px, 56px 56px, auto;
 }
+.kakao-map-canvas,
+.fallback-map-layer {
+  position: absolute;
+  inset: 0;
+}
+.kakao-map-canvas {
+  z-index: 1;
+  display: none;
+  background: #eef5ee;
+}
+.fallback-map-layer {
+  z-index: 2;
+}
+.map-ready .kakao-map-canvas {
+  display: block;
+}
+.map-ready .fallback-map-layer {
+  display: none;
+}
+.map-api-notice {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  z-index: 5;
+  max-width: 420px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.94);
+  color: var(--muted);
+  box-shadow: 0 10px 22px rgba(20,32,51,0.1);
+  font-size: 13px;
+  font-weight: 800;
+}
 .map-road {
   position: absolute;
   height: 14px;
@@ -709,6 +743,19 @@ h3 { margin: 0; font-size: 20px; }
   font-weight: 900;
   cursor: pointer;
 }
+.kakao-place-marker {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(20,32,51,0.22);
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
 .map-pin[data-category="parking"] { background: var(--blue); }
 .map-pin[data-category="library"] { background: var(--green); }
 .map-pin[data-category="park"] { background: #5b9c49; }
@@ -719,6 +766,7 @@ h3 { margin: 0; font-size: 20px; }
   position: absolute;
   left: 24px;
   bottom: 24px;
+  z-index: 6;
   max-width: 420px;
   padding: 18px;
   border: 1px solid var(--line);
@@ -783,6 +831,11 @@ h3 { margin: 0; font-size: 20px; }
     grid-template-columns: 1fr;
   }
   .map-stage { min-height: 520px; }
+  .map-api-notice {
+    left: 12px;
+    right: 12px;
+    border-radius: 14px;
+  }
   .map-tooltip {
     left: 12px;
     right: 12px;
