@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1441018945572157" crossorigin="anonymous"></script>
+    <title>운정 생활권 지도 검색 | 운정생활지도</title>
+    <meta name="description" content="운정 생활권의 주차장, 도서관, 공원, 문화시설, 보건시설을 카테고리별로 찾는 지도 검색형 페이지입니다.">
+    <link rel="canonical" href="https://analogblow.com/map-search.html">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html"><span class="brand-mark">운</span><span><strong>운정생활지도</strong><small>운정 가족 생활 가이드</small></span></a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="./kids.html">아이생활</a>
+        <a href="./culture-leisure.html">여가·문화</a>
+        <a href="./map-search.html">지도검색</a>
+        <a href="./parking-data.html">주차데이터</a>
+        <a href="./contact.html">제보</a>
+      </nav>
+    </header>
+
+    <main class="map-page">
+      <section class="map-hero">
+        <p class="eyebrow">Map Search</p>
+        <h1>운정 생활권을 지도처럼 빠르게 훑어봅니다.</h1>
+        <p class="lead">
+          주차장, 도서관, 공원, 문화시설, 보건시설을 운정 생활권 기준으로 묶었습니다. 현재는 공공데이터와
+          공식 출처 기반의 자체 지도검색이며, 카카오 지도 API 키를 연결하면 같은 데이터로 실제 지도를 붙일 수 있습니다.
+        </p>
+      </section>
+
+      <section class="map-shell" aria-label="운정 생활권 지도 검색">
+        <aside class="map-sidebar">
+          <h2>카테고리</h2>
+          <p>필터를 누르면 지도와 목록이 함께 바뀝니다.</p>
+
+          <div class="filter-group">
+            <h3>주차·자동차</h3>
+            <div class="map-filters">
+              <button class="map-filter active" type="button" data-filter="all">전체</button>
+              <button class="map-filter" type="button" data-filter="parking">주차장</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h3>문화·여가</h3>
+            <div class="map-filters">
+              <button class="map-filter" type="button" data-filter="park">공원</button>
+              <button class="map-filter" type="button" data-filter="library">도서관</button>
+              <button class="map-filter" type="button" data-filter="culture">문화시설</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h3>생활·보건</h3>
+            <div class="map-filters">
+              <button class="map-filter" type="button" data-filter="health">보건시설</button>
+            </div>
+          </div>
+
+          <div class="map-results" id="mapResults" aria-live="polite"></div>
+        </aside>
+
+        <div class="map-stage" id="mapStage">
+          <span class="map-road road-a"></span>
+          <span class="map-road road-b"></span>
+          <span class="map-road road-c"></span>
+          <span class="map-zone-label" style="left: 16%; top: 22%;">야당권</span>
+          <span class="map-zone-label" style="left: 42%; top: 30%;">운정역권</span>
+          <span class="map-zone-label" style="left: 58%; top: 56%;">산내·해솔권</span>
+          <span class="map-zone-label" style="left: 72%; top: 24%;">동패·초롱꽃권</span>
+
+          <button class="map-pin" data-category="parking" data-id="운정역환승" style="left: 41%; top: 37%;">P</button>
+          <button class="map-pin" data-category="parking" data-id="야당역환승" style="left: 18%; top: 28%;">P</button>
+          <button class="map-pin" data-category="parking" data-id="GTX-A 운정중앙역" style="left: 72%; top: 34%;">P</button>
+          <button class="map-pin" data-category="park" data-id="운정호수공원" style="left: 53%; top: 50%;">공</button>
+          <button class="map-pin" data-category="library" data-id="가람도서관" style="left: 47%; top: 45%;">도</button>
+          <button class="map-pin" data-category="library" data-id="한빛도서관" style="left: 60%; top: 62%;">도</button>
+          <button class="map-pin" data-category="culture" data-id="솔가람아트홀" style="left: 49%; top: 42%;">문</button>
+          <button class="map-pin" data-category="health" data-id="운정보건소" style="left: 64%; top: 40%;">보</button>
+
+          <div class="map-tooltip" id="mapTooltip">
+            <strong>운정 생활권 지도 검색</strong>
+            <p>왼쪽 필터를 누르거나 지도 핀을 선택하면 장소 설명과 카카오맵 검색 링크가 표시됩니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-main">
+        <article class="page-card wide">
+          <h3>데이터 기준</h3>
+          <p>
+            이 지도형 페이지는 파주시 공영주차장 현황, 파주시도서관 포털, 파주시 보건소, 파주문화재단,
+            운정호수공원 관련 공식 자료를 기준으로 구성했습니다. 위치 좌표는 실제 지도 API 연동 전까지 생활권
+            이해를 돕기 위한 시각화이며, 방문 전 공식 지도와 현장 안내를 확인해야 합니다.
+          </p>
+          <ul class="source-list">
+            <li><a href="https://www.paju.go.kr/www/intropaju/intropaju_05/intropaju_05_14/intropaju_05_14_12.jsp" target="_blank" rel="noopener">파주시 유료 공영주차장 현황</a></li>
+            <li><a href="https://lib.paju.go.kr/intro/index.do" target="_blank" rel="noopener">파주시도서관 공식 포털</a></li>
+            <li><a href="https://clinic.paju.go.kr/clinic/index.do" target="_blank" rel="noopener">파주시 보건소</a></li>
+            <li><a href="https://www.pajucf.or.kr" target="_blank" rel="noopener">파주문화재단</a></li>
+          </ul>
+        </article>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <section><a class="footer-logo" href="./index.html">운정생활지도</a><p>운정 가족 생활 가이드</p></section>
+        <section><h4>주요 서비스</h4><ul><li><a href="./kids.html">아이생활</a></li><li><a href="./culture-leisure.html">여가·문화</a></li><li><a href="./map-search.html">지도검색</a></li><li><a href="./parking-data.html">주차데이터</a></li></ul></section>
+        <section><h4>사업자 정보</h4><p class="company-name">운정생활지도 운영팀</p><ul><li>사업자번호: 564-04-03514</li><li>로컬 생활정보 편집 및 웹 서비스 운영</li></ul></section>
+        <section><h4>고객지원</h4><ul><li>이메일: <a href="mailto:yoonezra@gmail.com">yoonezra@gmail.com</a></li><li>운영시간: 평일 09:00 ~ 18:00</li></ul></section>
+      </div>
+      <div class="footer-bottom"><span>&copy; Since 2026 운정생활지도. All rights reserved.</span><nav><a href="./about.html">소개</a><a href="./contact.html">문의</a><a href="./privacy.html">개인정보처리방침</a></nav></div>
+    </footer>
+
+    <script>
+      const places = [
+        { id: "운정역환승", category: "parking", title: "운정역환승 공영주차장", area: "운정역권", desc: "경의중앙선 환승과 출퇴근 주차 후보입니다. 정기권과 만차 여부는 파주시 통합주차포털 확인이 필요합니다." },
+        { id: "야당역환승", category: "parking", title: "야당역환승 공영주차장", area: "야당권", desc: "야당역 상권, 외식, 저녁 이동 시 함께 볼 주차 후보입니다." },
+        { id: "GTX-A 운정중앙역", category: "parking", title: "GTX-A 운정중앙역 주차 후보", area: "동패·초롱꽃권", desc: "GTX 환승 수요를 고려해 운정중앙역 1·2 주차 후보를 함께 확인해야 합니다." },
+        { id: "운정호수공원", category: "park", title: "운정호수공원", area: "운정 중심권", desc: "산책, 유모차, 킥보드, 주말 가족 나들이에 자주 쓰는 운정 대표 공원입니다." },
+        { id: "가람도서관", category: "library", title: "가람도서관", area: "가람·와동권", desc: "비 오는 날, 초등 방과후, 문화 프로그램 확인에 좋은 도서관 후보입니다." },
+        { id: "한빛도서관", category: "library", title: "한빛도서관", area: "한빛권", desc: "어린이자료실, 독서 루틴, 조용한 주말 코스로 확인할 수 있습니다." },
+        { id: "솔가람아트홀", category: "culture", title: "솔가람아트홀", area: "가람권", desc: "파주문화재단 공연과 클래식·문화 프로그램 확인 후보입니다." },
+        { id: "운정보건소", category: "health", title: "운정보건소", area: "운정권", desc: "예방접종, 모자보건, 건강증진사업 등 보건소 업무 확인에 필요합니다." }
+      ];
+
+      const labels = {
+        all: "전체",
+        parking: "주차장",
+        park: "공원",
+        library: "도서관",
+        culture: "문화시설",
+        health: "보건시설"
+      };
+
+      const results = document.getElementById("mapResults");
+      const tooltip = document.getElementById("mapTooltip");
+      const filters = document.querySelectorAll(".map-filter");
+      const pins = document.querySelectorAll(".map-pin");
+
+      function kakaoSearchUrl(place) {
+        return "https://map.kakao.com/link/search/" + encodeURIComponent(place.title + " 파주 운정");
+      }
+
+      function render(filter = "all") {
+        filters.forEach((button) => button.classList.toggle("active", button.dataset.filter === filter));
+        pins.forEach((pin) => {
+          const visible = filter === "all" || pin.dataset.category === filter;
+          pin.classList.toggle("is-hidden", !visible);
+        });
+
+        const filtered = places.filter((place) => filter === "all" || place.category === filter);
+        results.innerHTML = filtered.map((place) => `
+          <article class="map-result">
+            <strong>${place.title}</strong>
+            <span>${labels[place.category]} · ${place.area}</span>
+            <span>${place.desc}</span>
+            <a href="${kakaoSearchUrl(place)}" target="_blank" rel="noopener">카카오맵에서 검색</a>
+          </article>
+        `).join("");
+
+        const title = filter === "all" ? "운정 생활권 전체" : labels[filter];
+        tooltip.innerHTML = `<strong>${title}</strong><p>${filtered.length}개 장소를 표시 중입니다. 목록에서 카카오맵 검색으로 실제 위치와 길찾기를 확인하세요.</p>`;
+      }
+
+      filters.forEach((button) => {
+        button.addEventListener("click", () => render(button.dataset.filter));
+      });
+
+      pins.forEach((pin) => {
+        pin.addEventListener("click", () => {
+          const place = places.find((item) => item.id === pin.dataset.id);
+          if (!place) return;
+          tooltip.innerHTML = `<strong>${place.title}</strong><p>${place.desc}</p><p><a href="${kakaoSearchUrl(place)}" target="_blank" rel="noopener">카카오맵에서 검색</a></p>`;
+        });
+      });
+
+      render();
+    </script>
+  </body>
+</html>
