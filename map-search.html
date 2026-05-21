@@ -12,7 +12,7 @@
     <link rel="icon" href="./logo.svg" type="image/svg+xml">
     <script>
       // 네이버 클라우드 플랫폼 Maps > Dynamic Map의 NCP Key ID를 넣으면 실제 지도가 표시됩니다.
-      window.NAVER_MAP_NCP_KEY_ID = "";
+      window.NAVER_MAP_NCP_KEY_ID = "51mdt49cgt";
     </script>
   </head>
   <body>
@@ -264,6 +264,7 @@
         if (!window.naver?.maps) return;
 
         const container = document.getElementById("naverMap");
+        mapStage.classList.add("map-ready");
         naverMap = new naver.maps.Map(container, {
           center: new naver.maps.LatLng(37.7243, 126.7499),
           zoom: 13,
@@ -286,9 +287,17 @@
           return { marker, place, position };
         });
 
-        mapStage.classList.add("map-ready");
-        mapApiNotice.textContent = "네이버 지도 기준으로 표시 중입니다. 위치는 공식 자료와 지도 검색을 함께 확인하세요.";
+        naver.maps.Event.trigger(naverMap, "resize");
         updateNaverMarkers(document.querySelector(".map-filter.active")?.dataset.filter || "all");
+
+        window.setTimeout(() => {
+          if (container.children.length === 0) {
+            mapStage.classList.remove("map-ready");
+            mapApiNotice.textContent = "네이버 지도 인증 또는 도메인 설정 확인이 필요해 백업 생활권 지도를 표시합니다. 네이버 검색 링크는 정상 사용 가능합니다.";
+            return;
+          }
+          mapApiNotice.textContent = "네이버 지도 기준으로 표시 중입니다. 위치는 공식 자료와 지도 검색을 함께 확인하세요.";
+        }, 1500);
       }
 
       function loadNaverMap() {
@@ -299,9 +308,10 @@
         }
 
         const script = document.createElement("script");
-        script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(key)}`;
+        window.initUnjeongNaverMap = initNaverMap;
+        mapApiNotice.textContent = "네이버 지도를 불러오는 중입니다.";
+        script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(key)}&callback=initUnjeongNaverMap`;
         script.async = true;
-        script.onload = initNaverMap;
         script.onerror = () => {
           mapApiNotice.textContent = "네이버 지도 스크립트를 불러오지 못했습니다. NCP Key ID와 Web 서비스 URL 등록을 확인하세요.";
         };
