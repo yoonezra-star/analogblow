@@ -67,11 +67,58 @@
           </table>
         </div>
 
+        <h3>운정 가족의 시간대별 날씨 체크</h3>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>시간대</th><th>확인할 날씨</th><th>생활 판단</th><th>연결 정보</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>07:00~09:00</td><td>기온, 강수, 바람</td><td>등원·등교 우산, 겉옷, 차량 정차 위치를 정합니다.</td><td><a href="./kids.html">아이생활</a></td></tr>
+              <tr><td>13:00~16:00</td><td>강수확률, 체감온도, 미세먼지</td><td>하교 후 학원·도서관 이동과 실내 대체 장소를 봅니다.</td><td><a href="./public-facilities.html">공공시설</a></td></tr>
+              <tr><td>18:00~20:00</td><td>비·눈, 바람, 도로 상태</td><td>퇴근 후 병원, 약국, 장보기 주차 동선을 조정합니다.</td><td><a href="./health.html">병원·약국</a></td></tr>
+              <tr><td>주말 오전</td><td>하늘 상태, 강수, 바람</td><td>공원, 호수공원, 도서관, 실내 문화시설 중 우선순위를 정합니다.</td><td><a href="./culture-leisure.html">여가·문화</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>운정 생활권별 날씨 영향</h3>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>생활권</th><th>날씨 영향을 크게 받는 상황</th><th>체크 포인트</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>야당권</td><td>저녁 외식, 병원·약국 방문, 상가 주차</td><td>비 오는 날에는 상가 앞 정차보다 공영주차장과 도보 동선을 먼저 봅니다.</td></tr>
+              <tr><td>운정역·와동권</td><td>역 환승, 도서관, 보건소, 공원 이동</td><td>강풍·강수 예보가 있으면 환승 주차와 실내 대기 공간을 확인합니다.</td></tr>
+              <tr><td>산내·해솔권</td><td>학교, 학원, 도서관, 방과후 이동</td><td>하교 시간 비 예보가 있으면 픽업 지점과 우산 동선을 미리 정합니다.</td></tr>
+              <tr><td>동패·초롱꽃권</td><td>신규 입주지, 공사 구간, GTX 연계 이동</td><td>비·눈 예보에는 보행로 상태와 차량 우회 가능성을 확인합니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <section class="rich-section">
+          <h3>날씨별 추천 연결</h3>
+          <div class="insight-grid four">
+            <article><b>비 오는 날</b><p>도서관, 실내 문화시설, 주차가 편한 상권을 우선합니다. 아이 동반이면 우산과 유모차 동선을 줄이는 것이 핵심입니다.</p></article>
+            <article><b>강풍</b><p>호수공원과 넓은 야외 공간보다 실내 시설을 우선합니다. 자전거·킥보드 이동은 줄이는 편이 안전합니다.</p></article>
+            <article><b>폭염·한파</b><p>이동 시간을 20분 이내로 줄이고, 병원·약국·마트처럼 필요한 방문을 한 방향으로 묶습니다.</p></article>
+            <article><b>맑은 날</b><p>운정호수공원, 소리천, 근린공원, 야외 식사 후보를 반나절 코스로 묶어 볼 수 있습니다.</p></article>
+          </div>
+        </section>
+
         <h3>공공데이터 연결 방식</h3>
         <p>
           기상청 단기예보 조회서비스를 Cloudflare Functions에서 호출하고, 운정 좌표를 기상청 격자 좌표로 변환해 예보를 가져옵니다.
           화면에는 원본 수치보다 생활 판단에 필요한 기온, 하늘 상태, 강수, 바람을 우선 표시합니다.
         </p>
+        <div class="notice-box">
+          <strong>날씨 정보 안내</strong>
+          <p>
+            날씨 예보는 발표 시각과 실제 현장 상황에 따라 달라질 수 있습니다. 야외 활동, 운전, 등하원,
+            병원 방문 전에는 기상청 공식 예보와 현장 상황을 함께 확인하세요.
+          </p>
+        </div>
       </article>
     </main>
 
