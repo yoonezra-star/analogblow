@@ -6,12 +6,13 @@
     <meta name="robots" content="index, follow">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1441018945572157" crossorigin="anonymous"></script>
     <title>운정 생활권 지도 검색 | 운정라이프</title>
-    <meta name="description" content="운정 생활권의 주차장, 도서관, 공원, 문화시설, 보건시설을 카테고리별로 찾는 지도 검색형 페이지입니다.">
+    <meta name="description" content="운정 생활권의 주차장, 도서관, 공원, 문화시설, 보건시설을 카테고리별로 찾는 네이버 지도 검색형 페이지입니다.">
     <link rel="canonical" href="https://analogblow.com/map-search.html">
     <link rel="stylesheet" href="./styles.css">
     <link rel="icon" href="./logo.svg" type="image/svg+xml">
     <script>
-      window.KAKAO_MAP_API_KEY = "c6aeee21e2f01981e836a059d91e62ff";
+      // 네이버 클라우드 플랫폼 Maps > Dynamic Map의 NCP Key ID를 넣으면 실제 지도가 표시됩니다.
+      window.NAVER_MAP_NCP_KEY_ID = "";
     </script>
   </head>
   <body>
@@ -32,7 +33,7 @@
         <h1>운정 생활권을 지도처럼 빠르게 훑어봅니다.</h1>
         <p class="lead">
           주차장, 도서관, 공원, 문화시설, 보건시설을 운정 생활권 기준으로 묶었습니다. 현재는 공공데이터와
-          공식 출처 기반의 자체 지도검색이며, 카카오 지도 API 키를 연결하면 같은 데이터로 실제 지도를 붙일 수 있습니다.
+          공식 출처 기반의 자체 지도검색이며, 네이버 지도 API 키를 연결하면 같은 데이터로 실제 지도를 붙일 수 있습니다.
         </p>
       </section>
 
@@ -87,9 +88,9 @@
         </aside>
 
         <div class="map-stage" id="mapStage">
-          <div class="kakao-map-canvas" id="kakaoMap" aria-label="카카오 지도"></div>
+          <div class="provider-map-canvas" id="naverMap" aria-label="네이버 지도"></div>
           <div class="map-api-notice" id="mapApiNotice">
-            카카오 JavaScript 키를 넣으면 실제 지도가 표시됩니다. 현재는 백업 생활권 지도를 보여줍니다.
+            네이버 지도 API 키를 넣으면 실제 지도가 표시됩니다. 현재는 백업 생활권 지도와 네이버 지도 검색 링크를 보여줍니다.
           </div>
           <div class="fallback-map-layer" id="fallbackMapLayer">
             <span class="map-road road-a"></span>
@@ -104,7 +105,7 @@
 
           <div class="map-tooltip" id="mapTooltip">
             <strong>운정 생활권 지도 검색</strong>
-            <p>왼쪽 필터를 누르거나 지도 핀을 선택하면 장소 설명과 카카오맵 검색 링크가 표시됩니다.</p>
+            <p>왼쪽 필터를 누르거나 지도 핀을 선택하면 장소 설명과 네이버 지도 검색 링크가 표시됩니다.</p>
           </div>
         </div>
       </section>
@@ -115,7 +116,7 @@
           <p>
             이 지도형 페이지는 파주시 공영주차장 현황, 파주시도서관 포털, 파주시 보건소, 파주문화재단,
             학교알리미, 어린이집 정보공개, 응급의료포털 등 공식 출처를 우선 확인해 생활권 기준으로 재구성합니다.
-            병원·약국·상업시설은 영업시간과 진료 여부가 자주 바뀌므로 방문 전 카카오맵과 공식 안내를 함께 확인해야 합니다.
+            병원·약국·상업시설은 영업시간과 진료 여부가 자주 바뀌므로 방문 전 네이버 지도와 공식 안내를 함께 확인해야 합니다.
           </p>
           <ul class="source-list">
             <li><a href="https://www.paju.go.kr/www/intropaju/intropaju_05/intropaju_05_14/intropaju_05_14_12.jsp" target="_blank" rel="noopener">파주시 유료 공영주차장 현황</a></li>
@@ -163,7 +164,7 @@
         { id: "솔가람아트홀", category: "culture", title: "솔가람아트홀", area: "가람권", lat: 37.7358, lng: 126.7514, x: 49, y: 42, desc: "파주문화재단 공연과 클래식·문화 프로그램 확인 후보입니다." },
         { id: "운정행복센터", category: "culture", title: "운정행복센터", area: "운정권", lat: 37.7242, lng: 126.7482, x: 63, y: 43, desc: "주민 프로그램, 행정 업무, 생활문화 강좌를 함께 확인할 수 있는 공공 생활 거점입니다." },
         { id: "운정보건소", category: "health", title: "운정보건소", area: "운정권", lat: 37.7258, lng: 126.7477, x: 64, y: 40, desc: "예방접종, 모자보건, 건강증진사업 등 보건소 업무 확인에 필요합니다." },
-        { id: "운정소아과후보", category: "hospital", title: "운정 소아청소년과 밀집 후보", area: "운정·야당권", lat: 37.7198, lng: 126.7582, x: 32, y: 47, desc: "아이 열, 감기, 야간 진료를 볼 때 카카오맵에서 현재 진료 여부와 대기 시간을 반드시 확인하세요." },
+        { id: "운정소아과후보", category: "hospital", title: "운정 소아청소년과 밀집 후보", area: "운정·야당권", lat: 37.7198, lng: 126.7582, x: 32, y: 47, desc: "아이 열, 감기, 야간 진료를 볼 때 네이버 지도에서 현재 진료 여부와 대기 시간을 반드시 확인하세요." },
         { id: "야당내과후보", category: "hospital", title: "야당역 병원·의원 후보", area: "야당권", lat: 37.7129, lng: 126.7601, x: 22, y: 39, desc: "야당역 상권 주변 병원 후보입니다. 진료과목, 휴진일, 접수 마감 시간을 확인하세요." },
         { id: "운정약국후보", category: "pharmacy", title: "운정역 약국 후보", area: "운정역권", lat: 37.7251, lng: 126.7645, x: 38, y: 45, desc: "병원 방문 후 이동하기 쉬운 약국 후보입니다. 휴일지킴이약국 정보와 함께 확인하는 편이 좋습니다." },
         { id: "야당약국후보", category: "pharmacy", title: "야당역 약국 후보", area: "야당권", lat: 37.7124, lng: 126.7599, x: 20, y: 43, desc: "저녁 외출 동선에서 약국을 찾을 때 확인할 후보입니다. 운영시간은 방문 전 재확인하세요." },
@@ -193,12 +194,11 @@
       const fallbackPins = document.getElementById("fallbackPins");
       const filters = document.querySelectorAll(".map-filter");
       let pins = [];
-      let kakaoMap = null;
-      let kakaoBounds = null;
-      let kakaoMarkers = [];
+      let naverMap = null;
+      let naverMarkers = [];
 
-      function kakaoSearchUrl(place) {
-        return "https://map.kakao.com/link/search/" + encodeURIComponent(place.title + " 파주 운정");
+      function naverSearchUrl(place) {
+        return "https://map.naver.com/p/search/" + encodeURIComponent(place.title + " 파주 운정");
       }
 
       function categoryColor(category) {
@@ -218,11 +218,11 @@
       }
 
       function markerContent(place) {
-        return `<button class="kakao-place-marker" type="button" data-id="${place.id}" style="background:${categoryColor(place.category)}">${labels[place.category].slice(0, 1)}</button>`;
+        return `<button class="provider-place-marker" type="button" data-id="${place.id}" style="background:${categoryColor(place.category)}">${labels[place.category].slice(0, 1)}</button>`;
       }
 
       function placeTooltip(place) {
-        tooltip.innerHTML = `<strong>${place.title}</strong><p>${place.desc}</p><p><a href="${kakaoSearchUrl(place)}" target="_blank" rel="noopener">카카오맵에서 검색</a></p>`;
+        tooltip.innerHTML = `<strong>${place.title}</strong><p>${place.desc}</p><p><a href="${naverSearchUrl(place)}" target="_blank" rel="noopener">네이버 지도에서 검색</a></p>`;
       }
 
       function attachFallbackPinEvents() {
@@ -243,62 +243,67 @@
         attachFallbackPinEvents();
       }
 
-      function updateKakaoMarkers(filter = "all") {
-        if (!kakaoMap || !window.kakao?.maps) return;
-        kakaoBounds = new kakao.maps.LatLngBounds();
+      function updateNaverMarkers(filter = "all") {
+        if (!naverMap || !window.naver?.maps) return;
+        const bounds = new naver.maps.LatLngBounds();
+        let visibleCount = 0;
 
-        kakaoMarkers.forEach(({ marker, place }) => {
+        naverMarkers.forEach(({ marker, place, position }) => {
           const visible = filter === "all" || place.category === filter;
-          marker.setMap(visible ? kakaoMap : null);
-          if (visible) kakaoBounds.extend(new kakao.maps.LatLng(place.lat, place.lng));
+          marker.setMap(visible ? naverMap : null);
+          if (visible) {
+            bounds.extend(position);
+            visibleCount += 1;
+          }
         });
 
-        if (!kakaoBounds.isEmpty()) kakaoMap.setBounds(kakaoBounds, 48, 48, 48, 48);
+        if (visibleCount > 0) naverMap.fitBounds(bounds);
       }
 
-      function initKakaoMap() {
-        if (!window.kakao?.maps) return;
+      function initNaverMap() {
+        if (!window.naver?.maps) return;
 
-        const container = document.getElementById("kakaoMap");
-        kakaoMap = new kakao.maps.Map(container, {
-          center: new kakao.maps.LatLng(37.7243, 126.7499),
-          level: 6
+        const container = document.getElementById("naverMap");
+        naverMap = new naver.maps.Map(container, {
+          center: new naver.maps.LatLng(37.7243, 126.7499),
+          zoom: 13,
+          zoomControl: true,
+          mapTypeControl: true
         });
-        kakaoMap.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPRIGHT);
-        kakaoMap.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.RIGHT);
 
-        kakaoMarkers = places.map((place) => {
-          const marker = new kakao.maps.CustomOverlay({
-            position: new kakao.maps.LatLng(place.lat, place.lng),
-            content: markerContent(place),
-            yAnchor: 1
+        naverMarkers = places.map((place) => {
+          const position = new naver.maps.LatLng(place.lat, place.lng);
+          const marker = new naver.maps.Marker({
+            position,
+            map: naverMap,
+            title: place.title,
+            icon: {
+              content: markerContent(place),
+              anchor: new naver.maps.Point(15, 15)
+            }
           });
-          return { marker, place };
+          naver.maps.Event.addListener(marker, "click", () => placeTooltip(place));
+          return { marker, place, position };
         });
 
         mapStage.classList.add("map-ready");
-        mapApiNotice.textContent = "카카오 지도 기준으로 표시 중입니다. 위치는 공식 자료와 지도 검색을 함께 확인하세요.";
-        updateKakaoMarkers(document.querySelector(".map-filter.active")?.dataset.filter || "all");
-
-        container.addEventListener("click", (event) => {
-          const markerButton = event.target.closest(".kakao-place-marker");
-          if (!markerButton) return;
-          const place = places.find((item) => item.id === markerButton.dataset.id);
-          if (!place) return;
-          placeTooltip(place);
-        });
+        mapApiNotice.textContent = "네이버 지도 기준으로 표시 중입니다. 위치는 공식 자료와 지도 검색을 함께 확인하세요.";
+        updateNaverMarkers(document.querySelector(".map-filter.active")?.dataset.filter || "all");
       }
 
-      function loadKakaoMap() {
-        const key = (window.KAKAO_MAP_API_KEY || "").trim();
-        if (!key) return;
+      function loadNaverMap() {
+        const key = (window.NAVER_MAP_NCP_KEY_ID || "").trim();
+        if (!key) {
+          mapApiNotice.textContent = "네이버 지도 API 키가 아직 없어 백업 생활권 지도를 표시합니다. 목록의 네이버 지도 검색 링크는 바로 사용할 수 있습니다.";
+          return;
+        }
 
         const script = document.createElement("script");
-        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${encodeURIComponent(key)}&autoload=false`;
+        script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(key)}`;
         script.async = true;
-        script.onload = () => kakao.maps.load(initKakaoMap);
+        script.onload = initNaverMap;
         script.onerror = () => {
-          mapApiNotice.textContent = "카카오 지도 스크립트를 불러오지 못했습니다. 도메인 등록과 JavaScript 키를 확인하세요.";
+          mapApiNotice.textContent = "네이버 지도 스크립트를 불러오지 못했습니다. NCP Key ID와 Web 서비스 URL 등록을 확인하세요.";
         };
         document.head.appendChild(script);
       }
@@ -316,13 +321,13 @@
             <strong>${place.title}</strong>
             <span>${labels[place.category]} · ${place.area}</span>
             <span>${place.desc}</span>
-            <a href="${kakaoSearchUrl(place)}" target="_blank" rel="noopener">카카오맵에서 검색</a>
+            <a href="${naverSearchUrl(place)}" target="_blank" rel="noopener">네이버 지도에서 검색</a>
           </article>
         `).join("");
 
         const title = filter === "all" ? "운정 생활권 전체" : labels[filter];
-        tooltip.innerHTML = `<strong>${title}</strong><p>${filtered.length}개 장소를 표시 중입니다. 목록에서 카카오맵 검색으로 실제 위치와 길찾기를 확인하세요.</p>`;
-        updateKakaoMarkers(filter);
+        tooltip.innerHTML = `<strong>${title}</strong><p>${filtered.length}개 장소를 표시 중입니다. 목록에서 네이버 지도 검색으로 실제 위치와 길찾기를 확인하세요.</p>`;
+        updateNaverMarkers(filter);
       }
 
       filters.forEach((button) => {
@@ -331,7 +336,7 @@
 
       renderFallbackPins();
       render();
-      loadKakaoMap();
+      loadNaverMap();
     </script>
   </body>
 </html>

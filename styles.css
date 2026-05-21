@@ -856,12 +856,12 @@ h3 { margin: 0; font-size: 20px; }
     linear-gradient(135deg, #eaf5ee, #f7efe4);
   background-size: 56px 56px, 56px 56px, auto;
 }
-.kakao-map-canvas,
+.provider-map-canvas,
 .fallback-map-layer {
   position: absolute;
   inset: 0;
 }
-.kakao-map-canvas {
+.provider-map-canvas {
   z-index: 1;
   display: none;
   background: #eef5ee;
@@ -869,7 +869,7 @@ h3 { margin: 0; font-size: 20px; }
 .fallback-map-layer {
   z-index: 2;
 }
-.map-ready .kakao-map-canvas {
+.map-ready .provider-map-canvas {
   display: block;
 }
 .map-ready .fallback-map-layer {
@@ -923,7 +923,7 @@ h3 { margin: 0; font-size: 20px; }
   font-weight: 900;
   cursor: pointer;
 }
-.kakao-place-marker {
+.provider-place-marker {
   display: grid;
   place-items: center;
   width: 34px;
