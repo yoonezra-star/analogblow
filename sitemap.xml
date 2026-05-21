@@ -36,6 +36,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://analogblow.com/parking-data.html</loc>
+    <lastmod>2026-05-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://analogblow.com/school-roadmap.html</loc>
+    <lastmod>2026-05-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://analogblow.com/public-facilities.html</loc>
+    <lastmod>2026-05-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://analogblow.com/contact.html</loc>
     <lastmod>2026-05-21</lastmod>
     <priority>0.7</priority>
