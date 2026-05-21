@@ -3,17 +3,231 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Analog Blow</title>
-    <meta name="description" content="Analog Blow 공식 웹사이트">
+    <meta name="robots" content="index, follow">
+    <title>운정오늘 | 파주 운정 가족 생활정보 가이드</title>
+    <meta name="description" content="운정오늘은 파주 운정 신도시에 사는 가족을 위한 학교, 병원, 교통, 주말 나들이, 생활 편의 정보를 정리하는 로컬 생활 가이드입니다.">
+    <meta name="keywords" content="운정오늘, 운정 생활정보, 파주 운정, 운정 신도시, 운정 학교, 운정 병원, 운정 아이와 갈만한 곳, 운정 주차, 운정 교통">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="운정오늘 | 파주 운정 가족 생활정보 가이드">
+    <meta property="og:description" content="학교, 병원, 교통, 주말 나들이까지. 운정 가족에게 필요한 생활 정보를 한 화면에서 확인하세요.">
+    <meta property="og:url" content="https://analogblow.com/">
+    <link rel="canonical" href="https://analogblow.com/">
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <main class="site">
-      <section class="hero" aria-labelledby="title">
-        <p class="eyebrow">analogblow.com</p>
-        <h1 id="title">Analog Blow</h1>
-        <p class="lead">새로운 웹사이트를 준비하고 있습니다.</p>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="운정오늘 홈">
+        <span class="brand-mark">U</span>
+        <span>
+          <strong>운정오늘</strong>
+          <small>Unjeong Family Guide</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="#school">학교·교육</a>
+        <a href="#health">병원·약국</a>
+        <a href="#weekend">주말</a>
+        <a href="#commute">교통</a>
+        <a href="./about.html">소개</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">파주 운정 신도시 생활 가이드</p>
+          <h1>아이 키우는 운정 가족에게 필요한 정보를 먼저 정리합니다.</h1>
+          <p class="lead">
+            학교, 병원, 약국, 주말 나들이, 교통, 생활 편의까지. 검색보다 빠르게 판단할 수 있는
+            운정 중심 로컬 정보 페이지를 목표로 운영합니다.
+          </p>
+          <form class="search-panel" action="#quick" aria-label="운정 생활정보 빠른 검색">
+            <input type="search" placeholder="예: 소아과, 초등학교, 키즈카페, 주차장" aria-label="검색어">
+            <button type="submit">빠른 탐색</button>
+          </form>
+          <div class="hero-actions">
+            <a class="primary-link" href="#quick">카테고리 보기</a>
+            <a class="secondary-link" href="./contact.html">정보 제보하기</a>
+          </div>
+        </div>
+        <aside class="today-card" aria-label="오늘의 운정 체크리스트">
+          <div class="today-head">
+            <span>오늘 체크</span>
+            <strong>운정 가족 루틴</strong>
+          </div>
+          <ul>
+            <li><span>아침</span> 등원·등교 동선과 날씨 확인</li>
+            <li><span>오후</span> 학원, 병원, 약국 운영시간 확인</li>
+            <li><span>주말</span> 비 오는 날 실내 코스와 공원 후보 저장</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section id="quick" class="section">
+        <div class="section-head">
+          <p class="eyebrow">Quick Finder</p>
+          <h2>운정 생활 빠른入口</h2>
+          <p>초기 버전은 실제 생활 상황별로 이동하는 구조에 집중합니다.</p>
+        </div>
+        <div class="quick-grid">
+          <a class="quick-card" href="#health"><span>🩺</span><strong>소아과·약국</strong><small>야간, 주말 진료 확인 루틴</small></a>
+          <a class="quick-card" href="#school"><span>🎒</span><strong>학교·돌봄</strong><small>유초중고 생활권 정리</small></a>
+          <a class="quick-card" href="#weekend"><span>🌦</span><strong>아이와 갈 곳</strong><small>비 오는 날, 미세먼지 날 대안</small></a>
+          <a class="quick-card" href="#commute"><span>🚆</span><strong>출퇴근·교통</strong><small>역세권, 버스, 주차 동선</small></a>
+          <a class="quick-card" href="#living"><span>🧺</span><strong>생활 편의</strong><small>마트, 문구, 행정, 세탁</small></a>
+          <a class="quick-card" href="#guides"><span>📌</span><strong>운정 이사 가이드</strong><small>처음 온 가족 체크리스트</small></a>
+        </div>
+      </section>
+
+      <section class="split-section" id="school">
+        <div>
+          <p class="eyebrow">School & Kids</p>
+          <h2>학교와 아이 생활을 먼저 봅니다.</h2>
+          <p>
+            운정은 가족 단위 거주 비중이 높은 신도시입니다. 그래서 단순 상권 정보보다 등하교,
+            돌봄, 학원, 도서관, 공원 접근성이 실제 만족도를 좌우합니다.
+          </p>
+        </div>
+        <div class="insight-list">
+          <article>
+            <span>01</span>
+            <h3>초등 생활권</h3>
+            <p>학교 주변 보행 동선, 문구점, 태권도·피아노·영어 학원 밀집도를 함께 정리합니다.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>돌봄·도서관</h3>
+            <p>방과후 일정이 비는 날 갈 수 있는 공공시설과 실내 공간을 우선 수집합니다.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>입학 준비</h3>
+            <p>전입, 예방접종, 준비물, 통학 루틴 등 부모가 놓치기 쉬운 항목을 체크리스트화합니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section muted" id="health">
+        <div class="section-head">
+          <p class="eyebrow">Health Map</p>
+          <h2>아이가 아플 때 바로 판단할 수 있게</h2>
+          <p>의료 정보는 광고보다 정확성이 중요합니다. 초기에는 확인 가능한 운영 정보와 방문 전 체크 포인트 위주로 제공합니다.</p>
+        </div>
+        <div class="scenario-grid">
+          <article class="scenario-card">
+            <h3>갑자기 열이 날 때</h3>
+            <p>소아과, 약국, 응급실 후보를 찾기 전 확인해야 할 증상·시간·이동수단 체크리스트.</p>
+          </article>
+          <article class="scenario-card">
+            <h3>주말 진료가 필요할 때</h3>
+            <p>토요일·일요일 진료 여부는 변동될 수 있어, 전화 확인을 기본 안내로 둡니다.</p>
+          </article>
+          <article class="scenario-card">
+            <h3>치과·이비인후과 찾기</h3>
+            <p>아이 동반 방문 편의성, 대기, 주차, 접근성을 함께 비교할 수 있도록 설계합니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="weekend">
+        <div class="section-head compact">
+          <p class="eyebrow">Weekend Planner</p>
+          <h2>오늘 날씨에 맞는 운정 주말 선택지</h2>
+        </div>
+        <div class="planner">
+          <button class="planner-tab active" data-filter="all">전체</button>
+          <button class="planner-tab" data-filter="indoor">실내</button>
+          <button class="planner-tab" data-filter="outdoor">야외</button>
+          <button class="planner-tab" data-filter="quiet">조용한 곳</button>
+        </div>
+        <div class="place-grid">
+          <article class="place-card" data-kind="outdoor">
+            <div class="place-image park"></div>
+            <h3>공원 산책 코스</h3>
+            <p>유모차, 자전거, 킥보드 동선을 고려해 가족 산책 코스를 정리합니다.</p>
+          </article>
+          <article class="place-card" data-kind="indoor">
+            <div class="place-image library"></div>
+            <h3>비 오는 날 실내 루틴</h3>
+            <p>도서관, 키즈카페, 대형마트, 실내 체험 후보를 상황별로 묶습니다.</p>
+          </article>
+          <article class="place-card" data-kind="quiet">
+            <div class="place-image cafe"></div>
+            <h3>부모도 쉬는 카페</h3>
+            <p>아이 동반 가능 여부와 좌석, 주차, 소음 부담을 함께 봅니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="split-section dark" id="commute">
+        <div>
+          <p class="eyebrow">Commute & Parking</p>
+          <h2>출퇴근과 주차는 운정 생활의 핵심 변수입니다.</h2>
+          <p>
+            서울 출퇴근, 역 접근성, 버스 환승, 주말 상가 주차는 가족 생활의 시간을 크게 바꿉니다.
+            정보는 생활권별로 나눠 정리합니다.
+          </p>
+        </div>
+        <div class="route-board">
+          <div><strong>운정역권</strong><span>철도·버스 환승 중심</span></div>
+          <div><strong>야당역권</strong><span>상권·외식·병원 접근</span></div>
+          <div><strong>산내·해솔</strong><span>학교·주거 밀도 중심</span></div>
+          <div><strong>초롱꽃·동패</strong><span>신규 생활권 확장</span></div>
+        </div>
+      </section>
+
+      <section class="section" id="living">
+        <div class="section-head">
+          <p class="eyebrow">Daily Utility</p>
+          <h2>자주 쓰는 생활 정보는 짧고 정확하게</h2>
+        </div>
+        <div class="utility-list">
+          <article><strong>행정</strong><span>전입, 민원, 증명서, 주민센터 이용 팁</span></article>
+          <article><strong>장보기</strong><span>마트, 전통시장, 로컬 매장, 주차 편의</span></article>
+          <article><strong>수리·관리</strong><span>세탁, 수선, 자동차 정비, 집 관리 업체</span></article>
+          <article><strong>안전</strong><span>야간 이동, 병원, 경찰·소방, 재난 알림</span></article>
+        </div>
+      </section>
+
+      <section class="section muted" id="guides">
+        <div class="section-head">
+          <p class="eyebrow">Editorial Guides</p>
+          <h2>초기 콘텐츠 발행 계획</h2>
+          <p>애드센스 승인을 위해 얇은 자동 생성 페이지보다 직접 작성한 생활형 가이드 중심으로 시작합니다.</p>
+        </div>
+        <div class="guide-grid">
+          <article><span>Guide 01</span><h3>운정 신도시 이사 체크리스트</h3><p>전입신고, 학교, 병원, 장보기, 교통을 한 번에 확인하는 입주 가이드.</p></article>
+          <article><span>Guide 02</span><h3>운정 아이와 비 오는 날 갈 곳</h3><p>실내 공간, 도서관, 카페, 체험 장소를 부모 관점에서 정리.</p></article>
+          <article><span>Guide 03</span><h3>운정 초등 입학 전 준비</h3><p>통학, 돌봄, 준비물, 생활 루틴을 중심으로 구성.</p></article>
+          <article><span>Guide 04</span><h3>운정 주말 병원 확인법</h3><p>주말 진료 정보 확인 방법과 방문 전 체크할 사항.</p></article>
+        </div>
       </section>
     </main>
+
+    <footer class="footer">
+      <div>
+        <strong>운정오늘</strong>
+        <p>파주 운정 가족을 위한 생활정보 편집 사이트입니다. 실제 운영 정보는 방문 전 공식 채널로 재확인하세요.</p>
+      </div>
+      <nav aria-label="푸터 메뉴">
+        <a href="./about.html">서비스 소개</a>
+        <a href="./contact.html">문의·제보</a>
+        <a href="./privacy.html">개인정보처리방침</a>
+        <a href="./terms.html">이용안내</a>
+      </nav>
+    </footer>
+
+    <script>
+      document.querySelectorAll(".planner-tab").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".planner-tab").forEach((item) => item.classList.remove("active"));
+          button.classList.add("active");
+          const filter = button.dataset.filter;
+          document.querySelectorAll(".place-card").forEach((card) => {
+            card.hidden = filter !== "all" && card.dataset.kind !== filter;
+          });
+        });
+      });
+    </script>
   </body>
 </html>
