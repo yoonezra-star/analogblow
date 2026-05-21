@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>운정생활지도</title>
+    <link>https://analogblow.com/</link>
+    <description>파주 운정 신도시 가족을 위한 학교, 병원, 약국, 주차, 교통, 공원, 도서관 생활정보 업데이트입니다.</description>
+    <language>ko</language>
+    <lastBuildDate>Thu, 21 May 2026 09:32:00 +0900</lastBuildDate>
+    <atom:link href="https://analogblow.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>운정 생활권 지도검색</title>
+      <link>https://analogblow.com/map-search.html</link>
+      <guid>https://analogblow.com/map-search.html</guid>
+      <pubDate>Thu, 21 May 2026 09:00:00 +0900</pubDate>
+      <description>주차장, 교통, 학교, 도서관, 병원, 약국, 공원, 문화시설을 운정 생활권 기준으로 확인하는 지도검색 페이지입니다.</description>
+    </item>
+    <item>
+      <title>운정 아이생활·학교 가이드</title>
+      <link>https://analogblow.com/kids.html</link>
+      <guid>https://analogblow.com/kids.html</guid>
+      <pubDate>Thu, 21 May 2026 09:00:00 +0900</pubDate>
+      <description>운정 유아, 초등, 중고등 자녀를 둔 가족을 위한 통학, 돌봄, 병원, 도서관, 주말 생활 가이드입니다.</description>
+    </item>
+    <item>
+      <title>운정 병원·약국 생활 가이드</title>
+      <link>https://analogblow.com/health.html</link>
+      <guid>https://analogblow.com/health.html</guid>
+      <pubDate>Thu, 21 May 2026 09:00:00 +0900</pubDate>
+      <description>소아과, 이비인후과, 치과, 약국, 주말 진료, 휴일지킴이약국 확인 기준을 정리한 페이지입니다.</description>
+    </item>
+    <item>
+      <title>운정 주차 데이터</title>
+      <link>https://analogblow.com/parking-data.html</link>
+      <guid>https://analogblow.com/parking-data.html</guid>
+      <pubDate>Thu, 21 May 2026 09:00:00 +0900</pubDate>
+      <description>파주시 공식 주차 자료를 바탕으로 운정권 공영주차장, 노상주차장, GTX 운정중앙역 주차 후보를 정리합니다.</description>
+    </item>
+    <item>
+      <title>운정 공공데이터 활용 계획</title>
+      <link>https://analogblow.com/data.html</link>
+      <guid>https://analogblow.com/data.html</guid>
+      <pubDate>Thu, 21 May 2026 09:00:00 +0900</pubDate>
+      <description>운정생활지도의 공공데이터 활용 분야, 생활권 분류 기준, 업데이트 우선순위와 주요 출처를 설명합니다.</description>
+    </item>
+  </channel>
+</rss>
