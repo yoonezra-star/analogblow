@@ -633,6 +633,34 @@ h3 { margin: 0; font-size: 20px; }
   font-size: clamp(27px, 4vw, 44px);
   line-height: 1.18;
 }
+.home-weather-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 14px;
+}
+.home-weather-strip span {
+  display: grid;
+  gap: 3px;
+  padding: 13px 14px;
+  border: 1px solid rgba(226, 232, 238, 0.95);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+}
+.home-weather-strip b {
+  color: var(--ink);
+  font-size: 18px;
+}
+.home-weather-strip small {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+.home-weather-advice {
+  margin: 0 0 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
 .today-signal-list {
   display: grid;
   gap: 12px;
@@ -1833,6 +1861,9 @@ h3 { margin: 0; font-size: 20px; }
   }
   .weather-metrics {
     grid-template-columns: 1fr;
+  }
+  .home-weather-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .polling-form {
     grid-template-columns: 1fr;

@@ -86,8 +86,15 @@
         </div>
         <div class="pulse-layout">
           <article class="today-panel main-today-panel">
-            <div class="panel-kicker"><span class="pulse-dot"></span>오늘의 생활판</div>
-            <h3>아이 동반 외출은 날씨와 주차부터 확인하세요.</h3>
+            <div class="panel-kicker"><span class="pulse-dot"></span><span id="homeWeatherStatus">오늘의 생활판</span></div>
+            <h3 id="homeWeatherHeadline">아이 동반 외출은 날씨와 주차부터 확인하세요.</h3>
+            <div class="home-weather-strip" aria-label="운정 날씨 요약">
+              <span><b id="homeWeatherTemp">-</b><small>기온</small></span>
+              <span><b id="homeWeatherSky">확인 중</b><small>하늘</small></span>
+              <span><b id="homeWeatherRain">-</b><small>강수</small></span>
+              <span><b id="homeWeatherWind">-</b><small>바람</small></span>
+            </div>
+            <p id="homeWeatherAdvice" class="home-weather-advice">기상청 예보를 생활 기준으로 바꾸는 중입니다.</p>
             <ul class="today-signal-list">
               <li><span>비·미세먼지</span><strong>실내 대체지 먼저</strong><a href="./weather-life.html">날씨 기준 보기</a></li>
               <li><span>주말 나들이</span><strong>운정호수공원·스타필드·도서관</strong><a href="./weekend.html">코스 보기</a></li>
@@ -381,5 +388,65 @@
         </nav>
       </div>
     </footer>
+    <script>
+      function decideHomeWeather(summary) {
+        const sky = summary.sky || '예보 확인';
+        const rain = summary.rain || '';
+        const tempText = summary.temperature || '';
+        const temp = Number(String(tempText).replace(/[^0-9.-]/g, ''));
+        const rainy = /비|눈|소나기|강수확률/.test(rain) && !/강수 없음/.test(rain);
+        const cold = Number.isFinite(temp) && temp <= 3;
+        const hot = Number.isFinite(temp) && temp >= 30;
+
+        if (rainy) {
+          return {
+            headline: '오늘은 실내 코스와 주차 동선을 먼저 보세요.',
+            advice: '비 또는 눈 예보가 있으면 도서관, 스타필드 빌리지 운정, 실내 식사 장소를 우선하고 주차장에서 실내 진입 동선을 확인하세요.'
+          };
+        }
+        if (cold) {
+          return {
+            headline: '추운 날은 이동 시간을 줄이고 실내 시설을 우선하세요.',
+            advice: '아이 동반 외출은 짧게 잡고 병원, 약국, 장보기, 도서관처럼 필요한 목적지를 한 방향으로 묶는 것이 좋습니다.'
+          };
+        }
+        if (hot) {
+          return {
+            headline: '더운 날은 오전 외출과 실내 대체지가 안전합니다.',
+            advice: '공원은 오전 짧은 산책으로 줄이고 낮 시간에는 도서관, 실내 문화시설, 쇼핑몰형 공간을 먼저 확인하세요.'
+          };
+        }
+        if (/맑음/.test(sky)) {
+          return {
+            headline: '맑은 날은 운정호수공원과 소리천 코스가 잘 맞습니다.',
+            advice: '오전 산책 후 가까운 식사 장소로 연결하면 아이 체력 부담이 적습니다. 주말에는 주차 가능성을 먼저 확인하세요.'
+          };
+        }
+        return {
+          headline: '오늘은 날씨와 아이 컨디션을 함께 보고 코스를 고르세요.',
+          advice: '하늘 상태와 강수 가능성을 보고 공원, 도서관, 실내 식사, 주차 동선을 함께 조정하세요.'
+        };
+      }
+
+      function setHomeWeather(data) {
+        const summary = data.summary || {};
+        const decision = decideHomeWeather(summary);
+        document.getElementById('homeWeatherStatus').textContent = data.mode === 'live' ? '기상청 예보 연결됨' : '공식 예보 확인 필요';
+        document.getElementById('homeWeatherHeadline').textContent = decision.headline;
+        document.getElementById('homeWeatherAdvice').textContent = decision.advice;
+        document.getElementById('homeWeatherTemp').textContent = summary.temperature || '-';
+        document.getElementById('homeWeatherSky').textContent = summary.sky || '확인';
+        document.getElementById('homeWeatherRain').textContent = summary.rain || '-';
+        document.getElementById('homeWeatherWind').textContent = summary.wind || '-';
+      }
+
+      fetch('/api/weather')
+        .then((response) => response.ok ? response.json() : Promise.reject())
+        .then(setHomeWeather)
+        .catch(() => setHomeWeather({
+          mode: 'fallback',
+          summary: { sky: '공식 예보 확인', temperature: '-', rain: '-', wind: '-' }
+        }));
+    </script>
   </body>
 </html>
