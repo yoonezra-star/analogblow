@@ -286,6 +286,7 @@
       const mapApiNotice = document.getElementById("mapApiNotice");
       const fallbackPins = document.getElementById("fallbackPins");
       const filters = document.querySelectorAll(".map-filter");
+      const requestedFilter = new URLSearchParams(window.location.search).get("filter") || "all";
       let pins = [];
       let naverMap = null;
       let naverMarkers = [];
@@ -533,11 +534,21 @@
       }
 
       filters.forEach((button) => {
-        button.addEventListener("click", () => render(button.dataset.filter));
+        button.addEventListener("click", () => {
+          const filter = button.dataset.filter;
+          const url = new URL(window.location.href);
+          if (filter === "all") {
+            url.searchParams.delete("filter");
+          } else {
+            url.searchParams.set("filter", filter);
+          }
+          window.history.replaceState({}, "", url);
+          render(filter);
+        });
       });
 
       renderFallbackPins();
-      render();
+      render(document.querySelector(`.map-filter[data-filter="${requestedFilter}"]`) ? requestedFilter : "all");
       loadNaverMap();
     </script>
   </body>
