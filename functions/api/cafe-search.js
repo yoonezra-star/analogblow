@@ -48,10 +48,11 @@ function isUsefulCafeItem(item, strictLocal) {
   return /운정|파주|야당|동패|목동동|산내|해솔|한빛|가람|교하|일산/.test(text);
 }
 
-function fallback(query) {
+function fallback(query, reason = 'fallback') {
   const encoded = encodeURIComponent(query || '운정 생활 후기');
   return {
     mode: 'fallback',
+    reason,
     source: 'naver-search-link',
     items: FALLBACK_ITEMS.map((item) => ({
       ...item,
@@ -74,7 +75,7 @@ export async function onRequestGet({ request, env }) {
   }
 
   if (!clientId || !clientSecret) {
-    return json(fallback(query));
+    return json(fallback(query, 'missing-env'));
   }
 
   const apiUrl = new URL('https://openapi.naver.com/v1/search/cafearticle.json');
@@ -93,7 +94,7 @@ export async function onRequestGet({ request, env }) {
     });
     const data = await response.json();
     if (!response.ok || !Array.isArray(data.items)) {
-      return json(fallback(query));
+      return json(fallback(query, `naver-http-${response.status}`));
     }
 
     const items = data.items
@@ -109,7 +110,7 @@ export async function onRequestGet({ request, env }) {
       .slice(0, display);
 
     if (!items.length) {
-      return json(fallback(query));
+      return json(fallback(query, 'filtered-empty'));
     }
 
     return json({
@@ -120,6 +121,6 @@ export async function onRequestGet({ request, env }) {
       items
     });
   } catch (error) {
-    return json(fallback(query));
+    return json(fallback(query, 'request-error'));
   }
 }
