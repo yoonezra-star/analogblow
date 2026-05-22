@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">운정 공공데이터 이미지</title>
+  <desc id="desc">지도, 데이터 카드, 공식 출처를 표현한 이미지</desc>
+  <rect width="900" height="520" rx="34" fill="#f2f8fb"/>
+  <rect x="92" y="96" width="716" height="328" rx="34" fill="#fff" stroke="#d9e5ec"/>
+  <path d="M146 350 C272 272 384 320 512 238 C622 168 710 214 758 170" stroke="#b6d1df" stroke-width="34" stroke-linecap="round" fill="none"/>
+  <path d="M170 158 H356 M170 206 H314 M170 254 H396" stroke="#d9e5ec" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="548" cy="238" r="26" fill="#12775f"/>
+  <circle cx="672" cy="204" r="22" fill="#4f83c4"/>
+  <circle cx="430" cy="292" r="20" fill="#f2b35d"/>
+  <rect x="568" y="302" width="164" height="58" rx="20" fill="#344054"/>
+</svg>

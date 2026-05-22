@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">운정 교통 주차 이미지</title>
+  <desc id="desc">역, 도로, 주차장을 표현한 교통 주차 카테고리 이미지</desc>
+  <rect width="900" height="520" rx="34" fill="#eef5ff"/>
+  <path d="M92 416 C232 312 356 374 492 286 C616 206 742 252 850 164" stroke="#bfcde1" stroke-width="58" fill="none" stroke-linecap="round"/>
+  <path d="M92 416 C232 312 356 374 492 286 C616 206 742 252 850 164" stroke="#fff" stroke-width="8" fill="none" stroke-dasharray="22 24" stroke-linecap="round"/>
+  <g transform="translate(126 132)">
+    <rect width="232" height="176" rx="26" fill="#fff" stroke="#dce5f0"/>
+    <rect x="44" y="42" width="144" height="92" rx="16" fill="#4f83c4"/>
+    <circle cx="78" cy="152" r="16" fill="#1f2937"/>
+    <circle cx="154" cy="152" r="16" fill="#1f2937"/>
+  </g>
+  <g transform="translate(548 112)">
+    <rect width="198" height="230" rx="28" fill="#fff" stroke="#dce5f0"/>
+    <rect x="60" y="42" width="78" height="146" rx="18" fill="#2563eb"/>
+    <path d="M78 76 H126 M78 112 H126 M78 148 H126" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <circle cx="438" cy="392" r="28" fill="#12775f"/>
+  <path d="M438 374 v36 M420 392 h36" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+</svg>

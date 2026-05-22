@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">운정 정책 복지 이미지</title>
+  <desc id="desc">공식 문서, 정책 뉴스, 복지 정보를 표현한 이미지</desc>
+  <rect width="900" height="520" rx="34" fill="#f6f7fb"/>
+  <g transform="translate(138 98)">
+    <rect width="270" height="322" rx="28" fill="#fff" stroke="#dde3ea"/>
+    <rect x="44" y="52" width="180" height="22" rx="11" fill="#344054"/>
+    <rect x="44" y="104" width="150" height="18" rx="9" fill="#dce4ea"/>
+    <rect x="44" y="146" width="192" height="18" rx="9" fill="#dce4ea"/>
+    <rect x="44" y="188" width="120" height="18" rx="9" fill="#dce4ea"/>
+    <rect x="44" y="244" width="170" height="44" rx="16" fill="#12775f"/>
+  </g>
+  <g transform="translate(520 136)">
+    <rect width="210" height="246" rx="28" fill="#fff" stroke="#dde3ea"/>
+    <circle cx="105" cy="86" r="48" fill="#f2b35d"/>
+    <path d="M84 86 h42 M105 65 v42" stroke="#fff" stroke-width="14" stroke-linecap="round"/>
+    <rect x="42" y="160" width="126" height="18" rx="9" fill="#dce4ea"/>
+    <rect x="42" y="198" width="98" height="18" rx="9" fill="#dce4ea"/>
+  </g>
+</svg>

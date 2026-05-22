@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">운정 여가 문화 이미지</title>
+  <desc id="desc">공원, 도서관, 주말 나들이를 표현한 여가 문화 카테고리 이미지</desc>
+  <rect width="900" height="520" rx="34" fill="#f7f3ff"/>
+  <path d="M0 366 C154 306 260 348 420 280 C578 214 708 240 900 176 L900 520 L0 520Z" fill="#dfeee1"/>
+  <g transform="translate(104 140)">
+    <rect x="0" y="82" width="236" height="138" rx="22" fill="#fff" stroke="#e5deee"/>
+    <path d="M30 82 L118 20 L206 82Z" fill="#7c3aed"/>
+    <rect x="46" y="112" width="36" height="70" rx="10" fill="#e8e0f8"/>
+    <rect x="100" y="112" width="36" height="70" rx="10" fill="#e8e0f8"/>
+    <rect x="154" y="112" width="36" height="70" rx="10" fill="#e8e0f8"/>
+  </g>
+  <g transform="translate(506 126)" fill="#12775f">
+    <circle cx="52" cy="84" r="48"/>
+    <circle cx="122" cy="52" r="36"/>
+    <circle cx="178" cy="96" r="54"/>
+    <rect x="46" y="116" width="14" height="118" rx="7"/>
+    <rect x="170" y="138" width="16" height="98" rx="8"/>
+  </g>
+  <path d="M160 422 C300 376 444 392 700 312" stroke="#f2b35d" stroke-width="28" stroke-linecap="round" fill="none"/>
+  <circle cx="378" cy="372" r="18" fill="#fff"/>
+  <circle cx="438" cy="356" r="18" fill="#fff"/>
+</svg>

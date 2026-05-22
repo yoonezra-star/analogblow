@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">운정 입주 체크리스트 이미지</title>
+  <desc id="desc">아파트 입주와 생활 체크리스트를 표현한 이미지</desc>
+  <rect width="900" height="520" rx="34" fill="#f3fbf6"/>
+  <g transform="translate(112 116)">
+    <rect width="270" height="278" rx="28" fill="#fff" stroke="#d9e5df"/>
+    <rect x="42" y="54" width="46" height="46" rx="12" fill="#e5f0ec"/>
+    <rect x="112" y="54" width="46" height="46" rx="12" fill="#e5f0ec"/>
+    <rect x="182" y="54" width="46" height="46" rx="12" fill="#e5f0ec"/>
+    <rect x="42" y="124" width="46" height="46" rx="12" fill="#e5f0ec"/>
+    <rect x="112" y="124" width="46" height="46" rx="12" fill="#e5f0ec"/>
+    <rect x="182" y="124" width="46" height="46" rx="12" fill="#e5f0ec"/>
+    <rect x="104" y="206" width="64" height="72" rx="16" fill="#12775f"/>
+  </g>
+  <g transform="translate(488 128)">
+    <rect width="252" height="242" rx="30" fill="#fff" stroke="#d9e5df"/>
+    <circle cx="54" cy="62" r="18" fill="#12775f"/>
+    <path d="M45 60 l8 8 18-22" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M92 62 H204" stroke="#d9e5df" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="54" cy="122" r="18" fill="#f2b35d"/>
+    <path d="M92 122 H190" stroke="#d9e5df" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="54" cy="182" r="18" fill="#4f83c4"/>
+    <path d="M92 182 H176" stroke="#d9e5df" stroke-width="16" stroke-linecap="round"/>
+  </g>
+</svg>

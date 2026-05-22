@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">운정 아이생활 이미지</title>
+  <desc id="desc">학교, 도서관, 통학로를 표현한 아이생활 카테고리 이미지</desc>
+  <rect width="900" height="520" rx="34" fill="#fff6e8"/>
+  <path d="M0 384 C160 308 256 360 402 292 C542 228 672 256 900 180 L900 520 L0 520Z" fill="#dfeee6"/>
+  <path d="M92 428 C226 354 382 382 540 314 C650 267 754 270 840 230" stroke="#c9d7df" stroke-width="30" fill="none" stroke-linecap="round"/>
+  <path d="M92 428 C226 354 382 382 540 314 C650 267 754 270 840 230" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="18 18"/>
+  <g transform="translate(120 136)">
+    <rect x="0" y="80" width="250" height="170" rx="22" fill="#fff" stroke="#e4ddd0"/>
+    <path d="M0 80 L125 0 L250 80Z" fill="#d95d39"/>
+    <rect x="34" y="122" width="44" height="44" rx="10" fill="#e7f2ee"/>
+    <rect x="102" y="122" width="44" height="44" rx="10" fill="#e7f2ee"/>
+    <rect x="170" y="122" width="44" height="44" rx="10" fill="#e7f2ee"/>
+    <rect x="98" y="190" width="56" height="60" rx="12" fill="#12775f"/>
+  </g>
+  <g transform="translate(500 150)">
+    <rect width="228" height="176" rx="24" fill="#fff" stroke="#dfe7e4"/>
+    <rect x="28" y="32" width="172" height="22" rx="11" fill="#12775f"/>
+    <rect x="28" y="76" width="172" height="18" rx="9" fill="#e8eee8"/>
+    <rect x="28" y="112" width="128" height="18" rx="9" fill="#e8eee8"/>
+  </g>
+  <circle cx="430" cy="402" r="24" fill="#f2b35d"/>
+  <circle cx="498" cy="380" r="18" fill="#4f83c4"/>
+  <circle cx="558" cy="404" r="22" fill="#12775f"/>
+</svg>
