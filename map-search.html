@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="./styles.css">
     <link rel="icon" href="./logo.svg" type="image/svg+xml">
     <script>
+      if (location.hostname === "www.analogblow.com") {
+        location.replace("https://analogblow.com" + location.pathname + location.search + location.hash);
+      }
       // 네이버 클라우드 플랫폼 Maps > Web Dynamic Map의 Client ID입니다. Secret은 프론트에 넣지 않습니다.
       window.NAVER_MAP_NCP_KEY_ID = "51mdt49cgt";
     </script>
