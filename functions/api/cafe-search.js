@@ -68,7 +68,11 @@ export async function onRequestGet({ request, env }) {
   const sort = url.searchParams.get('sort') === 'date' ? 'date' : 'sim';
   const strictLocal = url.searchParams.get('local') !== 'false';
   const clientId = env.NAVER_SEARCH_CLIENT_ID || env.NAVER_CLIENT_ID || env.NAVER_CAFE_CLIENT_ID;
-  const clientSecret = env.NAVER_SEARCH_CLIENT_SECRET || env.NAVER_CLIENT_SECRET || env.NAVER_CAFE_CLIENT_SECRET;
+  const clientSecret =
+    env.NAVER_SEARCH_CLIENT_SECRET ||
+    env[' NAVER_SEARCH_CLIENT_SECRET'] ||
+    env.NAVER_CLIENT_SECRET ||
+    env.NAVER_CAFE_CLIENT_SECRET;
 
   if (!query) {
     return json({ mode: 'empty', items: [] }, 400);
