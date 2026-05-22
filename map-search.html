@@ -355,7 +355,7 @@
       }
 
       function markerContent(place) {
-        return `<button class="provider-place-marker" type="button" data-id="${place.id}" style="background:${categoryColor(place.category)}">${labels[place.category].slice(0, 1)}</button>`;
+        return `<button class="provider-place-marker" type="button" data-id="${place.id}" aria-label="${place.title} 지도 표시" title="${place.title}" style="background:${categoryColor(place.category)}">${labels[place.category].slice(0, 1)}</button>`;
       }
 
       function placeTooltip(place) {
@@ -375,7 +375,7 @@
 
       function renderFallbackPins() {
         fallbackPins.innerHTML = places.map((place) => `
-          <button class="map-pin" data-category="${place.category}" data-id="${place.id}" style="left:${place.x}%; top:${place.y}%; background:${categoryColor(place.category)}">${labels[place.category].slice(0, 1)}</button>
+          <button class="map-pin" type="button" data-category="${place.category}" data-id="${place.id}" aria-label="${place.title} 지도 표시" title="${place.title}" style="left:${place.x}%; top:${place.y}%; background:${categoryColor(place.category)}">${labels[place.category].slice(0, 1)}</button>
         `).join("");
         attachFallbackPinEvents();
       }
@@ -397,6 +397,13 @@
         if (visibleCount > 0) naverMap.fitBounds(bounds);
       }
 
+      function markNaverMapImagesDecorative() {
+        document.querySelectorAll("#naverMap img").forEach((img) => {
+          if (!img.hasAttribute("alt")) img.setAttribute("alt", "");
+          img.setAttribute("aria-hidden", "true");
+        });
+      }
+
       function resizeNaverMap() {
         if (!naverMap || !window.naver?.maps) return;
         [0, 300, 900].forEach((delay) => {
@@ -411,6 +418,9 @@
         mapStage.classList.add("map-ready");
         mapApiNotice.textContent = "네이버 지도 기준으로 표시 중입니다. 위치는 공식 자료와 지도 검색을 함께 확인하세요.";
         resizeNaverMap();
+        markNaverMapImagesDecorative();
+        window.setTimeout(markNaverMapImagesDecorative, 800);
+        window.setTimeout(markNaverMapImagesDecorative, 1800);
       }
 
       function initNaverMap() {

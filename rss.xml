@@ -3,72 +3,58 @@
   <channel>
     <title>운정라이프</title>
     <link>https://analogblow.com/</link>
-    <description>파주 운정 신도시 가족을 위한 병원, 약국, 학교, 주차, 교통, 공원, 도서관 생활정보 업데이트입니다.</description>
+    <description>파주 운정 가족을 위한 병원, 약국, 학교, 주차, 교통, 공원, 도서관 생활정보 업데이트입니다.</description>
     <language>ko</language>
-    <lastBuildDate>Fri, 22 May 2026 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 22 May 2026 15:30:00 +0900</lastBuildDate>
     <atom:link href="https://analogblow.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>파주 운정 나들이 장소, 2026년 가족 기준 스폿 정리</title>
+      <title>운정 밤에 아이 열날 때 확인할 순서</title>
+      <link>https://analogblow.com/posts/health-night-child-fever.html</link>
+      <guid>https://analogblow.com/posts/health-night-child-fever.html</guid>
+      <pubDate>Fri, 22 May 2026 15:30:00 +0900</pubDate>
+      <description>119, E-Gen, 야간 진료, 약국 이동을 어떤 순서로 확인할지 안내합니다.</description>
+    </item>
+    <item>
+      <title>운정 유치원·어린이집 첫 주 적응 체크</title>
+      <link>https://analogblow.com/posts/kids-kindergarten-first-week.html</link>
+      <guid>https://analogblow.com/posts/kids-kindergarten-first-week.html</guid>
+      <pubDate>Fri, 22 May 2026 15:30:00 +0900</pubDate>
+      <description>첫 등원 주간에 차량 운행, 준비물, 아픈 날 대체 동선을 확인합니다.</description>
+    </item>
+    <item>
+      <title>운정 무료·저비용 실내 나들이 후보</title>
+      <link>https://analogblow.com/posts/culture-free-indoor-weekend.html</link>
+      <guid>https://analogblow.com/posts/culture-free-indoor-weekend.html</guid>
+      <pubDate>Fri, 22 May 2026 15:30:00 +0900</pubDate>
+      <description>비, 폭염, 미세먼지 날 부담 적게 갈 수 있는 실내 후보를 안내합니다.</description>
+    </item>
+    <item>
+      <title>운정 가족 외식 전 주차부터 보는 이유</title>
+      <link>https://analogblow.com/posts/culture-restaurant-parking-check.html</link>
+      <guid>https://analogblow.com/posts/culture-restaurant-parking-check.html</guid>
+      <pubDate>Fri, 22 May 2026 15:30:00 +0900</pubDate>
+      <description>야당역, 운정역, 산내마을 외식 전 주차와 대기 기준을 확인합니다.</description>
+    </item>
+    <item>
+      <title>운정 아이 치과 가기 전 체크할 것</title>
+      <link>https://analogblow.com/posts/health-child-dental-check.html</link>
+      <guid>https://analogblow.com/posts/health-child-dental-check.html</guid>
+      <pubDate>Fri, 22 May 2026 15:30:00 +0900</pubDate>
+      <description>아이 치과 방문 전 예약, 소아 진료 가능 여부, 주차를 확인합니다.</description>
+    </item>
+    <item>
+      <title>운정 방과후 도서관 루틴 만드는 법</title>
+      <link>https://analogblow.com/posts/kids-library-after-school.html</link>
+      <guid>https://analogblow.com/posts/kids-library-after-school.html</guid>
+      <pubDate>Fri, 22 May 2026 15:30:00 +0900</pubDate>
+      <description>가람·한빛·해솔 도서관을 방과후 거점으로 활용하는 방법입니다.</description>
+    </item>
+    <item>
+      <title>파주 운정 나들이 장소, 2026년 가족 스폿</title>
       <link>https://analogblow.com/posts/paju-unjeong-family-spots-2026.html</link>
       <guid>https://analogblow.com/posts/paju-unjeong-family-spots-2026.html</guid>
-      <pubDate>Fri, 22 May 2026 09:00:00 +0900</pubDate>
-      <description>운정호수공원, 스타필드 빌리지 운정, 헤이리 예술마을, 파주출판도시, 임진각, 마장호수 등을 운정 가족의 주말 동선 기준으로 정리했습니다.</description>
-    </item>
-    <item>
-      <title>운정에서 아이 병원 찾을 때 먼저 확인할 5가지</title>
-      <link>https://analogblow.com/posts/health-child-clinic-check.html</link>
-      <guid>https://analogblow.com/posts/health-child-clinic-check.html</guid>
-      <pubDate>Fri, 22 May 2026 09:00:00 +0900</pubDate>
-      <description>소아과를 순위로 고르기보다 당일 진료 가능 여부, 접수 마감, 약국 이동, 주차, 응급 여부를 순서대로 확인하는 운정 가족용 체크리스트입니다.</description>
-    </item>
-    <item>
-      <title>운정 주말·야간 약국 찾는 순서</title>
-      <link>https://analogblow.com/posts/health-weekend-pharmacy.html</link>
-      <guid>https://analogblow.com/posts/health-weekend-pharmacy.html</guid>
-      <pubDate>Fri, 22 May 2026 09:00:00 +0900</pubDate>
-      <description>휴일지킴이약국, E-Gen, 지도 검색, 전화 확인을 어떤 순서로 봐야 하는지 정리했습니다.</description>
-    </item>
-    <item>
-      <title>운정 병원 방문 전 전화로 물어볼 질문 모음</title>
-      <link>https://analogblow.com/posts/health-call-before-visit.html</link>
-      <guid>https://analogblow.com/posts/health-call-before-visit.html</guid>
-      <pubDate>Fri, 22 May 2026 09:00:00 +0900</pubDate>
-      <description>소아과, 이비인후과, 치과, 약국 방문 전 확인하면 좋은 질문을 상황별로 정리했습니다.</description>
-    </item>
-    <item>
-      <title>운정 초등 입학 전 통학로 체크리스트</title>
-      <link>https://analogblow.com/posts/kids-school-route-check.html</link>
-      <guid>https://analogblow.com/posts/kids-school-route-check.html</guid>
-      <pubDate>Fri, 22 May 2026 09:00:00 +0900</pubDate>
-      <description>학교명보다 실제 보행 동선, 횡단보도, 차량 진출입구, 하교 후 이동을 먼저 확인하는 방법입니다.</description>
-    </item>
-    <item>
-      <title>운정 아이와 도서관 이용할 때 보는 기준</title>
-      <link>https://analogblow.com/posts/kids-library-routine.html</link>
-      <guid>https://analogblow.com/posts/kids-library-routine.html</guid>
-      <pubDate>Fri, 22 May 2026 09:00:00 +0900</pubDate>
-      <description>비 오는 날, 방과후, 주말에 도서관을 생활 동선으로 활용하는 기준을 정리했습니다.</description>
-    </item>
-    <item>
-      <title>하교 후 돌봄·학원·병원 동선 짜는 법</title>
-      <link>https://analogblow.com/posts/kids-after-school-route.html</link>
-      <guid>https://analogblow.com/posts/kids-after-school-route.html</guid>
-      <pubDate>Fri, 22 May 2026 09:00:00 +0900</pubDate>
-      <description>하교 후 부모 픽업이 어려운 날을 기준으로 돌봄, 학원, 병원, 약국 이동을 묶는 방법입니다.</description>
-    </item>
-    <item>
-      <title>운정 아이와 비 오는 날 갈 만한 실내 코스</title>
-      <link>https://analogblow.com/posts/culture-rainy-day-course.html</link>
-      <guid>https://analogblow.com/posts/culture-rainy-day-course.html</guid>
-      <pubDate>Fri, 22 May 2026 09:00:00 +0900</pubDate>
-      <description>도서관, 실내 문화시설, 식사, 장보기까지 비 오는 날 이동을 줄이는 반나절 코스 기준입니다.</description>
-    </item>
-    <item>
-      <title>운정호수공원 가기 전 주차·화장실·동선 체크</title>
-      <link>https://analogblow.com/posts/culture-park-before-visit.html</link>
-      <guid>https://analogblow.com/posts/culture-park-before-visit.html</guid>
-      <pubDate>Fri, 22 May 2026 09:00:00 +0900</pubDate>
-      <description>공원 방문 전 아이 동반 가족이 확인하면 좋은 주차, 화장실, 그늘, 식사 연결 기준입니다.</description>
+      <pubDate>Fri, 22 May 2026 15:30:00 +0900</pubDate>
+      <description>운정호수공원, 스타필드 빌리지 운정, 헤이리, 출판도시 등 가족 나들이 후보입니다.</description>
     </item>
   </channel>
 </rss>
