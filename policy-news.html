@@ -27,7 +27,7 @@
     <main class="page-main">
       <article class="page-card wide">
         <p class="eyebrow">Policy Briefing</p>
-        <h1>운정 가족에게 필요한 정책뉴스만 생활 기준으로 봅니다.</h1>
+        <h1>운정 가족에게 필요한 정책뉴스를 먼저 봅니다.</h1>
         <p>
           정책뉴스는 제목만 보면 멀게 느껴지지만, 실제로는 보육, 학교, 교통, 주거, 복지, 문화생활에 바로 영향을 줍니다.
           이 페이지는 <a href="https://www.korea.kr/news/policyNewsList.do" target="_blank" rel="noopener">대한민국 정책브리핑</a>
@@ -36,21 +36,21 @@
 
         <figure class="content-visual">
           <img src="./assets/visual-policy.svg" alt="정책 문서와 복지 안내를 표현한 운정 정책 뉴스 이미지" loading="lazy">
-          <figcaption><strong>정책 정보는 공식 출처와 생활 적용 기준을 같이 봅니다.</strong><span>파주시, 경기도, 정부24, 복지로, 정책브리핑을 연결하고 운정 가족이 실제로 확인할 항목 중심으로 정리합니다.</span></figcaption>
+          <figcaption><strong>정책 정보는 공식 자료와 생활 적용 여부를 같이 봅니다.</strong><span>파주시, 경기도, 정부24, 복지로, 정책브리핑에서 운정 가족이 확인할 항목을 먼저 봅니다.</span></figcaption>
         </figure>
 
         <section class="api-live-panel">
           <div class="api-live-head">
             <div>
               <h3>정책브리핑 최신 정책뉴스</h3>
-              <p>교육·복지·교통·문화 키워드를 우선 확인하고, 연결이 지연되면 공식 출처 묶음을 보여줍니다.</p>
+              <p>교육·복지·교통·문화 키워드를 우선 확인하고, 연결이 지연되면 공식 링크를 보여줍니다.</p>
             </div>
             <span id="policyStatus" class="feed-status">공식 데이터 확인 중</span>
           </div>
           <div id="policyFeed" class="live-feed" aria-live="polite">
             <article class="feed-card">
               <strong>정책뉴스를 불러오는 중입니다.</strong>
-              <p>공식 데이터 연결이 지연되면 대한민국 정책브리핑 원문 링크를 먼저 제공합니다.</p>
+              <p>공식 데이터 연결이 지연되면 대한민국 정책브리핑 원문 링크를 먼저 보여줍니다.</p>
             </article>
           </div>
         </section>
@@ -70,7 +70,7 @@
           <article><b>교육·돌봄</b><p>초등돌봄, 방과후, 어린이집, 학교 배정 관련 정책은 아이생활 페이지와 함께 봅니다.</p></article>
           <article><b>교통·주차</b><p>GTX, 광역버스, 환승, 도로 공사, 주차 정책은 출퇴근 동선에 직접 연결됩니다.</p></article>
           <article><b>복지·혜택</b><p>아동수당, 부모급여, 청년·중장년 지원, 주거 지원은 복지로와 공공서비스를 함께 확인합니다.</p></article>
-          <article><b>문화·주말</b><p>문화행사, 도서관, 공연, 체험 프로그램은 주말 코스와 함께 묶어 봅니다.</p></article>
+          <article><b>문화·주말</b><p>문화행사, 도서관, 공연, 체험 프로그램은 주말 코스와 함께 봅니다.</p></article>
         </div>
 
         <section class="rich-section">
@@ -144,7 +144,7 @@
             <thead><tr><th>데이터</th><th>사용 위치</th><th>운정라이프 적용</th></tr></thead>
             <tbody>
               <tr><td>정책브리핑 정책뉴스 OpenAPI</td><td>이 페이지 최신 뉴스</td><td>교육, 보육, 교통, 복지 키워드 중심으로 보여줍니다.</td></tr>
-              <tr><td>정책브리핑 보도자료 OpenAPI</td><td>정부 발표 원문 확인</td><td>생활 영향이 큰 발표는 원문 링크로 연결합니다.</td></tr>
+              <tr><td>정책브리핑 보도자료 OpenAPI</td><td>정부 발표 원문 확인</td><td>생활 영향이 큰 발표는 원문 링크에서 확인하세요.</td></tr>
               <tr><td>정책브리핑 포토뉴스 OpenAPI</td><td>문화·행사형 콘텐츠</td><td>운정 주말·문화 페이지에서 공식 원문과 함께 확인합니다.</td></tr>
             </tbody>
           </table>
@@ -208,7 +208,7 @@
       function renderPolicy(items, mode) {
         const feed = document.getElementById('policyFeed');
         const status = document.getElementById('policyStatus');
-        status.textContent = mode === 'live' ? '공식 API 연결됨' : '공식 출처 묶음 표시';
+        status.textContent = mode === 'live' ? '공식 API 연결됨' : '공식 링크 표시';
         feed.innerHTML = items.map((item) => `
           <article class="feed-card">
             <span>${item.department || '정책브리핑'} ${item.date ? '· ' + item.date : ''}</span>
