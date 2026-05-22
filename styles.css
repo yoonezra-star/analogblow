@@ -483,6 +483,63 @@ h3 { margin: 0; font-size: 20px; }
   font-size: 16px;
   line-height: 1.75;
 }
+.article-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 30px 0 34px;
+}
+.article-card {
+  display: grid;
+  gap: 10px;
+  min-height: 210px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: var(--ink);
+  text-decoration: none;
+  background: #fff;
+  box-shadow: 0 16px 38px rgba(19, 34, 49, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.article-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+.article-card span {
+  width: max-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+}
+.article-card strong {
+  font-size: 21px;
+  line-height: 1.35;
+}
+.article-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.article-card em {
+  margin-top: auto;
+  color: var(--green);
+  font-style: normal;
+  font-weight: 900;
+}
+.article-page > p:first-of-type {
+  font-size: 18px;
+}
+.article-visual {
+  margin-top: 28px;
+}
+.article-checklist {
+  display: grid;
+  gap: 10px;
+}
 
 .section {
   padding: clamp(58px, 8vw, 102px) clamp(18px, 5vw, 76px);
@@ -1420,6 +1477,7 @@ h3 { margin: 0; font-size: 20px; }
   .guide-grid,
   .command-grid,
   .faq-grid,
+  .article-list,
   .hub-grid,
   .board-grid,
   .insight-grid,
@@ -1488,6 +1546,7 @@ h3 { margin: 0; font-size: 20px; }
   .guide-grid,
   .command-grid,
   .faq-grid,
+  .article-list,
   .hub-grid,
   .board-grid,
   .insight-grid,
