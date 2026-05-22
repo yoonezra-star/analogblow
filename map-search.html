@@ -287,6 +287,8 @@
       let naverMap = null;
       let naverMarkers = [];
       let naverMapInitStarted = false;
+      let naverMapLoadAttempt = 0;
+      let naverMapTimeoutId = null;
 
       function naverSearchQuery(place) {
         if (place.searchQuery) return place.searchQuery;
@@ -378,6 +380,22 @@
         if (visibleCount > 0) naverMap.fitBounds(bounds);
       }
 
+      function resizeNaverMap() {
+        if (!naverMap || !window.naver?.maps) return;
+        [0, 300, 900].forEach((delay) => {
+          window.setTimeout(() => {
+            naver.maps.Event.trigger(naverMap, "resize");
+          }, delay);
+        });
+      }
+
+      function setNaverMapReady() {
+        mapStage.dataset.mapStatus = "ready";
+        mapStage.classList.add("map-ready");
+        mapApiNotice.textContent = "네이버 지도 기준으로 표시 중입니다. 위치는 공식 자료와 지도 검색을 함께 확인하세요.";
+        resizeNaverMap();
+      }
+
       function initNaverMap() {
         if (!window.naver?.maps) return;
         if (naverMapInitStarted || naverMap) return;
@@ -385,46 +403,74 @@
 
         const container = document.getElementById("naverMap");
         mapStage.dataset.mapStatus = "initializing";
-        mapStage.classList.add("map-ready");
-        naverMap = new naver.maps.Map(container, {
-          center: new naver.maps.LatLng(37.7243, 126.7499),
-          zoom: 13,
-          zoomControl: true,
-          mapTypeControl: true
-        });
 
-        naverMarkers = places.map((place) => {
-          const position = new naver.maps.LatLng(place.lat, place.lng);
-          const marker = new naver.maps.Marker({
-            position,
-            map: naverMap,
-            title: place.title,
-            icon: {
-              content: markerContent(place),
-              anchor: new naver.maps.Point(15, 15)
-            }
+        try {
+          naverMap = new naver.maps.Map(container, {
+            center: new naver.maps.LatLng(37.7243, 126.7499),
+            zoom: 13,
+            zoomControl: true,
+            mapTypeControl: true
           });
-          naver.maps.Event.addListener(marker, "click", () => placeTooltip(place));
-          return { marker, place, position };
-        });
 
-        naver.maps.Event.trigger(naverMap, "resize");
-        updateNaverMarkers(document.querySelector(".map-filter.active")?.dataset.filter || "all");
+          naverMarkers = places.map((place) => {
+            const position = new naver.maps.LatLng(place.lat, place.lng);
+            const marker = new naver.maps.Marker({
+              position,
+              map: naverMap,
+              title: place.title,
+              icon: {
+                content: markerContent(place),
+                anchor: new naver.maps.Point(15, 15)
+              }
+            });
+            naver.maps.Event.addListener(marker, "click", () => placeTooltip(place));
+            return { marker, place, position };
+          });
 
-        mapStage.dataset.mapStatus = "ready";
-        mapApiNotice.textContent = "네이버 지도 기준으로 표시 중입니다. 위치는 공식 자료와 지도 검색을 함께 확인하세요.";
+          updateNaverMarkers(document.querySelector(".map-filter.active")?.dataset.filter || "all");
+          setNaverMapReady();
+        } catch (error) {
+          naverMapInitStarted = false;
+          naverMap = null;
+          mapStage.classList.remove("map-ready");
+          mapStage.dataset.mapStatus = "init-error";
+          mapApiNotice.textContent = "네이버 지도 초기화가 지연되어 다시 시도 중입니다.";
+          retryNaverMapLoad();
+        }
       }
 
-      function loadNaverMap() {
+      function retryNaverMapLoad() {
+        if (naverMap || naverMapLoadAttempt >= 2) {
+          if (!naverMap) {
+            mapStage.dataset.mapStatus = "delayed";
+            mapApiNotice.textContent = "네이버 지도 로딩이 지연되어 생활권 백업 지도를 함께 표시합니다. 목록의 네이버 지도 검색 링크는 정상 사용 가능합니다.";
+          }
+          return;
+        }
+        window.setTimeout(() => loadNaverMap(true), 1200);
+      }
+
+      function loadNaverMap(isRetry = false) {
         const key = (window.NAVER_MAP_NCP_KEY_ID || "").trim();
         if (!key) {
           mapApiNotice.textContent = "네이버 지도 API 키가 아직 없어 백업 생활권 지도를 표시합니다. 목록의 네이버 지도 검색 링크는 바로 사용할 수 있습니다.";
           return;
         }
 
+        if (window.naver?.maps) {
+          initNaverMap();
+          return;
+        }
+
+        naverMapLoadAttempt += 1;
+        window.clearTimeout(naverMapTimeoutId);
+        document.getElementById("naverMapsScript")?.remove();
+
         const script = document.createElement("script");
+        script.id = "naverMapsScript";
         window.initUnjeongNaverMap = function() {
-          window.requestAnimationFrame(initNaverMap);
+          initNaverMap();
+          window.setTimeout(initNaverMap, 100);
         };
         window.navermap_authFailure = function() {
           naverMapInitStarted = false;
@@ -433,24 +479,27 @@
           mapApiNotice.textContent = "네이버 지도 인증이 실패했습니다. NCP Key ID와 Web 서비스 URL 등록을 확인하세요.";
         };
         mapStage.dataset.mapStatus = "loading";
-        mapApiNotice.textContent = "네이버 지도를 불러오는 중입니다.";
-        script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(key)}&callback=initUnjeongNaverMap`;
+        mapApiNotice.textContent = isRetry ? "네이버 지도를 다시 불러오는 중입니다." : "네이버 지도를 불러오는 중입니다.";
+        script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(key)}&callback=initUnjeongNaverMap&v=${Date.now()}`;
         script.async = true;
         script.onload = () => {
           window.setTimeout(() => {
             if (!naverMap && window.naver?.maps) initNaverMap();
           }, 300);
         };
-        window.setTimeout(() => {
+        naverMapTimeoutId = window.setTimeout(() => {
           if (mapStage.classList.contains("map-ready")) return;
           if (window.naver?.maps) {
             initNaverMap();
             return;
           }
-          mapStage.dataset.mapStatus = "delayed";
-          mapApiNotice.textContent = "네이버 지도 로딩이 지연되어 생활권 백업 지도를 함께 표시합니다. 목록의 네이버 지도 검색 링크는 정상 사용 가능합니다.";
+          retryNaverMapLoad();
         }, 12000);
         script.onerror = () => {
+          if (naverMapLoadAttempt < 2) {
+            retryNaverMapLoad();
+            return;
+          }
           mapStage.dataset.mapStatus = "script-error";
           mapApiNotice.textContent = "네이버 지도 스크립트를 불러오지 못했습니다. NCP Key ID와 Web 서비스 URL 등록을 확인하세요.";
         };
