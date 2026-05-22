@@ -414,6 +414,7 @@
             zoomControl: true,
             mapTypeControl: true
           });
+          window.unjeongNaverMap = naverMap;
 
           naverMarkers = places.map((place) => {
             const position = new naver.maps.LatLng(place.lat, place.lng);
