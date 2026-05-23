@@ -93,8 +93,7 @@ export async function onRequestGet({ request, env }) {
       headers: {
         'X-Naver-Client-Id': clientId,
         'X-Naver-Client-Secret': clientSecret
-      },
-      cf: { cacheTtl: 900, cacheEverything: true }
+      }
     });
     const data = await response.json();
     if (!response.ok || !Array.isArray(data.items)) {
