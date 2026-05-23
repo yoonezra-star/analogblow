@@ -1749,13 +1749,40 @@ h3 { margin: 0; font-size: 20px; }
 }
 
 .local-cafe-section {
-  border: 1px solid rgba(39,105,180,0.18);
-  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(39,105,180,0.24);
+  background:
+    linear-gradient(135deg, rgba(39,105,180,0.08), rgba(255,255,255,0) 42%),
+    linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
+  box-shadow: 0 18px 45px rgba(39,105,180,0.1);
+}
+.local-cafe-section::before {
+  content: "NAVER CAFE";
+  display: inline-flex;
+  margin-bottom: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #03c75a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+.local-cafe-section h3 {
+  margin-top: 0;
+  font-size: clamp(22px, 3vw, 30px);
+  letter-spacing: 0;
 }
 .cafe-subheading {
-  margin-top: -4px;
-  color: var(--muted);
+  margin-top: 6px;
+  max-width: 780px;
+  color: #36506d;
   line-height: 1.7;
+}
+.cafe-subheading strong {
+  color: #165d35;
+  font-weight: 900;
 }
 .cafe-list {
   display: grid;
@@ -1763,14 +1790,15 @@ h3 { margin: 0; font-size: 20px; }
   margin-top: 18px;
 }
 .cafe-item {
-  border: 1px solid var(--line);
+  border: 1px solid rgba(39,105,180,0.16);
   border-radius: 16px;
-  background: #fff;
-  transition: transform .2s ease, box-shadow .2s ease;
+  background: rgba(255,255,255,0.92);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 .cafe-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(20,32,51,0.08);
+  border-color: rgba(3,199,90,0.34);
+  box-shadow: 0 14px 30px rgba(20,32,51,0.1);
 }
 .cafe-item a {
   display: block;
@@ -1797,9 +1825,11 @@ h3 { margin: 0; font-size: 20px; }
 }
 .cafe-disclaimer {
   margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px dashed var(--line);
-  color: var(--muted);
+  padding: 13px 14px;
+  border: 1px dashed rgba(39,105,180,0.22);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.72);
+  color: #5d6f83;
   font-size: 13px;
   line-height: 1.7;
 }
