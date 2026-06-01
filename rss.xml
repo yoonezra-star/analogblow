@@ -5,8 +5,15 @@
     <link>https://analogblow.com/</link>
     <description>파주 운정 가족을 위한 병원, 약국, 학교, 주차, 교통, 공원, 도서관 생활정보 업데이트입니다.</description>
     <language>ko</language>
-    <lastBuildDate>Mon, 01 Jun 2026 12:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2026 09:00:00 +0900</lastBuildDate>
     <atom:link href="https://analogblow.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>운정 부동산 실거래 체크</title>
+      <link>https://analogblow.com/real-estate</link>
+      <guid>https://analogblow.com/real-estate</guid>
+      <pubDate>Tue, 02 Jun 2026 09:00:00 +0900</pubDate>
+      <description>국토교통부 실거래가 공개시스템과 공공데이터포털 기준으로 파주 운정 아파트 실거래와 생활권 체크포인트를 확인합니다.</description>
+    </item>
     <item>
       <title>운정 초등 돌봄·방과후 정책 확인 순서</title>
       <link>https://analogblow.com/posts/policy-childcare-after-school-check</link>
