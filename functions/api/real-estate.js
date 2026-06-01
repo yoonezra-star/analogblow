@@ -11,11 +11,11 @@ function json(data, status = 200) {
   });
 }
 
-function latestDealMonth() {
+function dealMonthOffset(offset = 1) {
   const now = new Date(Date.now() + 9 * 60 * 60 * 1000);
   const year = now.getUTCFullYear();
   const month = now.getUTCMonth() + 1;
-  const target = month === 1 ? new Date(Date.UTC(year - 1, 11, 1)) : new Date(Date.UTC(year, month - 2, 1));
+  const target = new Date(Date.UTC(year, month - 1 - offset, 1));
   return `${target.getUTCFullYear()}${String(target.getUTCMonth() + 1).padStart(2, '0')}`;
 }
 
@@ -74,7 +74,9 @@ export async function onRequestGet({ request, env }) {
   const requestUrl = new URL(request.url);
   const rows = Math.min(Math.max(Number(requestUrl.searchParams.get('rows') || 10), 1), 30);
   const monthParam = requestUrl.searchParams.get('month') || 'latest';
-  const dealYmd = monthParam === 'latest' ? latestDealMonth() : monthParam.replace(/[^0-9]/g, '').slice(0, 6);
+  const dealMonths = monthParam === 'latest'
+    ? Array.from({ length: 12 }, (_, index) => dealMonthOffset(index + 1))
+    : [monthParam.replace(/[^0-9]/g, '').slice(0, 6)];
   const key = env.DATA_GO_KR_SERVICE_KEY || env.PUBLIC_DATA_SERVICE_KEY || env.MOLIT_SERVICE_KEY || env.SERVICE_KEY;
 
   if (!key) {
@@ -86,29 +88,31 @@ export async function onRequestGet({ request, env }) {
     'https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade'
   ];
 
-  for (const endpoint of endpoints) {
-    const apiUrl = new URL(endpoint);
-    apiUrl.searchParams.set('serviceKey', key);
-    apiUrl.searchParams.set('LAWD_CD', PAJU_LAWD_CD);
-    apiUrl.searchParams.set('DEAL_YMD', dealYmd);
-    apiUrl.searchParams.set('pageNo', '1');
-    apiUrl.searchParams.set('numOfRows', String(Math.max(rows * 3, 30)));
+  for (const dealYmd of dealMonths) {
+    for (const endpoint of endpoints) {
+      const apiUrl = new URL(endpoint);
+      apiUrl.searchParams.set('serviceKey', key);
+      apiUrl.searchParams.set('LAWD_CD', PAJU_LAWD_CD);
+      apiUrl.searchParams.set('DEAL_YMD', dealYmd);
+      apiUrl.searchParams.set('pageNo', '1');
+      apiUrl.searchParams.set('numOfRows', String(Math.max(rows * 3, 30)));
 
-    try {
-      const response = await fetch(apiUrl.toString(), { cf: { cacheTtl: 1800, cacheEverything: true } });
-      const body = await response.text();
-      const items = parseItems(body, rows);
-      if (response.ok && items.length) {
-        return json({
-          mode: 'live',
-          dealYmd,
-          lawdCd: PAJU_LAWD_CD,
-          source: apiUrl.toString().replace(key, '***'),
-          items
-        });
+      try {
+        const response = await fetch(apiUrl.toString(), { cf: { cacheTtl: 1800, cacheEverything: true } });
+        const body = await response.text();
+        const items = parseItems(body, rows);
+        if (response.ok && items.length) {
+          return json({
+            mode: 'live',
+            dealYmd,
+            lawdCd: PAJU_LAWD_CD,
+            source: apiUrl.toString().replace(key, '***'),
+            items
+          });
+        }
+      } catch (error) {
+        // Try next endpoint/month candidate.
       }
-    } catch (error) {
-      // Try next endpoint candidate.
     }
   }
 
