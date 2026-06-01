@@ -75,7 +75,7 @@ export async function onRequestGet({ request, env }) {
   const rows = Math.min(Math.max(Number(requestUrl.searchParams.get('rows') || 10), 1), 30);
   const monthParam = requestUrl.searchParams.get('month') || 'latest';
   const dealMonths = monthParam === 'latest'
-    ? Array.from({ length: 12 }, (_, index) => dealMonthOffset(index + 1))
+    ? Array.from({ length: 6 }, (_, index) => dealMonthOffset(index + 1))
     : [monthParam.replace(/[^0-9]/g, '').slice(0, 6)];
   const key = env.DATA_GO_KR_SERVICE_KEY || env.PUBLIC_DATA_SERVICE_KEY || env.MOLIT_SERVICE_KEY || env.SERVICE_KEY;
 
@@ -88,33 +88,53 @@ export async function onRequestGet({ request, env }) {
     'https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade'
   ];
 
+  const candidates = [];
   for (const dealYmd of dealMonths) {
     for (const endpoint of endpoints) {
-      const apiUrl = new URL(endpoint);
-      apiUrl.searchParams.set('serviceKey', key);
-      apiUrl.searchParams.set('LAWD_CD', PAJU_LAWD_CD);
-      apiUrl.searchParams.set('DEAL_YMD', dealYmd);
-      apiUrl.searchParams.set('pageNo', '1');
-      apiUrl.searchParams.set('numOfRows', String(Math.max(rows * 3, 30)));
-
-      try {
-        const response = await fetch(apiUrl.toString(), { cf: { cacheTtl: 1800, cacheEverything: true } });
-        const body = await response.text();
-        const items = parseItems(body, rows);
-        if (response.ok && items.length) {
-          return json({
-            mode: 'live',
-            dealYmd,
-            lawdCd: PAJU_LAWD_CD,
-            source: apiUrl.toString().replace(key, '***'),
-            items
-          });
-        }
-      } catch (error) {
-        // Try next endpoint/month candidate.
-      }
+      candidates.push({ dealYmd, endpoint });
     }
   }
 
+  const attempts = candidates.map(async ({ dealYmd, endpoint }) => {
+    const apiUrl = new URL(endpoint);
+    apiUrl.searchParams.set('serviceKey', key);
+    apiUrl.searchParams.set('LAWD_CD', PAJU_LAWD_CD);
+    apiUrl.searchParams.set('DEAL_YMD', dealYmd);
+    apiUrl.searchParams.set('pageNo', '1');
+    apiUrl.searchParams.set('numOfRows', String(Math.max(rows * 3, 30)));
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort('timeout'), 3500);
+
+    try {
+      const response = await fetch(apiUrl.toString(), {
+        signal: controller.signal,
+        cf: { cacheTtl: 1800, cacheEverything: true }
+      });
+      const body = await response.text();
+      const items = parseItems(body, rows);
+      if (response.ok && items.length) {
+        return {
+          mode: 'live',
+          dealYmd,
+          lawdCd: PAJU_LAWD_CD,
+          source: apiUrl.toString().replace(key, '***'),
+          items
+        };
+      }
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    return null;
+  });
+
+  const results = await Promise.allSettled(attempts);
+  const live = results
+    .filter((result) => result.status === 'fulfilled' && result.value)
+    .map((result) => result.value)
+    .sort((a, b) => b.dealYmd.localeCompare(a.dealYmd))[0];
+
+  if (live) return json(live);
   return json(fallback('empty-or-api-error'));
 }
