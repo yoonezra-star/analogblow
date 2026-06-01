@@ -483,6 +483,97 @@ h3 { margin: 0; font-size: 20px; }
   font-size: 16px;
   line-height: 1.75;
 }
+.category-brief {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.75fr) minmax(220px, 0.8fr);
+  gap: 16px;
+  margin: 26px 0 30px;
+}
+.brief-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid rgba(226,232,238,0.92);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.94);
+  box-shadow: 0 14px 32px rgba(20,32,51,0.07);
+}
+.brief-column h3 {
+  margin: 0 0 4px;
+  font-size: 17px;
+}
+.brief-column a {
+  color: inherit;
+  text-decoration: none;
+}
+.brief-column > a:not(:has(span)) {
+  display: inline-flex;
+  width: fit-content;
+  padding: 8px 11px;
+  border-radius: 999px;
+  color: #1d3f66;
+  background: #edf6ff;
+  font-size: 13px;
+  font-weight: 900;
+}
+.brief-column:not(.brief-featured) > a {
+  display: inline-flex;
+  width: fit-content;
+  padding: 8px 11px;
+  border-radius: 999px;
+  color: #1d3f66;
+  background: #edf6ff;
+  font-size: 13px;
+  font-weight: 900;
+}
+.brief-featured a {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 11px;
+  border-radius: 14px;
+  background: #f8fafc;
+}
+.brief-featured a:hover,
+.brief-column > a:not(:has(span)):hover,
+.brief-column:not(.brief-featured) > a:hover {
+  color: #fff;
+  background: var(--blue);
+}
+.brief-featured span {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--green), var(--blue));
+  font-size: 13px;
+  font-weight: 900;
+}
+.brief-featured strong {
+  font-size: 14px;
+  line-height: 1.35;
+}
+.brief-column ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.brief-column li {
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: #325146;
+  background: #edf7ef;
+  font-size: 13px;
+  font-weight: 800;
+}
 .article-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1945,6 +2036,7 @@ h3 { margin: 0; font-size: 20px; }
   .command-grid,
   .faq-grid,
   .article-list,
+  .category-brief,
   .directory-grid,
   .pulse-layout,
   .feature-article,
@@ -2053,7 +2145,8 @@ h3 { margin: 0; font-size: 20px; }
   }
   .today-signal-list li,
   .weekly-list a,
-  .popular-guide-item {
+  .popular-guide-item,
+  .category-brief {
     grid-template-columns: 1fr;
   }
   .popular-rank { width: 38px; height: 38px; }
