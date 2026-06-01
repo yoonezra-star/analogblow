@@ -1987,7 +1987,10 @@ h3 { margin: 0; font-size: 20px; }
 .local-cafe-section {
   position: relative;
   overflow: hidden;
+  margin: 34px 0;
+  padding: 26px;
   border: 1px solid rgba(39,105,180,0.24);
+  border-top: 1px solid rgba(39,105,180,0.24);
   background:
     linear-gradient(135deg, rgba(39,105,180,0.08), rgba(255,255,255,0) 42%),
     linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
