@@ -631,6 +631,7 @@ h3 { margin: 0; font-size: 20px; }
 .article-card {
   display: grid;
   gap: 10px;
+  min-width: 0;
   min-height: 210px;
   padding: 22px;
   border: 1px solid var(--line);
@@ -688,6 +689,7 @@ h3 { margin: 0; font-size: 20px; }
 .directory-card {
   display: grid;
   gap: 10px;
+  min-width: 0;
   min-height: 190px;
   padding: 20px;
   border: 1px solid var(--line);
@@ -2029,6 +2031,7 @@ h3 { margin: 0; font-size: 20px; }
   margin-top: 18px;
 }
 .cafe-item {
+  min-width: 0;
   border: 1px solid rgba(39,105,180,0.16);
   border-radius: 16px;
   background: rgba(255,255,255,0.92);
@@ -2050,11 +2053,13 @@ h3 { margin: 0; font-size: 20px; }
   color: var(--ink);
   font-size: 16px;
   line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 .cafe-item p {
   margin: 8px 0 10px;
   color: var(--muted);
   line-height: 1.65;
+  overflow-wrap: anywhere;
 }
 .cafe-meta,
 .cafe-status {
@@ -2197,8 +2202,21 @@ h3 { margin: 0; font-size: 20px; }
   .today-signal-list li,
   .weekly-list a,
   .popular-guide-item,
-  .category-brief {
+  .category-brief,
+  .info-standard {
     grid-template-columns: 1fr;
+  }
+  .info-standard {
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .info-standard span,
+  .info-standard a {
+    width: 100%;
+  }
+  .info-standard span + span::before,
+  .info-standard a:first-of-type::before {
+    display: none;
   }
   .popular-rank { width: 38px; height: 38px; }
   .popular-guide-item em { justify-self: start; }
