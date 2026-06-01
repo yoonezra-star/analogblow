@@ -1,2 +1,4 @@
 https://www.analogblow.com/* https://analogblow.com/:splat 301
 /rss /rss.xml 301
+/posts/:slug.html /posts/:slug 301
+/:slug.html /:slug 301
