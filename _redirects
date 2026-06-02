@@ -1,6 +1,4 @@
 https://www.analogblow.com/* https://analogblow.com/:splat 301
 /rss /rss.xml 301
-/posts/mobility-unjeong-commute-transfer-guide /posts/mobility-unjeong-commute-transfer-guide.html 200
-/posts/parking-restaurant-shopping-route /posts/parking-restaurant-shopping-route.html 200
 /posts/:slug.html /posts/:slug 301
 /:slug.html /:slug 301
