@@ -240,6 +240,11 @@
               <p>거래월, 전용면적, 층, 생활권, 전월세 조건, 원문 확인까지 실거래표를 보는 기준을 정리했습니다.</p>
               <span class="directory-link">해석 가이드 보기</span>
             </a>
+            <a class="directory-card" href="./posts/unjeong-rent-check-guide">
+              <strong>운정 전세·월세 체크</strong>
+              <p>보증금, 월세, 관리비, 주차비, 등하교 동선, 보증보험 가능 여부까지 계약 전 확인할 항목을 정리했습니다.</p>
+              <span class="directory-link">전월세 가이드 보기</span>
+            </a>
             <a class="directory-card" href="./movein">
               <strong>운정 입주 체크리스트</strong>
               <p>전입, 쓰레기 배출, 병원, 주차, 학교 동선을 입주 첫 주 기준으로 확인합니다.</p>
@@ -310,7 +315,13 @@
         const tabs = Array.from(document.querySelectorAll('.real-estate-tab'));
         let currentItems = [];
         let currentLabel = '실거래';
+        let currentDealYmd = '';
         if (!status || !wrap || !rows) return;
+
+        function formatDealMonth(value) {
+          if (!value || value.length !== 6) return '';
+          return value.slice(0, 4) + '년 ' + Number(value.slice(4, 6)) + '월';
+        }
 
         function renderRows() {
           const zone = zoneSelect ? zoneSelect.value : 'all';
@@ -322,7 +333,8 @@
           });
 
           if (summary) {
-            summary.textContent = currentLabel + ' ' + currentItems.length + '건 중 현재 조건 ' + filtered.length + '건을 표시합니다.';
+            const basis = currentDealYmd ? '기준월 ' + formatDealMonth(currentDealYmd) + ' · ' : '';
+            summary.textContent = basis + currentLabel + ' ' + currentItems.length + '건 중 현재 조건 ' + filtered.length + '건을 표시합니다.';
           }
 
           if (!filtered.length) {
@@ -351,6 +363,7 @@
           rows.innerHTML = '';
           currentItems = [];
           currentLabel = '실거래';
+          currentDealYmd = '';
           if (summary) summary.textContent = '공식 API 응답을 기다리는 중입니다.';
 
           try {
@@ -364,7 +377,8 @@
 
             currentItems = data.items;
             currentLabel = data.label || '실거래';
-            status.innerHTML = '<strong>' + (data.label || '실거래') + ' 자료를 표시합니다.</strong><p>국토교통부 공개 API 기준이며, API 반영 시점과 실제 계약·신고 시점에는 차이가 있을 수 있습니다.</p>';
+            currentDealYmd = data.dealYmd || '';
+            status.innerHTML = '<strong>' + (data.label || '실거래') + ' 자료를 표시합니다.</strong><p>' + (currentDealYmd ? '기준월: ' + formatDealMonth(currentDealYmd) + ' · ' : '') + '국토교통부 공개 API 기준이며, API 반영 시점과 실제 계약·신고 시점에는 차이가 있을 수 있습니다.</p>';
             renderRows();
           } catch (error) {
             status.innerHTML = '<strong>공식 조회 링크를 이용해 주세요.</strong><p>현재 자동 실거래 목록을 불러오지 못했습니다. 국토교통부 실거래가 공개시스템에서 직접 확인해 주세요.</p><p><a href="https://rt.molit.go.kr/pt/xls/xls.do?mobileAt=" target="_blank" rel="noopener">국토부 실거래 자료제공 바로가기</a></p>';
