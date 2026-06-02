@@ -13,7 +13,7 @@
     <meta property="og:description" content="국토교통부 실거래가 공개자료와 생활권 정보를 함께 보는 파주 운정 부동산 체크 페이지입니다.">
     <meta property="og:url" content="https://analogblow.com/real-estate">
     <link rel="canonical" href="https://analogblow.com/real-estate">
-    <link rel="stylesheet" href="./styles.css?v=20260602-real-estate">
+    <link rel="stylesheet" href="./styles.css?v=20260602-real-estate-filter">
     <link rel="icon" href="./logo.svg" type="image/svg+xml">
     <script type="application/ld+json">
       {
@@ -110,6 +110,32 @@
             <button type="button" class="real-estate-tab" data-type="apt-rent">아파트 전월세</button>
             <button type="button" class="real-estate-tab" data-type="rh-trade">연립·다세대 매매</button>
             <button type="button" class="real-estate-tab" data-type="offi-trade">오피스텔 매매</button>
+          </div>
+          <div class="real-estate-filters" aria-label="실거래 필터">
+            <label>
+              생활권
+              <select id="realEstateZone">
+                <option value="all">전체</option>
+                <option value="yadang">야당역·한빛권</option>
+                <option value="unjeong">운정역·동패권</option>
+                <option value="sannae">산내·해솔·목동권</option>
+                <option value="chorong">초롱꽃·다율권</option>
+              </select>
+            </label>
+            <label>
+              전용면적
+              <select id="realEstateArea">
+                <option value="all">전체</option>
+                <option value="under60">60㎡ 미만</option>
+                <option value="60to84">60~84㎡대</option>
+                <option value="85to100">85~100㎡대</option>
+                <option value="over100">100㎡ 초과</option>
+              </select>
+            </label>
+            <a class="real-estate-source-link" href="https://rt.molit.go.kr/pt/xls/xls.do?mobileAt=" target="_blank" rel="noopener">원본 자료 내려받기</a>
+          </div>
+          <div class="real-estate-summary" id="realEstateSummary" aria-live="polite">
+            공식 API 응답을 기다리는 중입니다.
           </div>
           <div id="realEstateStatus" class="notice-box">
             <strong>실거래 데이터를 확인하는 중입니다.</strong>
@@ -273,37 +299,71 @@
         const status = document.getElementById('realEstateStatus');
         const wrap = document.getElementById('realEstateTableWrap');
         const rows = document.getElementById('realEstateRows');
+        const summary = document.getElementById('realEstateSummary');
+        const zoneSelect = document.getElementById('realEstateZone');
+        const areaSelect = document.getElementById('realEstateArea');
         const tabs = Array.from(document.querySelectorAll('.real-estate-tab'));
+        let currentItems = [];
+        let currentLabel = '실거래';
         if (!status || !wrap || !rows) return;
+
+        function renderRows() {
+          const zone = zoneSelect ? zoneSelect.value : 'all';
+          const area = areaSelect ? areaSelect.value : 'all';
+          const filtered = currentItems.filter(function (item) {
+            const zoneOk = zone === 'all' || item.lifeZone === zone;
+            const areaOk = area === 'all' || item.areaGroup === area;
+            return zoneOk && areaOk;
+          });
+
+          if (summary) {
+            summary.textContent = currentLabel + ' ' + currentItems.length + '건 중 현재 조건 ' + filtered.length + '건을 표시합니다.';
+          }
+
+          if (!filtered.length) {
+            rows.innerHTML = '<tr><td colspan="7">현재 필터 조건에 맞는 거래가 없습니다. 생활권 또는 면적 조건을 넓혀 보세요.</td></tr>';
+            wrap.hidden = false;
+            return;
+          }
+
+          rows.innerHTML = filtered.map(function (item) {
+            return '<tr>' +
+              '<td>' + (item.type || currentLabel || '-') + '</td>' +
+              '<td>' + (item.dealDate || '-') + '</td>' +
+              '<td>' + (item.name || '-') + '</td>' +
+              '<td>' + (item.dong || '-') + '</td>' +
+              '<td>' + (item.area || '-') + '㎡</td>' +
+              '<td>' + (item.floor || '-') + '</td>' +
+              '<td>' + (item.amount || '-') + '</td>' +
+              '</tr>';
+          }).join('');
+          wrap.hidden = false;
+        }
 
         async function loadRealEstate(type) {
           status.innerHTML = '<strong>실거래 데이터를 확인하는 중입니다.</strong><p>공공데이터포털 응답이 없으면 공식 조회 안내를 표시합니다.</p>';
           wrap.hidden = true;
           rows.innerHTML = '';
+          currentItems = [];
+          currentLabel = '실거래';
+          if (summary) summary.textContent = '공식 API 응답을 기다리는 중입니다.';
 
           try {
-            const response = await fetch('./api/real-estate?month=latest&rows=10&type=' + encodeURIComponent(type || 'apt-trade'));
+            const response = await fetch('./api/real-estate?month=latest&rows=30&type=' + encodeURIComponent(type || 'apt-trade'));
             const data = await response.json();
             if (!response.ok || data.mode !== 'live' || !Array.isArray(data.items) || data.items.length === 0) {
               status.innerHTML = '<strong>공식 조회 링크를 이용해 주세요.</strong><p>현재 ' + (data.label || '실거래') + ' 자동 목록을 표시할 수 없습니다. 국토교통부 실거래가 공개시스템 자료제공에서 파주시 운정 생활권을 직접 조회할 수 있습니다.</p><p><a href="https://rt.molit.go.kr/pt/xls/xls.do?mobileAt=" target="_blank" rel="noopener">국토부 실거래 자료제공 바로가기</a></p>';
+              if (summary) summary.textContent = '자동 목록을 표시하지 못했습니다. 공식 원문 조회를 이용해 주세요.';
               return;
             }
 
-            rows.innerHTML = data.items.map(function (item) {
-              return '<tr>' +
-                '<td>' + (item.type || data.label || '-') + '</td>' +
-                '<td>' + (item.dealDate || '-') + '</td>' +
-                '<td>' + (item.name || '-') + '</td>' +
-                '<td>' + (item.dong || '-') + '</td>' +
-                '<td>' + (item.area || '-') + '㎡</td>' +
-                '<td>' + (item.floor || '-') + '</td>' +
-                '<td>' + (item.amount || '-') + '</td>' +
-                '</tr>';
-            }).join('');
+            currentItems = data.items;
+            currentLabel = data.label || '실거래';
             status.innerHTML = '<strong>' + (data.label || '실거래') + ' 자료를 표시합니다.</strong><p>국토교통부 공개 API 기준이며, API 반영 시점과 실제 계약·신고 시점에는 차이가 있을 수 있습니다.</p>';
-            wrap.hidden = false;
+            renderRows();
           } catch (error) {
             status.innerHTML = '<strong>공식 조회 링크를 이용해 주세요.</strong><p>현재 자동 실거래 목록을 불러오지 못했습니다. 국토교통부 실거래가 공개시스템에서 직접 확인해 주세요.</p><p><a href="https://rt.molit.go.kr/pt/xls/xls.do?mobileAt=" target="_blank" rel="noopener">국토부 실거래 자료제공 바로가기</a></p>';
+            if (summary) summary.textContent = '자동 목록을 불러오지 못했습니다. 공식 원문 조회를 이용해 주세요.';
           }
         }
 
@@ -314,6 +374,9 @@
             loadRealEstate(tab.dataset.type);
           });
         });
+
+        if (zoneSelect) zoneSelect.addEventListener('change', renderRows);
+        if (areaSelect) areaSelect.addEventListener('change', renderRows);
 
         loadRealEstate('apt-trade');
       })();

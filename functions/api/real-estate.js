@@ -74,6 +74,23 @@ function normalizeAmount(value) {
   return String(value || '').replace(/\s+/g, ' ').trim();
 }
 
+function lifeZone(dong = '') {
+  if (dong.includes('야당')) return 'yadang';
+  if (dong.includes('동패') || dong.includes('상지석')) return 'unjeong';
+  if (dong.includes('목동') || dong.includes('와동')) return 'sannae';
+  if (dong.includes('다율')) return 'chorong';
+  return 'etc';
+}
+
+function areaGroup(areaValue = '') {
+  const area = Number(String(areaValue).replace(/[^0-9.]/g, ''));
+  if (!Number.isFinite(area) || area <= 0) return 'unknown';
+  if (area < 60) return 'under60';
+  if (area < 85) return '60to84';
+  if (area < 101) return '85to100';
+  return 'over100';
+}
+
 function parseItems(xml, rows, datasetKey, dataset) {
   const blocks = xml.match(/<item[^>]*>[\s\S]*?<\/item>/gi) || [];
   return blocks
@@ -87,15 +104,18 @@ function parseItems(xml, rows, datasetKey, dataset) {
       const monthly = firstText(item, ['monthlyRent', '월세금액']);
       const tradeAmount = firstText(item, ['dealAmount', '거래금액']);
 
+      const area = firstText(item, ['excluUseAr', '전용면적']);
       return {
         type: dataset.label,
         dataset: datasetKey,
         name,
         dong,
+        lifeZone: lifeZone(dong),
         dealDate: [dealYear, String(dealMonth).padStart(2, '0'), String(dealDay).padStart(2, '0')]
           .filter(Boolean)
           .join('.'),
-        area: firstText(item, ['excluUseAr', '전용면적']),
+        area,
+        areaGroup: areaGroup(area),
         floor: firstText(item, ['floor', '층']),
         amount: dataset.dealKind === 'rent'
           ? `보증금 ${normalizeAmount(deposit) || '-'} / 월세 ${normalizeAmount(monthly) || '0'}`
