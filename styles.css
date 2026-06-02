@@ -1563,6 +1563,29 @@ h3 { margin: 0; font-size: 20px; }
   border-radius: 16px;
   background: #f7fbf8;
 }
+.real-estate-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 16px;
+}
+.real-estate-tab {
+  border: 1px solid #cbded2;
+  border-radius: 999px;
+  background: #fff;
+  color: #315341;
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.real-estate-tab:hover,
+.real-estate-tab.is-active {
+  background: #315341;
+  border-color: #315341;
+  color: #fff;
+}
 .rich-section {
   margin-top: 34px;
   padding-top: 28px;

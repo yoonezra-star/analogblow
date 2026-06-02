@@ -13,7 +13,7 @@
     <meta property="og:description" content="국토교통부 실거래가 공개자료와 생활권 정보를 함께 보는 파주 운정 부동산 체크 페이지입니다.">
     <meta property="og:url" content="https://analogblow.com/real-estate">
     <link rel="canonical" href="https://analogblow.com/real-estate">
-    <link rel="stylesheet" href="./styles.css?v=20260602-ui-polish">
+    <link rel="stylesheet" href="./styles.css?v=20260602-real-estate">
     <link rel="icon" href="./logo.svg" type="image/svg+xml">
     <script type="application/ld+json">
       {
@@ -57,7 +57,7 @@
           <strong>정보 기준</strong>
           <span>최종 점검: 2026.06.02</span>
           <span>국토교통부 실거래가 공개시스템과 공공데이터포털 자료를 우선 확인합니다.</span>
-          <a href="https://rt.molit.go.kr/" target="_blank" rel="noopener">실거래가 공개시스템</a>
+          <a href="https://rt.molit.go.kr/pt/xls/xls.do?mobileAt=" target="_blank" rel="noopener">실거래 자료제공</a>
           <a href="./contact">오류 제보</a>
         </section>
 
@@ -102,9 +102,15 @@
         <section class="rich-section">
           <h3>최근 실거래 API 상태</h3>
           <p>
-            공공데이터포털 인증키가 Cloudflare 환경변수에 등록되면 아래 영역에 국토교통부 아파트 매매 실거래 자료가 자동으로 표시됩니다.
+            공공데이터포털 인증키가 Cloudflare 환경변수에 등록되면 아래 영역에 국토교통부 실거래 자료가 자동으로 표시됩니다.
             인증키가 없거나 API 응답이 없을 때는 공식 조회 링크를 제공합니다.
           </p>
+          <div class="real-estate-tabs" aria-label="실거래 유형 선택">
+            <button type="button" class="real-estate-tab is-active" data-type="apt-trade">아파트 매매</button>
+            <button type="button" class="real-estate-tab" data-type="apt-rent">아파트 전월세</button>
+            <button type="button" class="real-estate-tab" data-type="rh-trade">연립·다세대 매매</button>
+            <button type="button" class="real-estate-tab" data-type="offi-trade">오피스텔 매매</button>
+          </div>
           <div id="realEstateStatus" class="notice-box">
             <strong>실거래 데이터를 확인하는 중입니다.</strong>
             <p>응답이 없으면 공식 조회 링크를 이용해 주세요.</p>
@@ -113,12 +119,13 @@
             <table class="data-table">
               <thead>
                 <tr>
+                  <th>유형</th>
                   <th>거래월</th>
-                  <th>단지명</th>
+                  <th>단지·건물명</th>
                   <th>읍면동</th>
                   <th>전용면적</th>
                   <th>층</th>
-                  <th>거래금액</th>
+                  <th>거래금액·보증금</th>
                 </tr>
               </thead>
               <tbody id="realEstateRows"></tbody>
@@ -189,8 +196,11 @@
 
         <h3>운정 실거래 공식 출처</h3>
         <ul class="source-list">
-          <li><a href="https://rt.molit.go.kr/" target="_blank" rel="noopener">국토교통부 실거래가 공개시스템</a> - 아파트, 연립·다세대, 단독·다가구, 오피스텔 등 실거래 조회</li>
-          <li><a href="https://www.data.go.kr/data/15126469/openapi.do" target="_blank" rel="noopener">공공데이터포털 국토교통부 아파트 매매 실거래가 상세 자료</a> - API 연동 원천 데이터</li>
+          <li><a href="https://rt.molit.go.kr/pt/xls/xls.do?mobileAt=" target="_blank" rel="noopener">국토교통부 실거래가 공개시스템 자료제공</a> - 아파트, 연립·다세대, 오피스텔, 전월세 자료 CSV·Excel 조회</li>
+          <li><a href="https://www.data.go.kr/data/15126469/openapi.do" target="_blank" rel="noopener">공공데이터포털 국토교통부 아파트 매매 실거래가 상세 자료</a> - 아파트 매매 API 원천 데이터</li>
+          <li><a href="https://apis.data.go.kr/1613000/RTMSDataSvcAptRent" target="_blank" rel="noopener">국토교통부 아파트 전월세 실거래가 자료</a> - 아파트 전월세 API Endpoint</li>
+          <li><a href="https://apis.data.go.kr/1613000/RTMSDataSvcRHTrade" target="_blank" rel="noopener">국토교통부 연립다세대 매매 실거래가 자료</a> - 연립·다세대 매매 API Endpoint</li>
+          <li><a href="https://apis.data.go.kr/1613000/RTMSDataSvcOffiTrade" target="_blank" rel="noopener">국토교통부 오피스텔 매매 실거래가 자료</a> - 오피스텔 매매 API Endpoint</li>
           <li><a href="https://www.gov.kr/portal/main" target="_blank" rel="noopener">정부24</a> - 전입, 확정일자, 주민등록 등 생활 민원 확인</li>
           <li><a href="https://www.iros.go.kr/" target="_blank" rel="noopener">대법원 인터넷등기소</a> - 등기부등본 확인</li>
           <li><a href="https://www.paju.go.kr/index.do" target="_blank" rel="noopener">파주시청</a> - 도시계획, 교통, 생활 행정 공지 확인</li>
@@ -259,35 +269,53 @@
     </footer>
 
     <script>
-      (async function () {
+      (function () {
         const status = document.getElementById('realEstateStatus');
         const wrap = document.getElementById('realEstateTableWrap');
         const rows = document.getElementById('realEstateRows');
+        const tabs = Array.from(document.querySelectorAll('.real-estate-tab'));
         if (!status || !wrap || !rows) return;
 
-        try {
-          const response = await fetch('./api/real-estate?month=latest&rows=10');
-          const data = await response.json();
-          if (!response.ok || data.mode !== 'live' || !Array.isArray(data.items) || data.items.length === 0) {
-            status.innerHTML = '<strong>공식 조회 링크를 이용해 주세요.</strong><p>현재 자동 실거래 목록을 표시할 수 없습니다. 국토교통부 실거래가 공개시스템에서 파주시 운정 생활권을 직접 조회할 수 있습니다.</p>';
-            return;
-          }
+        async function loadRealEstate(type) {
+          status.innerHTML = '<strong>실거래 데이터를 확인하는 중입니다.</strong><p>공공데이터포털 응답이 없으면 공식 조회 안내를 표시합니다.</p>';
+          wrap.hidden = true;
+          rows.innerHTML = '';
 
-          rows.innerHTML = data.items.map(function (item) {
-            return '<tr>' +
-              '<td>' + (item.dealMonth || '-') + '</td>' +
-              '<td>' + (item.aptName || '-') + '</td>' +
-              '<td>' + (item.dong || '-') + '</td>' +
-              '<td>' + (item.area || '-') + '㎡</td>' +
-              '<td>' + (item.floor || '-') + '</td>' +
-              '<td>' + (item.amount || '-') + '</td>' +
-              '</tr>';
-          }).join('');
-          status.innerHTML = '<strong>국토교통부 공개 API 기준으로 최근 자료를 표시합니다.</strong><p>API 반영 시점과 실제 계약·신고 시점에는 차이가 있을 수 있습니다.</p>';
-          wrap.hidden = false;
-        } catch (error) {
-          status.innerHTML = '<strong>공식 조회 링크를 이용해 주세요.</strong><p>현재 자동 실거래 목록을 불러오지 못했습니다. 국토교통부 실거래가 공개시스템에서 직접 확인해 주세요.</p>';
+          try {
+            const response = await fetch('./api/real-estate?month=latest&rows=10&type=' + encodeURIComponent(type || 'apt-trade'));
+            const data = await response.json();
+            if (!response.ok || data.mode !== 'live' || !Array.isArray(data.items) || data.items.length === 0) {
+              status.innerHTML = '<strong>공식 조회 링크를 이용해 주세요.</strong><p>현재 ' + (data.label || '실거래') + ' 자동 목록을 표시할 수 없습니다. 국토교통부 실거래가 공개시스템 자료제공에서 파주시 운정 생활권을 직접 조회할 수 있습니다.</p><p><a href="https://rt.molit.go.kr/pt/xls/xls.do?mobileAt=" target="_blank" rel="noopener">국토부 실거래 자료제공 바로가기</a></p>';
+              return;
+            }
+
+            rows.innerHTML = data.items.map(function (item) {
+              return '<tr>' +
+                '<td>' + (item.type || data.label || '-') + '</td>' +
+                '<td>' + (item.dealDate || '-') + '</td>' +
+                '<td>' + (item.name || '-') + '</td>' +
+                '<td>' + (item.dong || '-') + '</td>' +
+                '<td>' + (item.area || '-') + '㎡</td>' +
+                '<td>' + (item.floor || '-') + '</td>' +
+                '<td>' + (item.amount || '-') + '</td>' +
+                '</tr>';
+            }).join('');
+            status.innerHTML = '<strong>' + (data.label || '실거래') + ' 자료를 표시합니다.</strong><p>국토교통부 공개 API 기준이며, API 반영 시점과 실제 계약·신고 시점에는 차이가 있을 수 있습니다.</p>';
+            wrap.hidden = false;
+          } catch (error) {
+            status.innerHTML = '<strong>공식 조회 링크를 이용해 주세요.</strong><p>현재 자동 실거래 목록을 불러오지 못했습니다. 국토교통부 실거래가 공개시스템에서 직접 확인해 주세요.</p><p><a href="https://rt.molit.go.kr/pt/xls/xls.do?mobileAt=" target="_blank" rel="noopener">국토부 실거래 자료제공 바로가기</a></p>';
+          }
         }
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener('click', function () {
+            tabs.forEach(function (item) { item.classList.remove('is-active'); });
+            tab.classList.add('is-active');
+            loadRealEstate(tab.dataset.type);
+          });
+        });
+
+        loadRealEstate('apt-trade');
       })();
     </script>
   </body>

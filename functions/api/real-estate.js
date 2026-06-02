@@ -1,6 +1,37 @@
 const PAJU_LAWD_CD = '41480';
 const UNJEONG_DONGS = ['야당동', '동패동', '목동동', '와동동', '다율동', '상지석동'];
 
+const DATASETS = {
+  'apt-trade': {
+    label: '아파트 매매',
+    endpoints: [
+      'https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev'
+    ],
+    dealKind: 'trade'
+  },
+  'apt-rent': {
+    label: '아파트 전월세',
+    endpoints: [
+      'https://apis.data.go.kr/1613000/RTMSDataSvcAptRent/getRTMSDataSvcAptRent'
+    ],
+    dealKind: 'rent'
+  },
+  'rh-trade': {
+    label: '연립다세대 매매',
+    endpoints: [
+      'https://apis.data.go.kr/1613000/RTMSDataSvcRHTrade/getRTMSDataSvcRHTrade'
+    ],
+    dealKind: 'trade'
+  },
+  'offi-trade': {
+    label: '오피스텔 매매',
+    endpoints: [
+      'https://apis.data.go.kr/1613000/RTMSDataSvcOffiTrade/getRTMSDataSvcOffiTrade'
+    ],
+    dealKind: 'trade'
+  }
+};
+
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -13,9 +44,7 @@ function json(data, status = 200) {
 
 function dealMonthOffset(offset = 1) {
   const now = new Date(Date.now() + 9 * 60 * 60 * 1000);
-  const year = now.getUTCFullYear();
-  const month = now.getUTCMonth() + 1;
-  const target = new Date(Date.UTC(year, month - 1 - offset, 1));
+  const target = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1 - offset, 1));
   return `${target.getUTCFullYear()}${String(target.getUTCMonth() + 1).padStart(2, '0')}`;
 }
 
@@ -33,38 +62,65 @@ function decodeXml(value) {
     .replace(/&#39;/g, "'");
 }
 
-function parseItems(xml, rows) {
+function firstText(item, tags) {
+  for (const tag of tags) {
+    const value = textBetween(item, tag);
+    if (value) return value;
+  }
+  return '';
+}
+
+function normalizeAmount(value) {
+  return String(value || '').replace(/\s+/g, ' ').trim();
+}
+
+function parseItems(xml, rows, datasetKey, dataset) {
   const blocks = xml.match(/<item[^>]*>[\s\S]*?<\/item>/gi) || [];
   return blocks
     .map((item) => {
-      const dong = textBetween(item, 'umdNm') || textBetween(item, 'umdNm') || textBetween(item, '법정동');
-      const aptName = textBetween(item, 'aptNm') || textBetween(item, '아파트');
-      const dealYear = textBetween(item, 'dealYear') || textBetween(item, '년');
-      const dealMonth = textBetween(item, 'dealMonth') || textBetween(item, '월');
-      const dealDay = textBetween(item, 'dealDay') || textBetween(item, '일');
+      const dong = firstText(item, ['umdNm', 'umdName', '법정동']);
+      const name = firstText(item, ['aptNm', 'mhouseNm', 'offiNm', '단지명', '아파트', '연립다세대', '오피스텔']);
+      const dealYear = firstText(item, ['dealYear', '년']);
+      const dealMonth = firstText(item, ['dealMonth', '월']);
+      const dealDay = firstText(item, ['dealDay', '일']);
+      const deposit = firstText(item, ['deposit', 'depositAmount', '보증금액']);
+      const monthly = firstText(item, ['monthlyRent', '월세금액']);
+      const tradeAmount = firstText(item, ['dealAmount', '거래금액']);
+
       return {
-        aptName,
+        type: dataset.label,
+        dataset: datasetKey,
+        name,
         dong,
-        dealMonth: [dealYear, String(dealMonth).padStart(2, '0'), String(dealDay).padStart(2, '0')].filter(Boolean).join('.'),
-        area: textBetween(item, 'excluUseAr') || textBetween(item, '전용면적'),
-        floor: textBetween(item, 'floor') || textBetween(item, '층'),
-        amount: textBetween(item, 'dealAmount') || textBetween(item, '거래금액'),
-        buildYear: textBetween(item, 'buildYear') || textBetween(item, '건축년도')
+        dealDate: [dealYear, String(dealMonth).padStart(2, '0'), String(dealDay).padStart(2, '0')]
+          .filter(Boolean)
+          .join('.'),
+        area: firstText(item, ['excluUseAr', '전용면적']),
+        floor: firstText(item, ['floor', '층']),
+        amount: dataset.dealKind === 'rent'
+          ? `보증금 ${normalizeAmount(deposit) || '-'} / 월세 ${normalizeAmount(monthly) || '0'}`
+          : normalizeAmount(tradeAmount),
+        buildYear: firstText(item, ['buildYear', '건축년도']),
+        roadName: firstText(item, ['roadNm', '도로명'])
       };
     })
-    .filter((item) => item.aptName && (!item.dong || UNJEONG_DONGS.some((dong) => item.dong.includes(dong))))
+    .filter((item) => item.name)
+    .filter((item) => !item.dong || UNJEONG_DONGS.some((dong) => item.dong.includes(dong)))
     .slice(0, rows);
 }
 
-function fallback(reason = 'missing-env') {
+function fallback(datasetKey, reason = 'missing-env') {
+  const dataset = DATASETS[datasetKey] || DATASETS['apt-trade'];
   return {
     mode: 'fallback',
     reason,
-    source: 'https://rt.molit.go.kr/',
+    dataset: datasetKey,
+    label: dataset.label,
+    source: 'https://rt.molit.go.kr/pt/xls/xls.do?mobileAt=',
     items: [],
     guide: [
-      '국토교통부 실거래가 공개시스템에서 지역을 경기도 파주시로 선택합니다.',
-      '아파트 매매 또는 전월세 유형을 선택합니다.',
+      '국토교통부 실거래가 공개시스템 자료제공에서 거래 유형을 선택합니다.',
+      '지역을 경기도 파주시로 선택한 뒤 운정 생활권 법정동을 확인합니다.',
       '운정 생활권은 야당동, 동패동, 목동동, 와동동, 다율동, 상지석동을 함께 확인합니다.'
     ]
   };
@@ -72,6 +128,8 @@ function fallback(reason = 'missing-env') {
 
 export async function onRequestGet({ request, env }) {
   const requestUrl = new URL(request.url);
+  const datasetKey = requestUrl.searchParams.get('type') || 'apt-trade';
+  const dataset = DATASETS[datasetKey] || DATASETS['apt-trade'];
   const rows = Math.min(Math.max(Number(requestUrl.searchParams.get('rows') || 10), 1), 30);
   const monthParam = requestUrl.searchParams.get('month') || 'latest';
   const dealMonths = monthParam === 'latest'
@@ -79,18 +137,11 @@ export async function onRequestGet({ request, env }) {
     : [monthParam.replace(/[^0-9]/g, '').slice(0, 6)];
   const key = env.DATA_GO_KR_SERVICE_KEY || env.PUBLIC_DATA_SERVICE_KEY || env.MOLIT_SERVICE_KEY || env.SERVICE_KEY;
 
-  if (!key) {
-    return json(fallback('missing-env'));
-  }
-
-  const endpoints = [
-    'https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev',
-    'https://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade'
-  ];
+  if (!key) return json(fallback(datasetKey, 'missing-env'));
 
   const candidates = [];
   for (const dealYmd of dealMonths) {
-    for (const endpoint of endpoints) {
+    for (const endpoint of dataset.endpoints) {
       candidates.push({ dealYmd, endpoint });
     }
   }
@@ -112,10 +163,12 @@ export async function onRequestGet({ request, env }) {
         cf: { cacheTtl: 1800, cacheEverything: true }
       });
       const body = await response.text();
-      const items = parseItems(body, rows);
+      const items = parseItems(body, rows, datasetKey, dataset);
       if (response.ok && items.length) {
         return {
           mode: 'live',
+          dataset: datasetKey,
+          label: dataset.label,
           dealYmd,
           lawdCd: PAJU_LAWD_CD,
           source: apiUrl.toString().replace(key, '***'),
@@ -136,5 +189,5 @@ export async function onRequestGet({ request, env }) {
     .sort((a, b) => b.dealYmd.localeCompare(a.dealYmd))[0];
 
   if (live) return json(live);
-  return json(fallback('empty-or-api-error'));
+  return json(fallback(datasetKey, 'empty-or-api-error'));
 }
