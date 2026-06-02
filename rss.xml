@@ -5,8 +5,15 @@
     <link>https://analogblow.com/</link>
     <description>파주 운정 가족을 위한 병원, 약국, 학교, 주차, 교통, 공원, 도서관 생활정보 업데이트입니다.</description>
     <language>ko</language>
-    <lastBuildDate>Tue, 02 Jun 2026 17:30:00 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jun 2026 09:30:00 +0900</lastBuildDate>
     <atom:link href="https://analogblow.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>운정 생활글 모아보기</title>
+      <link>https://analogblow.com/guides</link>
+      <guid>https://analogblow.com/guides</guid>
+      <pubDate>Wed, 03 Jun 2026 09:30:00 +0900</pubDate>
+      <description>파주 운정 가족을 위한 병원, 학교, 통학, 주차, 교통, 주말, 공공시설, 부동산, 정책 생활글을 주제별로 모았습니다.</description>
+    </item>
     <item>
       <title>운정 파프리카 통학버스 확인 가이드</title>
       <link>https://analogblow.com/posts/mobility-paprika-school-bus-guide</link>
