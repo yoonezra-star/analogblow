@@ -5,8 +5,15 @@
     <link>https://analogblow.com/</link>
     <description>파주 운정 가족을 위한 병원, 약국, 학교, 주차, 교통, 공원, 도서관 생활정보 업데이트입니다.</description>
     <language>ko</language>
-    <lastBuildDate>Tue, 02 Jun 2026 12:10:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jun 2026 12:40:00 +0900</lastBuildDate>
     <atom:link href="https://analogblow.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>운정라이프 편집 기준</title>
+      <link>https://analogblow.com/editorial-policy</link>
+      <guid>https://analogblow.com/editorial-policy</guid>
+      <pubDate>Tue, 02 Jun 2026 12:40:00 +0900</pubDate>
+      <description>운정라이프가 공공데이터, 공식 기관, 지도 검색, 지역 생활 정보를 확인하고 정정하는 기준을 안내합니다.</description>
+    </item>
     <item>
       <title>운정 큰 공원 3곳 비교</title>
       <link>https://analogblow.com/posts/unjeong-large-parks-guide</link>
@@ -106,11 +113,11 @@
       <description>첫 등원 주간에 차량 운행, 준비물, 아픈 날 대체 동선을 확인합니다.</description>
     </item>
     <item>
-      <title>운정 무료·저비용 실내 나들이 후보</title>
+      <title>운정 무료·저비용 실내 나들이 선택지</title>
       <link>https://analogblow.com/posts/culture-free-indoor-weekend</link>
       <guid>https://analogblow.com/posts/culture-free-indoor-weekend</guid>
       <pubDate>Fri, 22 May 2026 15:30:00 +0900</pubDate>
-      <description>비, 폭염, 미세먼지 날 부담 적게 갈 수 있는 실내 후보를 안내합니다.</description>
+      <description>비, 폭염, 미세먼지 날 부담 적게 갈 수 있는 실내 선택지를 안내합니다.</description>
     </item>
     <item>
       <title>운정 가족 외식 전 주차부터 보는 이유</title>
@@ -138,7 +145,7 @@
       <link>https://analogblow.com/posts/paju-unjeong-family-spots-2026</link>
       <guid>https://analogblow.com/posts/paju-unjeong-family-spots-2026</guid>
       <pubDate>Fri, 22 May 2026 15:30:00 +0900</pubDate>
-      <description>운정호수공원, 스타필드 빌리지 운정, 헤이리, 출판도시 등 가족 나들이 후보입니다.</description>
+      <description>운정호수공원, 스타필드 빌리지 운정, 헤이리, 출판도시 등 가족 나들이 선택지입니다.</description>
     </item>
   </channel>
 </rss>
