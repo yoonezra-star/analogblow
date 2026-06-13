@@ -2534,6 +2534,162 @@ h3 { margin: 0; font-size: 20px; }
   color: #fff;
 }
 
+/* Internal pages: cleaner reading system */
+.page-main {
+  background: #f8fbff;
+  padding: clamp(34px, 6vw, 70px) clamp(18px, 5vw, 76px) clamp(70px, 8vw, 110px);
+}
+
+.page-card {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  border-color: #edf0f4;
+  box-shadow: 0 18px 48px rgba(31, 94, 220, 0.07);
+}
+
+.page-card.wide {
+  width: min(100%, 1180px);
+  padding: clamp(28px, 4.6vw, 54px);
+  border-radius: 24px;
+}
+
+.article-page {
+  background: #fff;
+}
+
+.page-card > .eyebrow,
+.article-page > .eyebrow {
+  display: inline-flex;
+  width: max-content;
+  max-width: 100%;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid #dbeafe;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.page-card h1,
+.article-page h1 {
+  max-width: 920px;
+  margin-top: 12px;
+  color: #13233d;
+  font-size: clamp(34px, 4.5vw, 58px);
+  line-height: 1.13;
+  letter-spacing: 0;
+}
+
+.page-card > p,
+.article-page > p:first-of-type {
+  max-width: 900px;
+  color: #526273;
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.78;
+}
+
+.page-card h3,
+.article-page h2,
+.article-page h3,
+.rich-section h3 {
+  color: #13233d;
+  letter-spacing: 0;
+}
+
+.rich-section {
+  margin-top: clamp(34px, 5vw, 56px);
+  padding-top: clamp(28px, 4vw, 44px);
+  border-top-color: #edf0f4;
+}
+
+.data-table-wrap {
+  border-color: #edf0f4;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(31, 94, 220, 0.05);
+}
+
+.data-table th {
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+.data-table td {
+  color: #334155;
+}
+
+.notice-box,
+.api-live-panel,
+.real-estate-filters {
+  border-color: #dbeafe;
+  background: #f8fbff;
+}
+
+.notice-box strong,
+.source-list a,
+.real-estate-summary,
+.real-estate-filters label {
+  color: #1f5edc;
+}
+
+.real-estate-tab,
+.real-estate-source-link {
+  border-color: #dbeafe;
+  color: #1d4ed8;
+  background: #fff;
+}
+
+.real-estate-tab:hover,
+.real-estate-tab.is-active,
+.real-estate-source-link:hover {
+  border-color: #1f5edc;
+  background: #1f5edc;
+  color: #fff;
+}
+
+.content-visual {
+  border-color: #edf0f4;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(31, 94, 220, 0.07);
+}
+
+.content-visual figcaption strong {
+  color: #13233d;
+}
+
+.brief-featured a,
+.insight-grid article,
+.timeline-grid article,
+.live-feed article {
+  border-color: #edf0f4;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(31, 94, 220, 0.05);
+}
+
+.brief-featured span,
+.timeline-grid span {
+  background: #1f5edc;
+  color: #fff;
+}
+
+.callout-strip {
+  background: linear-gradient(135deg, #1f5edc, #38bdf8);
+  box-shadow: 0 18px 42px rgba(31, 94, 220, 0.18);
+}
+
+.callout-strip p {
+  color: #eef6ff;
+}
+
+.source-list {
+  padding: 16px 18px 16px 34px;
+  border: 1px solid #edf0f4;
+  border-radius: 18px;
+  background: #fff;
+}
+
 @media (max-width: 1040px) {
   .hero,
   .two-column {
