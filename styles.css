@@ -1138,6 +1138,7 @@ h3 { margin: 0; font-size: 20px; }
 .rank-filter-row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   margin: 0 0 22px;
 }
@@ -1163,14 +1164,14 @@ h3 { margin: 0; font-size: 20px; }
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-  max-width: 1080px;
+  max-width: 1120px;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   list-style: none;
 }
 .local-rank-list a {
   display: grid;
-  grid-template-columns: 42px minmax(72px, 0.32fr) minmax(0, 1fr) auto;
+  grid-template-columns: 42px 82px minmax(0, 1fr) minmax(92px, auto);
   gap: 12px;
   align-items: center;
   min-height: 78px;
@@ -1190,6 +1191,7 @@ h3 { margin: 0; font-size: 20px; }
 }
 .local-rank-list b {
   display: inline-flex;
+  justify-self: center;
   width: 38px;
   height: 38px;
   align-items: center;
@@ -1212,12 +1214,14 @@ h3 { margin: 0; font-size: 20px; }
   white-space: nowrap;
 }
 .local-rank-list strong {
+  min-width: 0;
   color: #13233d;
   font-size: 16px;
   line-height: 1.45;
 }
 .local-rank-list em {
   justify-self: end;
+  text-align: center;
   padding: 7px 10px;
   border-radius: 999px;
   background: #f8fafc;
@@ -1464,6 +1468,8 @@ h3 { margin: 0; font-size: 20px; }
 .section > .quick-grid,
 .section > .faq-grid,
 .section > .weekly-list,
+.section > .rank-filter-row,
+.section > .local-rank-list,
 .section > .popular-guide-tabs,
 .section > .popular-guide-list,
 .section > .board-grid,
@@ -3155,12 +3161,24 @@ h3 { margin: 0; font-size: 20px; }
     grid-template-columns: 1fr;
   }
   .local-rank-list a {
-    grid-template-columns: 42px minmax(0, 1fr);
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 8px 12px;
+    align-items: start;
+    padding: 15px;
+  }
+  .local-rank-list b {
+    grid-row: 1 / span 3;
+    width: 36px;
+    height: 36px;
   }
   .local-rank-list span,
+  .local-rank-list strong,
   .local-rank-list em {
     grid-column: 2;
     justify-self: start;
+  }
+  .local-rank-list strong {
+    font-size: 15px;
   }
   .map-stage { min-height: 520px; }
   .map-api-notice {
