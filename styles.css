@@ -2354,6 +2354,186 @@ h3 { margin: 0; font-size: 20px; }
   line-height: 1.7;
 }
 
+/* Unified clean-blue visual pass */
+.active-pulse,
+.map-preview-band,
+.weekly-edit,
+.service-hub,
+.feature-band,
+.article-page,
+.home-visual-band {
+  background: #fff;
+}
+
+.daily-command,
+.popular-guide,
+.muted,
+.start-flow,
+.resident-faq {
+  background: #f8fbff;
+}
+
+.section-head .eyebrow,
+.eyebrow {
+  color: #1f5edc;
+}
+
+.section-head h2 {
+  color: #17211b;
+}
+
+.section-head p {
+  max-width: 760px;
+}
+
+.command-card,
+.quick-card,
+.portal-card,
+.place-preview-grid a,
+.popular-guide-item,
+.faq-grid article,
+.board-panel,
+.hub-panel,
+.update-card,
+.today-panel,
+.weekly-list a,
+.article-card,
+.directory-card,
+.brief-column,
+.family-grid article,
+.scenario-card,
+.place-card,
+.data-grid article,
+.guide-grid article,
+.check-panel,
+.feature-article {
+  border-color: #edf0f4;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(31, 94, 220, 0.06);
+}
+
+.command-card:hover,
+.quick-card:hover,
+.portal-card:hover,
+.place-preview-grid a:hover,
+.popular-guide-item:hover,
+.faq-grid article:hover,
+.board-panel:hover,
+.hub-panel:hover,
+.update-card:hover,
+.article-card:hover,
+.directory-card:hover {
+  border-color: rgba(31, 94, 220, 0.24);
+  box-shadow: 0 22px 48px rgba(31, 94, 220, 0.12);
+}
+
+.command-card span,
+.quick-card span,
+.place-preview-grid span,
+.faq-grid span,
+.article-card span,
+.popular-category,
+.chip {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.command-card.urgent span,
+.health-card span {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.command-card.school span,
+.kids-card span,
+.school-card span {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.command-card.parking span,
+.mobility-card span,
+.parking-card span,
+.map-card span {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.command-card.weekend span,
+.leisure-card span {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.command-card.move span,
+.move-card span {
+  background: #ccfbf1;
+  color: #0f766e;
+}
+
+.command-card.policy span,
+.data-card span,
+.facility-card span {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.command-card em,
+.quick-card em,
+.faq-grid a,
+.article-card em,
+.directory-link,
+.popular-guide-tabs a,
+.hub-panel a,
+.board-panel span,
+.route-board a {
+  color: #1f5edc;
+}
+
+.popular-guide-tabs a {
+  border-color: #dbeafe;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.popular-guide-tabs a:hover {
+  color: #fff;
+  background: #1f5edc;
+}
+
+.rank-gold,
+.rank-silver,
+.rank-bronze {
+  border-color: #edf0f4;
+  background: #fff;
+}
+
+.rank-gold .popular-rank,
+.rank-silver .popular-rank,
+.rank-bronze .popular-rank,
+.popular-rank {
+  background: #1f5edc;
+  color: #fff;
+}
+
+.place-image.park,
+.place-image.library,
+.place-image.cafe {
+  background: linear-gradient(135deg, #1f5edc, #38bdf8);
+}
+
+.dark {
+  background: #10224c;
+}
+
+.dark .route-board a,
+.dark .route-board div {
+  border-color: rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
 @media (max-width: 1040px) {
   .hero,
   .two-column {
