@@ -2690,6 +2690,71 @@ h3 { margin: 0; font-size: 20px; }
   background: #fff;
 }
 
+/* Bottom contrast fix */
+.section.dark,
+.section.dark .section-head,
+.section.dark h2,
+.section.dark h3,
+.section.dark strong {
+  color: #ffffff;
+}
+
+.section.dark .section-head p,
+.section.dark .route-board span {
+  color: #dbe7f7;
+}
+
+.section.dark .eyebrow {
+  color: #93c5fd;
+}
+
+.section.dark .route-board a,
+.section.dark .route-board div {
+  color: #ffffff;
+}
+
+.footer,
+.footer * {
+  color-scheme: dark;
+}
+
+.footer h4,
+.footer strong,
+.footer .company-name,
+.footer .footer-logo,
+.footer .footer-logo .brand-copy strong,
+.footer .request-box summary {
+  color: #ffffff;
+}
+
+.footer p,
+.footer li,
+.footer span,
+.footer .footer-logo .brand-copy small,
+.footer-bottom,
+.footer-bottom span {
+  color: #cbd5e1;
+}
+
+.footer a,
+.footer-bottom a {
+  color: #e2e8f0;
+}
+
+.footer a:hover,
+.footer-bottom a:hover {
+  color: #ffffff;
+}
+
+.footer .request-box {
+  border-color: #3b4a62;
+  background: #172235;
+}
+
+.footer .request-box p {
+  color: #dbe7f7;
+}
+
 @media (max-width: 1040px) {
   .hero,
   .two-column {
