@@ -1130,6 +1130,103 @@ h3 { margin: 0; font-size: 20px; }
   color: var(--muted);
   line-height: 1.55;
 }
+.local-rank {
+  background:
+    linear-gradient(135deg, rgba(31, 94, 220, 0.07), transparent 34%),
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+.rank-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 22px;
+}
+.rank-filter-row a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid #dbeafe;
+  border-radius: 999px;
+  background: #fff;
+  color: #1d4ed8;
+  font-size: 14px;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(31, 94, 220, 0.06);
+}
+.rank-filter-row a:hover {
+  background: #1f5edc;
+  color: #fff;
+}
+.local-rank-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 1080px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.local-rank-list a {
+  display: grid;
+  grid-template-columns: 42px minmax(72px, 0.32fr) minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  min-height: 78px;
+  padding: 16px 18px;
+  border: 1px solid #edf0f4;
+  border-radius: 18px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 14px 34px rgba(31, 94, 220, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.local-rank-list a:hover {
+  transform: translateY(-3px);
+  border-color: rgba(31, 94, 220, 0.24);
+  box-shadow: 0 20px 42px rgba(31, 94, 220, 0.12);
+}
+.local-rank-list b {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: #1f5edc;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 900;
+}
+.local-rank-list span {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+.local-rank-list strong {
+  color: #13233d;
+  font-size: 16px;
+  line-height: 1.45;
+}
+.local-rank-list em {
+  justify-self: end;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #526273;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 900;
+  white-space: nowrap;
+}
 .popular-guide {
   background:
     linear-gradient(135deg, rgba(31, 94, 220, 0.06), transparent 32%),
@@ -2784,6 +2881,9 @@ h3 { margin: 0; font-size: 20px; }
   .footer-content {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .local-rank-list {
+    grid-template-columns: 1fr;
+  }
   .weather-live-card {
     grid-template-columns: 1fr;
   }
@@ -2937,6 +3037,14 @@ h3 { margin: 0; font-size: 20px; }
   }
   .today-list li {
     grid-template-columns: 1fr;
+  }
+  .local-rank-list a {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+  .local-rank-list span,
+  .local-rank-list em {
+    grid-column: 2;
+    justify-self: start;
   }
   .map-stage { min-height: 520px; }
   .map-api-notice {
