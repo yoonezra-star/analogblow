@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://analogblow.com/">
     <link rel="canonical" href="https://analogblow.com/">
     <link rel="alternate" type="application/rss+xml" title="운정라이프 RSS" href="https://analogblow.com/rss.xml">
-    <link rel="stylesheet" href="./styles.css?v=20260613-home-flow">
+    <link rel="stylesheet" href="./styles.css?v=20260613-visual-first">
     <link rel="icon" href="./logo.svg" type="image/svg+xml">
   </head>
   <body>
@@ -48,6 +48,11 @@
             등원 전 날씨, 퇴근 후 병원·약국, 주말 주차와 나들이 장소까지
             운정 가족이 자주 찾는 학교, 병원, 주차, 교통, 주말 정보를 상황별로 정리했습니다.
           </p>
+          <div class="hero-paths" aria-label="대표 생활 흐름">
+            <a href="./kids"><b>아이</b><span>학교·병원·돌봄</span></a>
+            <a href="./map-search"><b>지도</b><span>주차·교통·시설</span></a>
+            <a href="./culture-leisure"><b>주말</b><span>공원·외식·실내</span></a>
+          </div>
           <form class="search-panel" action="./map-search.html" aria-label="운정 생활정보 빠른 검색">
             <input type="search" name="q" placeholder="예: 소아과, 주차장, 도서관, 캠핑장, 아동급식">
             <button type="submit">생활 지도 열기</button>
@@ -62,6 +67,10 @@
           <div class="dashboard-top">
             <span>오늘의 운정</span>
             <strong>출근·등원·주말을 한 장에</strong>
+          </div>
+          <div class="dashboard-trust">
+            <b>2026.06 기준</b>
+            <span>공식 출처 · 지도검색 · 제보 반영</span>
           </div>
           <a class="orbit-card orbit-school" href="./kids"><b>07:50</b><span>등원·통학</span></a>
           <a class="orbit-card orbit-health" href="./health"><b>18:20</b><span>소아과·약국</span></a>
@@ -97,18 +106,21 @@
         </div>
         <div class="start-flow-grid">
           <a class="start-flow-card kids-flow" href="./kids">
+            <i class="flow-mark" aria-hidden="true">학</i>
             <span>01 아이생활</span>
             <strong>학교·병원·돌봄을 함께 확인</strong>
             <p>등원, 통학로, 도서관, 소아과, 약국, 돌봄 정보를 아이 이동 기준으로 봅니다.</p>
             <em>아이생활 시작하기</em>
           </a>
           <a class="start-flow-card move-flow" href="./map-search">
+            <i class="flow-mark" aria-hidden="true">맵</i>
             <span>02 이동생활</span>
             <strong>지도·주차·교통을 먼저 정리</strong>
             <p>운정역, 야당역, GTX 운정중앙역 주변 주차장과 생활시설을 지도에서 확인합니다.</p>
             <em>생활지도 열기</em>
           </a>
           <a class="start-flow-card weekend-flow" href="./culture-leisure">
+            <i class="flow-mark" aria-hidden="true">쉼</i>
             <span>03 주말생활</span>
             <strong>공원·외식·실내 코스 고르기</strong>
             <p>운정호수공원, 도서관, 스타필드, 가족 외식 후보를 날씨와 주차 기준으로 고릅니다.</p>
