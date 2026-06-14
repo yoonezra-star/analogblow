@@ -186,8 +186,8 @@
 
           <h3>네이버 지도 검색어 기준</h3>
           <p>
-            지도 검색은 실제 장소명이 들어가야 정확합니다. 그래서 운정라이프의 지도 링크는 “운정 병원”, “야당역 약국”,
-            “야당역환승주차장”, “운정역 공영주차장”, “파주 자동차검사소”처럼 네이버 지도에서 검색 가능성이 높은 단어로 구성했습니다.
+            지도 검색은 실제 장소명이 들어가야 정확합니다. 그래서 운정라이프의 지도 링크는 “운정 소아청소년과”, “야당역 약국”,
+            “야당역 환승주차장”, “운정역 환승주차장”, “파주 자동차검사소”처럼 네이버 지도에서 검색 가능성이 높은 단어로 구성했습니다.
             행정 자료명이 길거나 공식 API 명칭이 복잡한 경우에도 실제 검색어로 바로 찾을 수 있게 했습니다.
           </p>
           <div class="notice-box">
@@ -218,9 +218,9 @@
 
     <script>
       const places = [
-        { id: "parking-unjeong", category: "parking", title: "운정역 환승주차장", searchQuery: "운정역환승주차장", aliases: "운정역 환승 공영주차장 운정역 공영주차장 파주 운정 주차", area: "운정역권", lat: 37.7256, lng: 126.7671, x: 40, y: 38, desc: "경의중앙선 환승, 출퇴근 주차, 주말 상권 방문 때 먼저 확인할 주차장입니다." },
-        { id: "parking-yadang", category: "parking", title: "야당역 환승주차장", searchQuery: "야당역환승주차장", aliases: "야당역 환승 공영주차장 야당역 공영주차장 야당권 파주 운정 주차", area: "야당권", lat: 37.7127, lng: 126.7611, x: 18, y: 31, desc: "야당역 상권, 외식, 카페 방문 동선과 함께 보기 좋은 주차장입니다." },
-        { id: "parking-gtx", category: "parking", title: "운정중앙역 주차장", searchQuery: "운정중앙역 주차장", aliases: "GTX 운정중앙역 주차장 GTX-A 운정중앙역 공영주차장 환승주차", area: "동패·초롱꽃권", lat: 37.7281, lng: 126.7434, x: 74, y: 32, desc: "GTX 환승 수요를 고려해 정기권, 만차, 도보 이동 시간을 함께 확인해야 합니다." },
+        { id: "parking-unjeong", category: "parking", title: "운정역 환승주차장", searchQuery: "운정역 환승주차장", aliases: "운정역환승주차장 운정역 공영주차장 운정역 주차장 파주 운정 주차", area: "운정역권", lat: 37.7256, lng: 126.7671, x: 40, y: 38, desc: "경의중앙선 환승, 출퇴근 주차, 주말 상권 방문 때 먼저 확인할 주차장입니다." },
+        { id: "parking-yadang", category: "parking", title: "야당역 환승주차장", searchQuery: "야당역 환승주차장", aliases: "야당역환승주차장 야당역 공영주차장 야당역 주차장 파주 야당 주차", area: "야당권", lat: 37.7127, lng: 126.7611, x: 18, y: 31, desc: "야당역 상권, 외식, 카페 방문 동선과 함께 보기 좋은 주차장입니다." },
+        { id: "parking-gtx", category: "parking", title: "GTX 운정중앙역 주차장", searchQuery: "GTX 운정중앙역 주차장", aliases: "운정중앙역 주차장 GTX-A 운정중앙역 공영주차장 운정중앙역 환승주차장", area: "동패·초롱꽃권", lat: 37.7281, lng: 126.7434, x: 74, y: 32, desc: "GTX 환승 수요를 고려해 정기권, 만차, 도보 이동 시간을 함께 확인해야 합니다." },
         { id: "gas-yadang", category: "gas", title: "야당·운정 주유소", searchQuery: "야당역 주유소", area: "야당·운정권", lat: 37.7169, lng: 126.7588, x: 27, y: 42, desc: "출퇴근 전후 유가 비교가 필요한 차량 생활권입니다. 실제 가격은 오피넷과 지도 앱에서 확인하세요." },
         { id: "lpg-unjeong", category: "lpg", title: "운정 LPG 충전소", searchQuery: "운정 LPG충전소", area: "운정 외곽권", lat: 37.7092, lng: 126.7488, x: 38, y: 72, desc: "LPG 차량 이용자를 위한 충전소 검색입니다. 영업시간과 충전 가능 여부는 방문 전 확인이 필요합니다." },
         { id: "repair-yadang", category: "repair", title: "야당역 자동차 정비소", searchQuery: "야당역 자동차정비소", area: "야당권", lat: 37.7134, lng: 126.7592, x: 22, y: 45, desc: "엔진오일, 타이어, 경정비를 비교할 때 보기 좋은 정비소 검색입니다." },
@@ -247,12 +247,12 @@
         { id: "restaurant-sannae-family", category: "restaurant", title: "산내마을 가족식당", searchQuery: "산내마을 가족식당", area: "산내·목동권", lat: 37.7216, lng: 126.7358, x: 60, y: 58, desc: "학원, 병원, 장보기 후 식사를 연결하기 좋은 생활형 외식 권역입니다." },
         { id: "restaurant-garam-family", category: "restaurant", title: "가람마을 가족식당", searchQuery: "가람마을 가족식당", area: "가람·와동권", lat: 37.7351, lng: 126.7546, x: 47, y: 44, desc: "도서관과 행정시설 방문 후 식사로 연결하기 좋은 권역입니다." },
         { id: "restaurant-bookcity-family", category: "restaurant", title: "파주출판도시 가족식당", searchQuery: "파주출판도시 가족식당", area: "문발동", lat: 37.7088, lng: 126.6887, x: 12, y: 57, desc: "나들이 후 식사와 카페를 함께 보기 좋은 문화형 외식 권역입니다." },
-        { id: "shopping-homeplus", category: "shopping", title: "홈플러스 파주운정점", area: "운정권", lat: 37.7148, lng: 126.7591, x: 31, y: 58, desc: "장보기, 주차, 주말 가족 동선을 함께 고려할 수 있는 대형 생활편의 거점입니다." },
-        { id: "shopping-emart", category: "shopping", title: "이마트 파주운정점", area: "운정권", lat: 37.7245, lng: 126.7505, x: 62, y: 51, desc: "대형 장보기와 생활용품 구매 동선을 잡을 때 확인할 수 있는 생활편의 거점입니다." },
+        { id: "shopping-homeplus", category: "shopping", title: "홈플러스 파주운정점", searchQuery: "홈플러스 파주운정점", aliases: "운정 홈플러스 홈플러스 운정점 장보기 마트", area: "운정권", lat: 37.7148, lng: 126.7591, x: 31, y: 58, desc: "장보기, 주차, 주말 가족 동선을 함께 고려할 수 있는 대형 생활편의 거점입니다." },
+        { id: "shopping-emart", category: "shopping", title: "이마트 파주운정점", searchQuery: "이마트 파주운정점", aliases: "운정 이마트 이마트 운정점 장보기 마트", area: "운정권", lat: 37.7245, lng: 126.7505, x: 62, y: 51, desc: "대형 장보기와 생활용품 구매 동선을 잡을 때 확인할 수 있는 생활편의 거점입니다." },
         { id: "localbiz-unjeong", category: "localbiz", title: "운정 생활수리", searchQuery: "운정 생활수리", area: "운정역·산내권", lat: 37.7218, lng: 126.7501, x: 50, y: 50, desc: "동네 병원, 학원, 카페, 생활수리 업체를 생활권별로 확인하는 검색입니다." },
         { id: "park-lake", category: "park", title: "운정호수공원", searchQuery: "운정호수공원", area: "운정 중심권", lat: 37.7217, lng: 126.7429, x: 53, y: 50, desc: "산책, 유모차, 킥보드, 주말 가족 나들이에 자주 쓰는 운정 대표 공원입니다." },
-        { id: "park-hanul", category: "park", title: "한울공원", searchQuery: "한울공원 파주", area: "한울권", lat: 37.7089, lng: 126.7444, x: 50, y: 74, desc: "가볍게 걷기 좋은 생활권 공원입니다. 날씨와 주차 가능 여부를 함께 확인하세요." },
-        { id: "park-chorong", category: "park", title: "초롱꽃마을 공원", searchQuery: "초롱꽃마을 공원", area: "초롱꽃권", lat: 37.7351, lng: 126.7419, x: 78, y: 22, desc: "신규 입주권역에서 아이 산책과 놀이터 동선을 잡을 때 함께 볼 만한 공원 검색입니다." },
+        { id: "park-hanul", category: "park", title: "한울공원", searchQuery: "파주 한울공원", aliases: "운정 한울공원 한울마을 공원", area: "한울권", lat: 37.7089, lng: 126.7444, x: 50, y: 74, desc: "가볍게 걷기 좋은 생활권 공원입니다. 날씨와 주차 가능 여부를 함께 확인하세요." },
+        { id: "park-chorong", category: "park", title: "초롱꽃마을 공원", searchQuery: "초롱꽃마을 공원", aliases: "초롱꽃마을 놀이터 초롱꽃마을 근린공원 운정 초롱꽃 공원", area: "초롱꽃권", lat: 37.7351, lng: 126.7419, x: 78, y: 22, desc: "신규 입주권역에서 아이 산책과 놀이터 동선을 잡을 때 함께 볼 만한 공원 검색입니다." },
         { id: "park-soricheon", category: "park", title: "소리천 산책로", searchQuery: "소리천 산책로", area: "운정 생활권", lat: 37.7241, lng: 126.7521, x: 58, y: 45, desc: "퇴근 후 산책, 자전거, 짧은 가족 외출에 맞는 생활형 산책로입니다." },
         { id: "culture-starfield", category: "culture", title: "스타필드 빌리지 운정", searchQuery: "스타필드 빌리지 운정", area: "운정역권", lat: 37.7254, lng: 126.7664, x: 40, y: 40, desc: "비 오는 날, 폭염, 한파에 실내 식사와 장보기를 함께 해결하기 좋은 가족형 실내 공간입니다." },
         { id: "culture-solgaram", category: "culture", title: "솔가람아트홀", searchQuery: "솔가람아트홀", area: "가람권", lat: 37.7358, lng: 126.7514, x: 49, y: 42, desc: "파주문화재단 공연과 클래식·문화 프로그램을 확인할 수 있는 문화 거점입니다." },
@@ -268,7 +268,7 @@
         { id: "rest-freeway", category: "rest", title: "파주 졸음쉼터", searchQuery: "파주 졸음쉼터", area: "운정 외곽 도로권", lat: 37.6993, lng: 126.7308, x: 65, y: 82, desc: "장거리 이동 전 졸음쉼터와 휴게 동선을 확인할 수 있는 차량 안전 항목입니다." },
         { id: "health-unjeong", category: "health", title: "운정보건소", searchQuery: "운정보건소", area: "운정권", lat: 37.7258, lng: 126.7477, x: 64, y: 40, desc: "예방접종, 모자보건, 건강증진사업 등 보건소 업무 확인에 필요합니다." },
         { id: "hospital-kids", category: "hospital", title: "운정 소아청소년과", searchQuery: "운정 소아청소년과", area: "운정·야당권", lat: 37.7198, lng: 126.7582, x: 32, y: 47, desc: "아이 열, 감기, 야간 진료를 볼 때 현재 진료 여부와 대기 시간을 반드시 확인하세요." },
-        { id: "hospital-yadang", category: "hospital", title: "야당역 병원·의원", searchQuery: "야당역 병원 의원", area: "야당권", lat: 37.7129, lng: 126.7601, x: 22, y: 39, desc: "야당역 상권 주변 병원 검색입니다. 진료과목, 휴진일, 접수 마감 시간을 확인하세요." },
+        { id: "hospital-yadang", category: "hospital", title: "야당역 병원·의원", searchQuery: "야당역 병원", aliases: "야당역 의원 야당역 내과 야당역 이비인후과 야당역 소아과", area: "야당권", lat: 37.7129, lng: 126.7601, x: 22, y: 39, desc: "야당역 상권 주변 병원 검색입니다. 진료과목, 휴진일, 접수 마감 시간을 확인하세요." },
         { id: "pharmacy-unjeong", category: "pharmacy", title: "운정역 약국", searchQuery: "운정역 약국", area: "운정역권", lat: 37.7251, lng: 126.7645, x: 38, y: 45, desc: "병원 방문 후 이동하기 쉬운 약국 검색입니다. 휴일지킴이약국 정보와 함께 확인하세요." },
         { id: "pharmacy-yadang", category: "pharmacy", title: "야당역 약국", searchQuery: "야당역 약국", area: "야당권", lat: 37.7124, lng: 126.7599, x: 20, y: 43, desc: "저녁 외출 동선에서 약국을 찾을 때 확인합니다. 운영시간은 방문 전 재확인하세요." },
         { id: "welfare-center", category: "welfare", title: "운정행정복지센터", searchQuery: "운정행정복지센터", area: "운정권", lat: 37.7241, lng: 126.7483, x: 61, y: 46, desc: "아동, 청년, 장애인, 노인 복지 정보를 확인할 수 있는 행정·복지 연결 항목입니다." },
