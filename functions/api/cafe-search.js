@@ -1,7 +1,7 @@
 const FALLBACK_ITEMS = [
   {
     title: '네이버 카페 공개글 검색으로 지역 후기를 확인하세요',
-    description: '카페글 검색 API 키가 설정되면 이 영역에 운정·파주 생활 관련 공개 카페글이 자동으로 표시됩니다.',
+    description: '원문 검색 링크로 운정·파주 생활 후기를 확인할 수 있습니다. 운영시간, 대기, 주차처럼 공식 정보에 없는 실제 경험을 보조 자료로 참고하세요.',
     link: 'https://search.naver.com/search.naver?where=article&query=%EC%9A%B4%EC%A0%95%20%EC%83%9D%ED%99%9C%20%ED%9B%84%EA%B8%B0',
     cafename: '네이버 카페 검색',
     cafeurl: 'https://section.cafe.naver.com/'

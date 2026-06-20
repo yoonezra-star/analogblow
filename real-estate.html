@@ -138,10 +138,10 @@
         </section>
 
         <section class="rich-section" id="realEstateLive">
-          <h3>최근 실거래 API 상태</h3>
+          <h3>최근 실거래 확인</h3>
           <p>
-            공공데이터포털 인증키가 Cloudflare 환경변수에 등록되면 아래 영역에 국토교통부 실거래 자료가 자동으로 표시됩니다.
-            인증키가 없거나 API 응답이 없을 때는 공식 조회 링크를 제공합니다.
+            운정 생활권의 아파트 매매, 전월세, 연립·다세대, 오피스텔 거래를 국토교통부 공개 자료 기준으로 확인합니다.
+            자동 목록이 표시되지 않는 경우에도 공식 원문 조회 링크로 바로 확인할 수 있습니다.
           </p>
           <div class="real-estate-tabs" aria-label="실거래 유형 선택">
             <button type="button" class="real-estate-tab is-active" data-type="apt-trade">아파트 매매</button>
@@ -173,11 +173,11 @@
             <a class="real-estate-source-link" href="https://rt.molit.go.kr/pt/xls/xls.do?mobileAt=" target="_blank" rel="noopener">원본 자료 내려받기</a>
           </div>
           <div class="real-estate-summary" id="realEstateSummary" aria-live="polite">
-            공식 API 응답을 기다리는 중입니다.
+            최근 거래 자료를 확인하고 있습니다.
           </div>
           <div id="realEstateStatus" class="notice-box">
-            <strong>실거래 데이터를 확인하는 중입니다.</strong>
-            <p>응답이 없으면 공식 조회 링크를 이용해 주세요.</p>
+            <strong>국토교통부 공개 자료를 확인합니다.</strong>
+            <p>자동 목록과 공식 원문 조회 중 사용 가능한 방식으로 안내합니다.</p>
           </div>
           <div class="data-table-wrap" id="realEstateTableWrap" hidden>
             <table class="data-table">
@@ -457,13 +457,13 @@
         }
 
         async function loadRealEstate(type) {
-          status.innerHTML = '<strong>실거래 데이터를 확인하는 중입니다.</strong><p>공공데이터포털 응답이 없으면 공식 조회 안내를 표시합니다.</p>';
+          status.innerHTML = '<strong>국토교통부 공개 자료를 확인합니다.</strong><p>자동 목록과 공식 원문 조회 중 사용 가능한 방식으로 안내합니다.</p>';
           wrap.hidden = true;
           rows.innerHTML = '';
           currentItems = [];
           currentLabel = '실거래';
           currentDealYmd = '';
-          if (summary) summary.textContent = '공식 API 응답을 기다리는 중입니다.';
+          if (summary) summary.textContent = '최근 거래 자료를 확인하고 있습니다.';
 
           try {
             const response = await fetch('./api/real-estate?month=latest&rows=30&type=' + encodeURIComponent(type || 'apt-trade'));
