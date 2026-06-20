@@ -3747,7 +3747,42 @@ h3 { margin: 0; font-size: 20px; }
   grid-template-columns: 48px minmax(0, 1fr) auto;
 }
 
+.weekly-list,
+.popular-guide-list {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.weekly-list a {
+  grid-template-columns: 74px minmax(220px, 0.92fr) minmax(260px, 1.1fr);
+}
+
+.popular-guide-list {
+  max-width: 980px;
+}
+
+.local-rank-list a {
+  min-height: 112px;
+}
+
+.home-proof-grid a,
+.quick-card,
+.command-card,
+.faq-grid article,
+.board-panel,
+.hub-panel {
+  min-width: 0;
+}
+
 @media (max-width: 820px) {
+  .weekly-list a {
+    grid-template-columns: 68px minmax(0, 1fr);
+  }
+
+  .weekly-list span {
+    grid-column: 2;
+  }
+
   .popular-guide-item {
     grid-template-columns: 42px minmax(0, 1fr);
   }
