@@ -1152,6 +1152,63 @@ h3 { margin: 0; font-size: 20px; }
 .weekly-edit {
   background: #fff;
 }
+.home-proof {
+  background:
+    linear-gradient(135deg, rgba(31,94,220,0.08), transparent 38%),
+    linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+.home-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+.home-proof-grid a {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  min-height: 210px;
+  padding: 22px;
+  border: 1px solid #e6edf7;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.94);
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 16px 38px rgba(31,94,220,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.home-proof-grid a:hover {
+  transform: translateY(-3px);
+  border-color: rgba(31,94,220,0.26);
+  box-shadow: 0 24px 52px rgba(31,94,220,0.13);
+}
+.home-proof-grid span {
+  width: max-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eaf2ff;
+  color: #1f5edc;
+  font-size: 12px;
+  font-weight: 900;
+}
+.home-proof-grid strong {
+  color: #17211b;
+  font-size: 18px;
+  line-height: 1.35;
+}
+.home-proof-grid p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.home-proof-grid em {
+  margin-top: auto;
+  color: #12775f;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 900;
+}
 .weekly-list {
   display: grid;
   gap: 10px;
@@ -2715,6 +2772,7 @@ h3 { margin: 0; font-size: 20px; }
 /* Unified clean-blue visual pass */
 .active-pulse,
 .map-preview-band,
+.home-proof,
 .weekly-edit,
 .service-hub,
 .feature-band,
@@ -2747,6 +2805,7 @@ h3 { margin: 0; font-size: 20px; }
 .command-card,
 .quick-card,
 .portal-card,
+.home-proof-grid a,
 .place-preview-grid a,
 .popular-guide-item,
 .faq-grid article,
@@ -2774,6 +2833,7 @@ h3 { margin: 0; font-size: 20px; }
 .command-card:hover,
 .quick-card:hover,
 .portal-card:hover,
+.home-proof-grid a:hover,
 .place-preview-grid a:hover,
 .popular-guide-item:hover,
 .faq-grid article:hover,
@@ -3259,6 +3319,7 @@ h3 { margin: 0; font-size: 20px; }
   .category-brief,
   .directory-grid,
   .pulse-layout,
+  .home-proof-grid,
   .feature-article,
   .hub-grid,
   .board-grid,
@@ -3281,6 +3342,9 @@ h3 { margin: 0; font-size: 20px; }
   }
   .place-preview-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .home-proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .weekly-list a {
     grid-template-columns: 74px minmax(0, 1fr);
@@ -3391,6 +3455,7 @@ h3 { margin: 0; font-size: 20px; }
   .article-list,
   .directory-grid,
   .pulse-layout,
+  .home-proof-grid,
   .feature-article,
   .hub-grid,
   .board-grid,
