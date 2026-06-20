@@ -3408,7 +3408,7 @@ h3 { margin: 0; font-size: 20px; }
 
 @media (max-width: 720px) {
   body {
-    padding-bottom: 88px;
+    padding-bottom: 0;
   }
   .mobile-bottom-nav {
     display: grid;
@@ -3603,18 +3603,27 @@ h3 { margin: 0; font-size: 20px; }
   .footer-content {
     gap: 14px;
     padding-top: 34px;
-    padding-bottom: 22px;
+    padding-bottom: 18px;
   }
   .footer-content section {
-    padding: 18px;
+    padding: 16px;
     border-radius: 16px;
   }
   .footer-bottom {
-    padding-top: 18px;
-    padding-bottom: 108px;
+    gap: 10px;
+    padding-top: 16px;
+    padding-bottom: 28px;
   }
   .footer-bottom nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
+  }
+  .footer-bottom nav a {
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 8px;
+    text-align: center;
   }
   .weekly-list span {
     grid-column: auto;
