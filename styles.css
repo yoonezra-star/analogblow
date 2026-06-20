@@ -3634,3 +3634,122 @@ h3 { margin: 0; font-size: 20px; }
     bottom: 12px;
   }
 }
+
+/* Fluid reading layout pass */
+.section > .section-head,
+.section > .start-flow-grid,
+.section > .pulse-layout,
+.section > .command-grid,
+.section > .place-preview-grid,
+.section > .quick-grid,
+.section > .faq-grid,
+.section > .weekly-list,
+.section > .rank-filter-row,
+.section > .local-rank-list,
+.section > .popular-guide-tabs,
+.section > .popular-guide-list,
+.section > .board-grid,
+.section > .hub-grid,
+.section > .route-board,
+.section > .home-proof-grid {
+  width: min(1120px, 100%);
+}
+
+.section-head {
+  max-width: 760px;
+}
+
+.section-head p,
+.two-column p,
+.article-card p,
+.quick-card small,
+.command-card p,
+.faq-grid p,
+.hub-panel p,
+.board-panel p,
+.home-proof-grid p,
+.place-preview-grid small {
+  max-width: 68ch;
+}
+
+.start-flow-grid,
+.command-grid,
+.faq-grid,
+.article-list,
+.directory-grid,
+.hub-grid,
+.board-grid,
+.insight-grid,
+.insight-grid.four,
+.timeline-grid,
+.live-feed,
+.data-grid,
+.guide-grid,
+.family-grid,
+.scenario-grid,
+.place-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+.quick-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+}
+
+.portal-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 205px), 1fr));
+}
+
+.home-proof-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+
+.place-preview-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+}
+
+.local-rank-list {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+}
+
+.route-board,
+.footer-content {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+
+.category-brief {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+.content-visual,
+.feature-article,
+.home-visual-band {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+}
+
+.popular-guide-item {
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+}
+
+@media (max-width: 820px) {
+  .popular-guide-item {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+
+  .popular-guide-item em {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 560px) {
+  .section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .popular-guide-item,
+  .weekly-list a,
+  .local-rank-list a {
+    border-radius: 16px;
+  }
+}
