@@ -30,9 +30,9 @@ h1, h2, h3, p, li { word-break: keep-all; }
   position: sticky;
   top: 0;
   z-index: 30;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
   gap: 24px;
   padding: 14px clamp(18px, 4vw, 58px);
   background: rgba(255, 255, 255, 0.94);
@@ -73,10 +73,18 @@ h1, h2, h3, p, li { word-break: keep-all; }
 .nav {
   display: flex;
   gap: 6px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-end;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.nav::-webkit-scrollbar {
+  display: none;
 }
 .nav a {
+  flex: 0 0 auto;
   padding: 10px 13px;
   border: 1px solid #edf0f4;
   border-radius: 13px;
@@ -3408,6 +3416,10 @@ h3 { margin: 0; font-size: 20px; }
   .site-header {
     align-items: flex-start;
     flex-direction: column;
+    display: flex;
+    gap: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   .brand {
     width: 100%;
@@ -3448,6 +3460,13 @@ h3 { margin: 0; font-size: 20px; }
   }
   .nav {
     justify-content: flex-start;
+    width: 100%;
+    padding-bottom: 2px;
+  }
+  .nav a {
+    padding: 9px 12px;
+    font-size: 13px;
+    border-radius: 12px;
   }
   .hero { min-height: auto; }
   h1 {
