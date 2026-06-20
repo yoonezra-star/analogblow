@@ -3789,6 +3789,108 @@ h3 { margin: 0; font-size: 20px; }
   max-width: 980px;
 }
 
+/* Category page readability pass */
+.page-card.wide {
+  width: min(1180px, calc(100% - 32px));
+}
+
+.page-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.page-action {
+  justify-content: center;
+  min-height: 44px;
+}
+
+.content-visual {
+  overflow: hidden;
+}
+
+.content-visual img {
+  max-height: 340px;
+  object-fit: contain;
+}
+
+.content-visual figcaption {
+  align-content: center;
+}
+
+.category-brief,
+.article-list {
+  align-items: stretch;
+}
+
+.brief-column {
+  min-width: 0;
+}
+
+.brief-featured a {
+  min-width: 0;
+}
+
+.brief-featured strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.article-card {
+  height: 100%;
+}
+
+.article-card strong {
+  overflow-wrap: anywhere;
+}
+
+.article-card p {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+@media (min-width: 1041px) {
+  .article-list {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .page-card.wide {
+    width: min(calc(100% - 20px), 1180px);
+  }
+
+  .content-visual {
+    gap: 16px;
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .content-visual img {
+    max-height: 230px;
+  }
+
+  .content-visual figcaption strong {
+    font-size: 22px;
+  }
+
+  .content-visual figcaption span {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .brief-column,
+  .article-card {
+    padding: 18px;
+  }
+
+  .article-card {
+    min-height: 0;
+  }
+}
+
 .local-rank-list a {
   min-height: 112px;
 }
