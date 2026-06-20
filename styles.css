@@ -461,46 +461,37 @@ h3 { margin: 0; font-size: 20px; }
   backdrop-filter: blur(18px);
 }
 .signature-dashboard {
-  min-height: 540px;
+  min-height: 520px;
   overflow: hidden;
 }
 .hero-photo-card {
   position: relative;
-  min-height: 355px;
-  margin: 20px 0 0;
+  min-height: 342px;
+  margin: 18px 0 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 24px;
-  background: rgba(255,255,255,0.12);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+  border: 1px solid rgba(219, 234, 254, 0.32);
+  border-radius: 26px;
+  background: rgba(255,255,255,0.9);
+  box-shadow:
+    0 22px 48px rgba(3, 17, 66, 0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.45);
 }
 .hero-photo-card img {
   display: block;
   width: 100%;
-  height: 355px;
+  height: 342px;
   object-fit: cover;
   object-position: center;
-  filter: saturate(1.02) contrast(1.02);
+  filter: saturate(1.04) contrast(1.01);
 }
 .hero-photo-card::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(3,17,66,0.05), rgba(3,17,66,0.34)),
-    radial-gradient(circle at 22% 20%, rgba(255,255,255,0.18), transparent 34%);
+    linear-gradient(180deg, rgba(3,17,66,0), rgba(3,17,66,0.08)),
+    radial-gradient(circle at 22% 18%, rgba(255,255,255,0.24), transparent 34%);
   pointer-events: none;
-}
-.hero-photo-card figcaption {
-  position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: 14px;
-  z-index: 1;
-  color: rgba(255,255,255,0.86);
-  font-size: 12px;
-  font-weight: 800;
-  text-shadow: 0 2px 8px rgba(3,17,66,0.35);
 }
 .dashboard-trust {
   position: absolute;
@@ -525,10 +516,6 @@ h3 { margin: 0; font-size: 20px; }
   font-size: 12px;
   font-weight: 800;
   line-height: 1.45;
-}
-.signature-dashboard .mini-map {
-  min-height: 355px;
-  margin-top: 20px;
 }
 .orbit-card {
   position: absolute;
@@ -3471,6 +3458,16 @@ h3 { margin: 0; font-size: 20px; }
     top: auto;
     width: 100%;
     margin: 12px 0 4px;
+  }
+  .signature-dashboard {
+    min-height: auto;
+  }
+  .hero-photo-card {
+    min-height: 240px;
+    margin-top: 16px;
+  }
+  .hero-photo-card img {
+    height: 240px;
   }
   .flow-mark {
     width: 48px;
