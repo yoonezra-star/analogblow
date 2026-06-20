@@ -464,6 +464,44 @@ h3 { margin: 0; font-size: 20px; }
   min-height: 540px;
   overflow: hidden;
 }
+.hero-photo-card {
+  position: relative;
+  min-height: 355px;
+  margin: 20px 0 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 24px;
+  background: rgba(255,255,255,0.12);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+.hero-photo-card img {
+  display: block;
+  width: 100%;
+  height: 355px;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(1.02) contrast(1.02);
+}
+.hero-photo-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(3,17,66,0.05), rgba(3,17,66,0.34)),
+    radial-gradient(circle at 22% 20%, rgba(255,255,255,0.18), transparent 34%);
+  pointer-events: none;
+}
+.hero-photo-card figcaption {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  z-index: 1;
+  color: rgba(255,255,255,0.86);
+  font-size: 12px;
+  font-weight: 800;
+  text-shadow: 0 2px 8px rgba(3,17,66,0.35);
+}
 .dashboard-trust {
   position: absolute;
   right: 24px;
