@@ -42,6 +42,16 @@ function json(data, status = 200) {
   });
 }
 
+export async function onRequestHead() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      'cache-control': 'public, max-age=1800'
+    }
+  });
+}
+
 function dealMonthOffset(offset = 1) {
   const now = new Date(Date.now() + 9 * 60 * 60 * 1000);
   const target = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1 - offset, 1));

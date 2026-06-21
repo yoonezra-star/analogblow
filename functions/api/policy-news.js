@@ -96,6 +96,16 @@ function json(data, status = 200) {
   });
 }
 
+export async function onRequestHead() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      'cache-control': 'public, max-age=900'
+    }
+  });
+}
+
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   const type = url.searchParams.get('type') || 'policy';

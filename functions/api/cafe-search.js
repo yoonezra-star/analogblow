@@ -41,6 +41,16 @@ function json(data, status = 200) {
   });
 }
 
+export async function onRequestHead() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      'cache-control': 'public, max-age=900'
+    }
+  });
+}
+
 function clean(value = '') {
   return String(value)
     .replace(/<b>/gi, '')

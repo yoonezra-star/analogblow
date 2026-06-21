@@ -92,6 +92,16 @@ function json(data, status = 200) {
   });
 }
 
+export async function onRequestHead() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      'cache-control': 'public, max-age=900'
+    }
+  });
+}
+
 export async function onRequestGet({ request, env }) {
   const key = env.DATA_GO_KR_SERVICE_KEY || env.PUBLIC_DATA_SERVICE_KEY || env.SERVICE_KEY;
   if (!key) return json(SAMPLE);
