@@ -1317,6 +1317,7 @@ h3 { margin: 0; font-size: 20px; }
   grid-template-columns: 74px minmax(0, 0.9fr) minmax(0, 1.2fr);
   gap: 16px;
   align-items: center;
+  min-height: 104px;
   padding: 16px 18px;
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -1329,11 +1330,21 @@ h3 { margin: 0; font-size: 20px; }
   font-weight: 900;
 }
 .weekly-list strong {
+  display: -webkit-box;
+  min-height: calc(1.45em * 2);
   font-size: 17px;
+  line-height: 1.45;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .weekly-list span {
+  display: -webkit-box;
   color: var(--muted);
   line-height: 1.55;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .local-rank {
   background:
@@ -1378,8 +1389,8 @@ h3 { margin: 0; font-size: 20px; }
   display: grid;
   grid-template-columns: 42px 82px minmax(0, 1fr) minmax(92px, auto);
   gap: 12px;
-  align-items: center;
-  min-height: 78px;
+  align-items: start;
+  min-height: 92px;
   padding: 16px 18px;
   border: 1px solid #edf0f4;
   border-radius: 18px;
@@ -1420,11 +1431,17 @@ h3 { margin: 0; font-size: 20px; }
 }
 .local-rank-list strong {
   min-width: 0;
+  display: -webkit-box;
+  min-height: calc(1.45em * 2);
   color: #13233d;
   font-size: 16px;
   line-height: 1.45;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .local-rank-list em {
+  align-self: center;
   justify-self: end;
   text-align: center;
   padding: 7px 10px;
@@ -1583,24 +1600,38 @@ h3 { margin: 0; font-size: 20px; }
   grid-template-columns: 58px minmax(0, 1fr) minmax(94px, auto);
   gap: 16px;
   align-items: center;
+  min-height: 164px;
   padding: 18px 20px;
   border: 1px solid rgba(226,232,238,0.92);
   border-radius: 20px;
   background: rgba(255,255,255,0.94);
   box-shadow: 0 14px 34px rgba(20,32,51,0.08);
 }
+.popular-guide-item > div {
+  display: grid;
+  gap: 6px;
+}
 .popular-guide-item h3 {
   margin: 4px 0 6px;
+  min-height: calc(1.35em * 2);
+  display: -webkit-box;
   font-size: clamp(18px, 2vw, 22px);
   line-height: 1.35;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .popular-guide-item h3 a {
   text-decoration: none;
 }
 .popular-guide-item p {
   margin: 0;
+  display: -webkit-box;
   color: var(--muted);
   line-height: 1.55;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 .popular-rank {
   display: inline-flex;
@@ -1884,7 +1915,8 @@ h3 { margin: 0; font-size: 20px; }
 .route-board div {
   display: grid;
   gap: 8px;
-  min-height: 132px;
+  min-height: 144px;
+  align-content: start;
   padding: 22px;
   border: 1px solid rgba(255,255,255,0.16);
   border-radius: var(--radius);
@@ -1896,6 +1928,14 @@ h3 { margin: 0; font-size: 20px; }
 .route-board a:hover {
   transform: translateY(-3px);
   background: rgba(255,255,255,0.14);
+}
+.route-board strong {
+  min-height: calc(1.35em * 2);
+  display: -webkit-box;
+  line-height: 1.35;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .route-board span { color: #c9d4e2; line-height: 1.5; }
 
