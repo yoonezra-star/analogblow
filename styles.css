@@ -3561,6 +3561,17 @@ h3 { margin: 0; font-size: 20px; }
   body {
     padding-bottom: 0;
   }
+  .section {
+    padding: 48px 16px;
+  }
+  .section-head {
+    margin-bottom: 22px;
+  }
+  .section-head p,
+  .two-column p {
+    font-size: 15px;
+    line-height: 1.68;
+  }
   .mobile-bottom-nav {
     display: grid;
   }
@@ -3568,11 +3579,14 @@ h3 { margin: 0; font-size: 20px; }
     align-items: flex-start;
     flex-direction: column;
     display: flex;
-    gap: 12px;
+    gap: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     padding-left: 16px;
     padding-right: 16px;
   }
   .brand {
+    align-items: center;
     width: 100%;
     min-width: 0;
   }
@@ -3580,8 +3594,8 @@ h3 { margin: 0; font-size: 20px; }
     width: 40px;
     height: 40px;
   }
-  .brand-copy strong { font-size: 19px; }
-  .brand-copy small { font-size: 13px; }
+  .brand-copy strong { font-size: 18px; }
+  .brand-copy small { font-size: 12px; }
   .footer-logo {
     display: flex;
     align-items: center;
@@ -3610,14 +3624,22 @@ h3 { margin: 0; font-size: 20px; }
     line-height: 1.25;
   }
   .nav {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     width: 100%;
-    padding-bottom: 2px;
+    gap: 8px;
+    overflow: visible;
+    padding-bottom: 0;
   }
   .nav a {
-    padding: 9px 12px;
-    font-size: 13px;
-    border-radius: 12px;
+    padding: 8px 11px;
+    font-size: 12px;
+    border-radius: 11px;
+    box-shadow: 0 6px 14px rgba(31, 94, 220, 0.05);
+  }
+  .nav a:nth-child(n+7) {
+    display: none;
   }
   .hero { min-height: auto; }
   h1 {
@@ -3625,8 +3647,12 @@ h3 { margin: 0; font-size: 20px; }
     line-height: 1.12;
   }
   .unjeong-hero {
-    padding-top: 48px;
-    padding-bottom: 54px;
+    gap: 22px;
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+  .hero-paths a {
+    min-height: 78px;
   }
   .search-panel {
     flex-direction: column;
