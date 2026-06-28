@@ -812,16 +812,7 @@ h3 { margin: 0; font-size: 20px; }
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
-.command-card::after {
-  content: "";
-  position: absolute;
-  right: -42px;
-  bottom: -48px;
-  width: 148px;
-  height: 148px;
-  border-radius: 50%;
-  background: rgba(31, 94, 220, 0.06);
-}
+.command-card::after { display: none; }
 .command-card:hover {
   transform: translateY(-4px);
   border-color: rgba(31, 94, 220, 0.24);
@@ -3236,6 +3227,12 @@ h3 { margin: 0; font-size: 20px; }
   box-shadow: 0 14px 34px rgba(31, 94, 220, 0.06);
 }
 
+.command-card {
+  background:
+    radial-gradient(circle at calc(100% + 32px) calc(100% + 38px), rgba(31, 94, 220, 0.06) 0 74px, transparent 75px),
+    #fff;
+}
+
 .command-card:hover,
 .quick-card:hover,
 .portal-card:hover,
@@ -4287,8 +4284,41 @@ h3 { margin: 0; font-size: 20px; }
 }
 
 @media (max-width: 720px) {
+  .page-main {
+    padding: 28px 12px 86px;
+  }
+
   .page-card.wide {
     width: min(calc(100% - 20px), 1180px);
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .page-card h1,
+  .article-page h1 {
+    margin-top: 10px;
+    font-size: clamp(29px, 8.8vw, 36px);
+    line-height: 1.14;
+  }
+
+  .page-card > p,
+  .article-page > p:first-of-type {
+    font-size: 15px;
+    line-height: 1.68;
+  }
+
+  .info-standard {
+    margin-bottom: 20px;
+    padding: 13px 14px;
+  }
+
+  .page-action-row {
+    gap: 8px;
+  }
+
+  .page-action {
+    min-height: 40px;
+    padding: 10px 13px;
   }
 
   .content-visual {
