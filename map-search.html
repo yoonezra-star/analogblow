@@ -41,6 +41,25 @@
           주차·자동차, 음식, 문화·여가, 아이·교육, 건강·복지, 행정·일자리까지 운정 생활권 기준으로 넓혔습니다.
           공식 자료와 공공데이터를 참고한 생활 지도입니다. 네이버 지도 검색 링크로 실제 위치와 길찾기를 바로 확인하세요.
         </p>
+        <form class="map-search-form" id="mapSearchForm" aria-label="지도 키워드 검색">
+          <label class="map-search-label" for="mapSearchInput">운정 생활 지도 키워드 검색</label>
+          <div class="map-search-control">
+            <input
+              id="mapSearchInput"
+              name="q"
+              type="search"
+              inputmode="search"
+              placeholder="예: 야당역 환승주차장, 운정 소아청소년과, 운정호수공원 브런치">
+            <button type="submit">지도 키워드 찾기</button>
+          </div>
+        </form>
+        <div class="map-search-suggestions" aria-label="추천 검색어">
+          <a href="./map-search?q=야당역 환승주차장">야당역 환승주차장</a>
+          <a href="./map-search?q=운정역 환승주차장">운정역 환승주차장</a>
+          <a href="./map-search?q=운정 소아청소년과">운정 소아청소년과</a>
+          <a href="./map-search?q=운정호수공원 브런치">운정호수공원 브런치</a>
+          <a href="./map-search?q=운정중앙역 주차장">운정중앙역 주차장</a>
+        </div>
         <div class="page-action-row map-quick-actions" aria-label="자주 찾는 지도 항목">
           <a class="page-action" href="./map-search?filter=parking">주차장</a>
           <a class="page-action" href="./map-search?filter=hospital">병원</a>
@@ -114,6 +133,10 @@
             </div>
           </div>
 
+          <div class="map-results-head">
+            <strong id="mapResultsTitle">운정 생활 지도 전체</strong>
+            <span id="mapResultsMeta">생활권 기준으로 정리한 검색 결과를 보여줍니다.</span>
+          </div>
           <div class="map-results" id="mapResults" aria-live="polite"></div>
         </aside>
 
@@ -308,13 +331,19 @@
       };
 
       const results = document.getElementById("mapResults");
+      const resultsTitle = document.getElementById("mapResultsTitle");
+      const resultsMeta = document.getElementById("mapResultsMeta");
       const tooltip = document.getElementById("mapTooltip");
       const mapStage = document.getElementById("mapStage");
       const mapApiNotice = document.getElementById("mapApiNotice");
       const fallbackPins = document.getElementById("fallbackPins");
       const filters = document.querySelectorAll(".map-filter");
+      const mapSearchForm = document.getElementById("mapSearchForm");
+      const mapSearchInput = document.getElementById("mapSearchInput");
       const requestedFilter = new URLSearchParams(window.location.search).get("filter") || "all";
       const requestedQuery = (new URLSearchParams(window.location.search).get("q") || "").trim();
+      let currentFilter = requestedFilter;
+      let currentQuery = requestedQuery;
       let pins = [];
       let naverMap = null;
       let naverMarkers = [];
@@ -335,6 +364,21 @@
 
       function naverSearchUrl(place) {
         return "https://map.naver.com/p/search/" + encodeURIComponent(naverSearchQuery(place));
+      }
+
+      function syncMapUrl() {
+        const url = new URL(window.location.href);
+        if (!currentFilter || currentFilter === "all") {
+          url.searchParams.delete("filter");
+        } else {
+          url.searchParams.set("filter", currentFilter);
+        }
+        if (!currentQuery) {
+          url.searchParams.delete("q");
+        } else {
+          url.searchParams.set("q", currentQuery);
+        }
+        window.history.replaceState({}, "", url);
       }
 
       function categoryColor(category) {
@@ -580,20 +624,50 @@
 
       filters.forEach((button) => {
         button.addEventListener("click", () => {
-          const filter = button.dataset.filter;
-          const url = new URL(window.location.href);
-          if (filter === "all") {
-            url.searchParams.delete("filter");
-          } else {
-            url.searchParams.set("filter", filter);
-          }
-          window.history.replaceState({}, "", url);
-          render(filter);
+          currentFilter = button.dataset.filter;
+          syncMapUrl();
+          render(currentFilter);
         });
       });
 
+      function updateResultsChrome() {
+        const query = requestedQuery;
+        const activeFilter = document.querySelector(".map-filter.active")?.dataset.filter || "all";
+        const categoryTitle = activeFilter === "all" ? "운정 생활 지도 전체" : (labels[activeFilter] || "운정 생활 지도");
+        const actualResults = results.querySelectorAll(".map-result:not(.map-result-empty)").length;
+
+        if (!results.children.length) {
+          results.innerHTML = `
+            <article class="map-result map-result-empty">
+              <strong>검색 결과가 아직 없습니다.</strong>
+              <span>검색어를 조금 더 짧게 바꾸거나 카테고리 필터를 풀고 다시 확인해보세요.</span>
+              <span>예: 야당역 환승주차장, 운정 소아청소년과, 운정역 약국</span>
+            </article>
+          `;
+        }
+
+        resultsTitle.textContent = query ? `"${query}" 검색 결과` : categoryTitle;
+        resultsMeta.textContent = query
+          ? `${actualResults}곳을 찾았습니다. 네이버 지도 검색으로 실제 위치를 이어서 확인하세요.`
+          : (activeFilter === "all"
+            ? `${actualResults}곳을 생활권 기준으로 정리했습니다.`
+            : `${categoryTitle} 관련 ${actualResults}곳을 보여줍니다.`);
+      }
+
+      mapSearchInput.value = requestedQuery;
+      mapSearchForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        currentQuery = mapSearchInput.value.trim();
+        syncMapUrl();
+        window.location.assign(new URL(window.location.href).toString());
+      });
+
+      const resultsObserver = new MutationObserver(() => updateResultsChrome());
+      resultsObserver.observe(results, { childList: true, subtree: true });
+
       renderFallbackPins();
       render(document.querySelector(`.map-filter[data-filter="${requestedFilter}"]`) ? requestedFilter : "all");
+      updateResultsChrome();
       loadNaverMap();
     </script>
     <script defer src="./assets/site.js?v=20260613-mobile-nav"></script>
