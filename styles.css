@@ -464,6 +464,26 @@ h3 { margin: 0; font-size: 20px; }
   color: #3f6212;
 }
 
+.page-priority-card.parking-signal span {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.page-priority-card.facility-signal span {
+  background: #ccfbf1;
+  color: #0f766e;
+}
+
+.page-priority-card.weather-signal span {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.page-priority-card.weekend-signal span {
+  background: #ffe4e6;
+  color: #be123c;
+}
+
 @media (max-width: 960px) {
   .page-priority-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
