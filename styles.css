@@ -362,6 +362,110 @@ h3 { margin: 0; font-size: 20px; }
   background: #dc2626;
 }
 
+.page-priority-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0 30px;
+}
+
+.page-priority-card {
+  display: grid;
+  gap: 10px;
+  min-height: 172px;
+  padding: 20px;
+  border: 1px solid #e5edf7;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 14px 34px rgba(31, 94, 220, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.page-priority-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(31, 94, 220, 0.24);
+  box-shadow: 0 22px 42px rgba(31, 94, 220, 0.13);
+}
+
+.page-priority-card span {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.page-priority-card strong {
+  display: -webkit-box;
+  min-height: calc(1.34em * 2);
+  color: var(--ink);
+  font-size: 21px;
+  line-height: 1.34;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.page-priority-card p {
+  margin: 0;
+  display: -webkit-box;
+  color: var(--muted);
+  line-height: 1.65;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.page-priority-card em {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  margin-top: auto;
+  color: #1f5edc;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.page-priority-card em::after {
+  content: "→";
+}
+
+.page-priority-card.health-signal span {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.page-priority-card.kids-signal span {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.page-priority-card.mobility-signal span {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+@media (max-width: 960px) {
+  .page-priority-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .page-priority-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-priority-card {
+    min-height: 0;
+    padding: 18px;
+  }
+}
+
 .start-flow {
   padding-top: clamp(34px, 5vw, 64px);
   background: #fff;
