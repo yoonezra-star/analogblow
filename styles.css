@@ -835,6 +835,7 @@ h3 { margin: 0; font-size: 20px; }
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-height: 100%;
   padding: 20px;
   border: 1px solid rgba(226,232,238,0.92);
   border-radius: 20px;
@@ -897,8 +898,13 @@ h3 { margin: 0; font-size: 20px; }
   font-weight: 900;
 }
 .brief-featured strong {
+  display: -webkit-box;
+  min-height: calc(1.35em * 2);
   font-size: 14px;
   line-height: 1.35;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .brief-column ul {
   display: flex;
@@ -951,8 +957,13 @@ h3 { margin: 0; font-size: 20px; }
   font-weight: 900;
 }
 .article-card strong {
+  display: -webkit-box;
+  min-height: calc(1.35em * 2);
   font-size: 21px;
   line-height: 1.35;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .article-card p {
   margin: 0;
@@ -993,6 +1004,7 @@ h3 { margin: 0; font-size: 20px; }
 }
 .directory-card {
   display: grid;
+  grid-template-rows: auto auto 1fr;
   gap: 10px;
   min-width: 0;
   min-height: 190px;
@@ -1004,13 +1016,22 @@ h3 { margin: 0; font-size: 20px; }
 }
 .directory-card strong {
   color: var(--ink);
+  min-height: calc(1.35em * 2);
+  display: -webkit-box;
   font-size: 19px;
   line-height: 1.35;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .directory-card p {
   margin: 0;
+  display: -webkit-box;
   color: var(--muted);
   line-height: 1.65;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }
 .directory-meta,
 .directory-tags {
@@ -1687,6 +1708,7 @@ h3 { margin: 0; font-size: 20px; }
 }
 .feature-article h3 {
   margin-bottom: 10px;
+  line-height: 1.3;
 }
 .feature-article p {
   color: var(--muted);
@@ -2385,6 +2407,9 @@ h3 { margin: 0; font-size: 20px; }
 }
 .insight-grid article,
 .timeline-grid article {
+  display: grid;
+  align-content: start;
+  min-height: 148px;
   padding: 18px;
   border: 1px solid #e8eef2;
   border-radius: 18px;
@@ -2395,13 +2420,19 @@ h3 { margin: 0; font-size: 20px; }
   display: block;
   margin-bottom: 8px;
   color: var(--ink);
+  min-height: calc(1.35em * 2);
+  line-height: 1.35;
   font-size: 17px;
 }
 .insight-grid p,
 .timeline-grid p {
   margin: 0;
+  display: -webkit-box;
   font-size: 15px;
   line-height: 1.7;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }
 .timeline-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
