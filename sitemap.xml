@@ -345,4 +345,24 @@
     <lastmod>2026-06-30</lastmod>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://analogblow.com/restaurants</loc>
+    <lastmod>2026-06-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://analogblow.com/posts/unjeong-family-restaurant-guide</loc>
+    <lastmod>2026-06-30</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://analogblow.com/posts/yadang-dinner-parking-guide</loc>
+    <lastmod>2026-06-30</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://analogblow.com/posts/unjeong-kids-menu-restaurant-check</loc>
+    <lastmod>2026-06-30</lastmod>
+    <priority>0.7</priority>
+  </url>
 </urlset>
