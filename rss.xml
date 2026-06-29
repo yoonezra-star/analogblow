@@ -5,8 +5,50 @@
     <link>https://analogblow.com/</link>
     <description>파주 운정 가족을 위한 병원, 약국, 학교, 주차, 교통, 공원, 도서관 생활정보 업데이트입니다.</description>
     <language>ko</language>
-    <lastBuildDate>Sat, 20 Jun 2026 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jun 2026 09:00:00 +0900</lastBuildDate>
     <atom:link href="https://analogblow.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>운정 카페 생활 가이드</title>
+      <link>https://analogblow.com/cafes</link>
+      <guid>https://analogblow.com/cafes</guid>
+      <pubDate>Tue, 30 Jun 2026 09:00:00 +0900</pubDate>
+      <description>운정에서 아이 동반, 주차, 브런치, 산책 후 방문, 노트북 작업처럼 상황별로 카페를 고르는 기준을 정리했습니다.</description>
+    </item>
+    <item>
+      <title>아이와 가기 좋은 운정 카페 고르는 기준</title>
+      <link>https://analogblow.com/posts/unjeong-cafe-family-guide</link>
+      <guid>https://analogblow.com/posts/unjeong-cafe-family-guide</guid>
+      <pubDate>Tue, 30 Jun 2026 09:00:00 +0900</pubDate>
+      <description>유아차, 좌석 간격, 대기, 주차, 화장실처럼 아이와 운정 카페를 방문하기 전 확인하면 좋은 기준을 정리했습니다.</description>
+    </item>
+    <item>
+      <title>운정 카페 방문 전 주차 체크</title>
+      <link>https://analogblow.com/posts/unjeong-cafe-parking-guide</link>
+      <guid>https://analogblow.com/posts/unjeong-cafe-parking-guide</guid>
+      <pubDate>Tue, 30 Jun 2026 09:00:00 +0900</pubDate>
+      <description>운정 카페 방문 전 전용 주차장, 공영주차장, 길가 정차 가능성, 비 오는 날 동선을 나눠 확인하는 방법입니다.</description>
+    </item>
+    <item>
+      <title>운정호수공원 산책 후 카페 동선</title>
+      <link>https://analogblow.com/posts/unjeong-lake-cafe-walk-course</link>
+      <guid>https://analogblow.com/posts/unjeong-lake-cafe-walk-course</guid>
+      <pubDate>Tue, 30 Jun 2026 09:00:00 +0900</pubDate>
+      <description>운정호수공원 산책 전후로 카페를 고를 때 걷는 거리, 아이 컨디션, 주차 복귀 동선을 함께 보는 기준입니다.</description>
+    </item>
+    <item>
+      <title>야당역 카페 갈 때 보는 기준</title>
+      <link>https://analogblow.com/posts/yadang-station-cafe-guide</link>
+      <guid>https://analogblow.com/posts/yadang-station-cafe-guide</guid>
+      <pubDate>Tue, 30 Jun 2026 09:00:00 +0900</pubDate>
+      <description>야당역 주변 카페를 약속, 작업, 식사 후 이동, 주차 여부에 따라 고르는 실전 기준을 정리했습니다.</description>
+    </item>
+    <item>
+      <title>운정 브런치 카페 고르는 기준</title>
+      <link>https://analogblow.com/posts/unjeong-brunch-cafe-check</link>
+      <guid>https://analogblow.com/posts/unjeong-brunch-cafe-check</guid>
+      <pubDate>Tue, 30 Jun 2026 09:00:00 +0900</pubDate>
+      <description>운정에서 브런치 카페를 찾을 때 식사형 메뉴, 좌석, 대기, 유아 동반, 주차를 함께 확인하는 방법입니다.</description>
+    </item>
     <item>
       <title>운정 생활글 모아보기</title>
       <link>https://analogblow.com/guides</link>
