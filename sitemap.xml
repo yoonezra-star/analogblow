@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://analogblow.com/</loc>
-    <lastmod>2026-06-29</lastmod>
+    <lastmod>2026-06-30</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
@@ -382,6 +382,26 @@
   </url>
   <url>
     <loc>https://analogblow.com/posts/weekend-kids-play-parking-check</loc>
+    <lastmod>2026-06-30</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://analogblow.com/calendar</loc>
+    <lastmod>2026-06-30</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://analogblow.com/posts/weekly-unjeong-family-calendar-check</loc>
+    <lastmod>2026-06-30</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://analogblow.com/posts/library-program-calendar-guide</loc>
+    <lastmod>2026-06-30</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://analogblow.com/posts/paju-event-source-check</loc>
     <lastmod>2026-06-30</lastmod>
     <priority>0.7</priority>
   </url>

@@ -5,8 +5,36 @@
     <link>https://analogblow.com/</link>
     <description>파주 운정 가족을 위한 병원, 약국, 학교, 주차, 교통, 공원, 도서관 생활정보 업데이트입니다.</description>
     <language>ko</language>
-    <lastBuildDate>Tue, 30 Jun 2026 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jun 2026 12:00:00 +0900</lastBuildDate>
     <atom:link href="https://analogblow.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>운정 생활 캘린더</title>
+      <link>https://analogblow.com/calendar</link>
+      <guid>https://analogblow.com/calendar</guid>
+      <pubDate>Tue, 30 Jun 2026 12:00:00 +0900</pubDate>
+      <description>운정 가족이 도서관 프로그램, 파주시 행사, 정책 신청 마감, 주말 일정을 한 주 단위로 확인하는 생활 캘린더입니다.</description>
+    </item>
+    <item>
+      <title>운정 가족 주간 일정 체크 순서</title>
+      <link>https://analogblow.com/posts/weekly-unjeong-family-calendar-check</link>
+      <guid>https://analogblow.com/posts/weekly-unjeong-family-calendar-check</guid>
+      <pubDate>Tue, 30 Jun 2026 12:00:00 +0900</pubDate>
+      <description>학교, 병원, 도서관, 행사, 신청 마감을 월요일부터 주말 전까지 한 번에 확인하는 운정 가족 주간 루틴입니다.</description>
+    </item>
+    <item>
+      <title>도서관·문화강좌 일정 놓치지 않는 법</title>
+      <link>https://analogblow.com/posts/library-program-calendar-guide</link>
+      <guid>https://analogblow.com/posts/library-program-calendar-guide</guid>
+      <pubDate>Tue, 30 Jun 2026 12:00:00 +0900</pubDate>
+      <description>가람·한빛·해솔·한울 도서관과 문화강좌 일정을 접수일, 대상 연령, 준비물, 주차 기준으로 확인하는 방법입니다.</description>
+    </item>
+    <item>
+      <title>파주·경기 행사 일정 공식 출처 확인법</title>
+      <link>https://analogblow.com/posts/paju-event-source-check</link>
+      <guid>https://analogblow.com/posts/paju-event-source-check</guid>
+      <pubDate>Tue, 30 Jun 2026 12:00:00 +0900</pubDate>
+      <description>파주와 경기도 행사 일정을 공식 기관 공지, 장소, 신청 마감, 변경 안내 기준으로 확인하는 체크리스트입니다.</description>
+    </item>
     <item>
       <title>운정 키즈카페·실내놀이 생활 가이드</title>
       <link>https://analogblow.com/kids-play</link>
