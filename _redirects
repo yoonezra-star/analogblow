@@ -1,4 +1,4 @@
-https://www.analogblow.com/* https://analogblow.com/:splat 301
+# www -> apex is configured in Cloudflare Bulk Redirects, not Pages _redirects.
 /rss /rss.xml 301
 /posts/:slug.html /posts/:slug 301
 /:slug.html /:slug 301
