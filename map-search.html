@@ -622,7 +622,9 @@
           mapStage.classList.remove("map-ready");
           mapStage.dataset.mapStatus = "auth-failed";
           updateMapStageHelp("auth-failed");
-          mapApiNotice.textContent = "네이버 지도 인증이 실패했습니다. NCP Key ID와 Web 서비스 URL 등록을 확인하세요.";
+          mapApiNotice.textContent = location.protocol === "file:"
+            ? "로컬 파일 미리보기에서는 네이버 지도 인증이 제한될 수 있습니다. 공개 도메인에서 최종 확인하세요."
+            : "네이버 지도 인증이 실패했습니다. NCP Key ID와 Web 서비스 URL 등록을 확인하세요.";
         };
         mapStage.dataset.mapStatus = "loading";
         updateMapStageHelp("loading");
@@ -649,7 +651,9 @@
           }
           mapStage.dataset.mapStatus = "script-error";
           updateMapStageHelp("script-error");
-          mapApiNotice.textContent = "네이버 지도 스크립트를 불러오지 못했습니다. NCP Key ID와 Web 서비스 URL 등록을 확인하세요.";
+          mapApiNotice.textContent = location.protocol === "file:"
+            ? "로컬 파일 미리보기에서는 네이버 지도 스크립트가 제한될 수 있습니다. 공개 도메인에서 최종 확인하세요."
+            : "네이버 지도 스크립트를 불러오지 못했습니다. NCP Key ID와 Web 서비스 URL 등록을 확인하세요.";
         };
         document.head.appendChild(script);
       }
