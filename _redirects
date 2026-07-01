@@ -1,5 +1,4 @@
 # www -> apex is configured in Cloudflare Bulk Redirects, not Pages _redirects.
-/google434ba3bfea9678f8.html /google434ba3bfea9678f8.html 200
 /rss /rss.xml 301
 /posts/:slug.html /posts/:slug 301
 /:slug.html /:slug 301
