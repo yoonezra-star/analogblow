@@ -1,4 +1,15 @@
 (function () {
+  var main = document.querySelector('main');
+  if (main && !main.id) main.id = 'site-main-content';
+
+  if (main && !document.querySelector('.skip-link')) {
+    var skipLink = document.createElement('a');
+    skipLink.className = 'skip-link';
+    skipLink.href = '#site-main-content';
+    skipLink.textContent = '본문으로 바로가기';
+    document.body.insertBefore(skipLink, document.body.firstChild);
+  }
+
   if (document.querySelector('.mobile-bottom-nav')) return;
 
   var items = [
@@ -10,6 +21,10 @@
   ];
 
   var path = window.location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('.site-header .nav a').forEach(function (link) {
+    var linkPath = new URL(link.href).pathname.replace(/\/$/, '') || '/';
+    if (linkPath === path) link.setAttribute('aria-current', 'page');
+  });
   var nav = document.createElement('nav');
   nav.className = 'mobile-bottom-nav';
   nav.setAttribute('aria-label', '모바일 빠른 메뉴');
@@ -17,7 +32,7 @@
   nav.innerHTML = items.map(function (item) {
     var active = path === item.href || (item.href !== '/' && path.indexOf(item.href) === 0);
     return [
-      '<a class="mobile-bottom-nav__item', active ? ' is-active' : '', '" href="', item.href, '">',
+      '<a class="mobile-bottom-nav__item', active ? ' is-active' : '', '" href="', item.href, '"', active ? ' aria-current="page"' : '', '>',
       '<span class="mobile-bottom-nav__icon" aria-hidden="true">', item.icon, '</span>',
       '<span>', item.label, '</span>',
       '</a>'

@@ -25,6 +25,22 @@ body {
 }
 a { color: inherit; }
 h1, h2, h3, p, li { word-break: keep-all; }
+.skip-link {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 2000;
+  transform: translateY(-150%);
+  min-height: 44px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  color: #fff;
+  background: #173d78;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform 0.18s ease;
+}
+.skip-link:focus { transform: translateY(0); outline: 3px solid #f0c85a; outline-offset: 3px; }
 
 .site-header {
   position: sticky;
