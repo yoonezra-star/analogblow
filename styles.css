@@ -5445,6 +5445,17 @@ h3 { margin: 0; font-size: 20px; }
   font-weight: 900;
 }
 
+.site-external-mark {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.site-menu-groups .site-external-mark {
+  margin-left: 6px;
+}
+
 .site-category-toggle:focus-visible,
 .site-category-nav .site-category-menu a:focus-visible {
   outline: 3px solid var(--yellow);

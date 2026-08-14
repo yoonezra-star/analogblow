@@ -33,7 +33,8 @@
         { href: '/', label: '홈으로' },
         { href: '/weather-life', label: '날씨 생활' },
         { href: '/calendar', label: '생활 캘린더' },
-        { href: '/map-search', label: '운정 생활 지도' }
+        { href: '/map-search', label: '운정 생활 지도' },
+        { href: 'https://local.114-service.co.kr/phone-search', label: '전화번호 검색', external: true }
       ]
     },
     {
@@ -63,7 +64,8 @@
         { href: '/mobility', label: '교통·주차 전체' },
         { href: '/parking-data', label: '주차 데이터' },
         { href: '/posts/gtx-unjeong-station-transfer-parking-guide-2026', label: 'GTX-A 환승·주차' },
-        { href: '/posts/mobility-ddokbus-unjeong-guide', label: '똑버스 이용' }
+        { href: '/posts/mobility-ddokbus-unjeong-guide', label: '똑버스 이용' },
+        { href: 'https://local.114-service.co.kr/mapSearch', label: '지도 검색', external: true }
       ]
     },
     {
@@ -73,7 +75,8 @@
         { href: '/weekend', label: '가족 나들이' },
         { href: '/kids-play', label: '키즈·실내놀이' },
         { href: '/cafes', label: '카페' },
-        { href: '/restaurants', label: '가족 외식' }
+        { href: '/restaurants', label: '가족 외식' },
+        { href: 'https://local.114-service.co.kr/map/list', label: '지역 소상공인 조회', external: true }
       ]
     },
     {
@@ -83,10 +86,20 @@
         { href: '/unjeong-intro', label: '운정 소개' },
         { href: '/future-plan', label: '미래계획' },
         { href: '/policy-news', label: '정책 뉴스' },
-        { href: '/movein', label: '입주 첫 달' }
+        { href: '/movein', label: '입주 첫 달' },
+        { href: 'https://local.114-service.co.kr/news/list', label: '정책뉴스', external: true },
+        { href: 'https://local.114-service.co.kr/pollingPlace/list', label: '투표소', external: true }
       ]
     }
   ];
+
+  function externalLinkAttributes(item) {
+    return item.external ? ' target="_blank" rel="noopener noreferrer" aria-label="' + item.label + ' 새 창 열기"' : '';
+  }
+
+  function externalLinkMark(item) {
+    return item.external ? '<span class="site-external-mark" aria-hidden="true">↗</span>' : '';
+  }
 
   var categoryNav = document.querySelector('.site-header .nav');
   if (categoryNav && !categoryNav.classList.contains('site-category-nav')) {
@@ -104,7 +117,7 @@
               var itemUrl = new URL(item.href, window.location.origin);
               var current = (itemUrl.pathname.replace(/\/$/, '') || '/') + itemUrl.search;
               var active = current === path + window.location.search;
-              return '<a role="menuitem" href="' + item.href + '"' + (active ? ' aria-current="page"' : '') + (itemIndex === 0 ? ' class="site-category-all"' : '') + '>' + item.label + '</a>';
+              return '<a role="menuitem" href="' + item.href + '"' + externalLinkAttributes(item) + (active ? ' aria-current="page"' : '') + (itemIndex === 0 ? ' class="site-category-all"' : '') + '>' + item.label + externalLinkMark(item) + '</a>';
             }).join(''),
           '</div>',
         '</div>'
@@ -222,6 +235,12 @@
       '</nav>',
     '</div>'
   ].join('');
+
+  drawer.querySelector('.site-menu-groups').innerHTML = categoryGroups.map(function (group) {
+    return '<section><h2>' + group.label + '</h2>' + group.items.map(function (item) {
+      return '<a href="' + item.href + '"' + externalLinkAttributes(item) + '>' + item.label + externalLinkMark(item) + '</a>';
+    }).join('') + '</section>';
+  }).join('') + '<section><h2>운영 정보</h2><a href="/about">소개</a><a href="/contact">정보 제보</a><a href="/editorial-policy">편집 기준</a></section>';
 
   header.insertBefore(toggle, header.querySelector('.nav'));
   document.body.appendChild(drawer);
