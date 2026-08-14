@@ -149,7 +149,7 @@
       var menu = category.querySelector('.site-category-menu');
 
       button.addEventListener('click', function () {
-        if (category.classList.contains('is-open')) closeCategory(category); else openCategory(category, false);
+        openCategory(category, false);
       });
 
       button.addEventListener('keydown', function (event) {
@@ -173,6 +173,11 @@
           links[(currentIndex + (event.key === 'ArrowDown' ? 1 : links.length - 1)) % links.length].focus();
         }
       });
+
+      if (window.matchMedia('(hover: hover) and (min-width: 721px)').matches) {
+        category.addEventListener('mouseenter', function () { openCategory(category, false); });
+        category.addEventListener('mouseleave', function () { closeCategory(category); });
+      }
 
     });
 
