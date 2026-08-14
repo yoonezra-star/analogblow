@@ -161,10 +161,6 @@
         }
       });
 
-      if (window.matchMedia('(hover: hover) and (min-width: 721px)').matches) {
-        category.addEventListener('mouseenter', function () { openCategory(category, false); });
-        category.addEventListener('mouseleave', function () { closeCategory(category); });
-      }
     });
 
     document.addEventListener('click', function (event) {
