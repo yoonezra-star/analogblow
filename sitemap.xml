@@ -412,7 +412,12 @@
   </url>
   <url>
     <loc>https://analogblow.com/unjeong-intro</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://analogblow.com/future-plan</loc>
+    <lastmod>2026-08-14</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -473,6 +478,16 @@
   <url>
     <loc>https://analogblow.com/posts/unjeong-movein-first-month-family-routine-2026</loc>
     <lastmod>2026-07-03</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://analogblow.com/posts/unjeong-geumchon-linked-development-check-2026</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://analogblow.com/posts/paju-2040-city-plan-unjeong-gyoha-life-impact</loc>
+    <lastmod>2026-08-14</lastmod>
     <priority>0.7</priority>
   </url>
 </urlset>
