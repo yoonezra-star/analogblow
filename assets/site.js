@@ -247,7 +247,7 @@
 
   closeButton = drawer.querySelector('.site-menu-close');
   firstFocusable = closeButton;
-  lastFocusable = drawer.querySelector('.site-menu-groups a:last-child');
+  lastFocusable = drawer.querySelector('.site-menu-groups section:last-child a:last-child');
 
   function closeMenu() {
     drawer.hidden = true;
