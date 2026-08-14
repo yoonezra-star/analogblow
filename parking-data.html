@@ -128,13 +128,18 @@
         </section>
 
         <section class="rich-section live-data-section" aria-labelledby="officialParkingTitle">
-          <h3 id="officialParkingTitle">공식 데이터로 확인하는 운정권 공영주차장</h3>
-          <p id="officialParkingStatus" class="editor-note" aria-live="polite">공식 주차장 데이터를 불러오는 중입니다.</p>
-          <div class="data-table-wrap">
-            <table class="data-table">
-              <thead><tr><th>주차장</th><th>주소</th><th>운영 정보</th><th>확인</th></tr></thead>
-              <tbody id="officialParkingList"><tr><td colspan="4">공식 데이터 연결을 준비 중입니다.</td></tr></tbody>
-            </table>
+          <h3 id="officialParkingTitle">주차장 정보는 공식 포털과 함께 확인합니다.</h3>
+          <p class="editor-note">아래 생활권별 표는 파주시 공식 현황을 기준으로 정리했습니다. 실시간 만차, 요금, 정기권, 감면 조건은 출발 전에 공식 포털에서 최종 확인하세요.</p>
+          <div class="command-grid">
+            <a class="command-card parking" href="https://parking.paju.go.kr/" target="_blank" rel="noopener">
+              <span>실시간 확인</span><strong>파주시 통합주차포털</strong><p>이용 가능 여부, 정기권, 요금처럼 변동되는 주차 정보는 공식 포털을 우선합니다.</p><em>공식 포털 열기</em>
+            </a>
+            <a class="command-card move" href="./map-search?filter=parking">
+              <span>생활권 비교</span><strong>운정·야당·GTX 주차 위치 비교</strong><p>목적지와 도보 거리, 환승 동선을 지도에서 함께 확인합니다.</p><em>지도에서 보기</em>
+            </a>
+            <a class="command-card weekend" href="https://www.data.go.kr/data/15154067/fileData.do" target="_blank" rel="noopener">
+              <span>원본 기준</span><strong>파주시 지능형교통체계 주차장 정보</strong><p>원본 기준일 2025.11.25, 차기 등록 예정일 2026.11.25 자료를 출처로 남깁니다.</p><em>원본 보기</em>
+            </a>
           </div>
         </section>
 
@@ -244,7 +249,6 @@
       <div class="footer-bottom"><span>&copy; Since 2026 파주운정라이프. All rights reserved.</span><nav><a href="./about">소개</a><a href="./contact">문의</a><a href="./editorial-policy">편집기준</a><a href="./privacy">개인정보처리방침</a><a href="./terms">이용안내</a></nav></div>
     </footer>
     <script defer src="./assets/site-20260815-brand-1.js"></script>
-    <script defer src="./assets/public-facilities-live.js"></script>
     <script defer src="./assets/accessibility.js?v=20260815-1"></script>
   </body>
 </html>
