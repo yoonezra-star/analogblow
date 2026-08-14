@@ -54,7 +54,11 @@ function normalizeItems(data) {
 export async function onRequestGet({ request, env }) {
   const requestUrl = new URL(request.url);
   const query = (requestUrl.searchParams.get('query') || '운정').trim().slice(0, 40);
-  const key = env.DATA_GO_KR_SERVICE_KEY || env.PUBLIC_DATA_SERVICE_KEY || env.SERVICE_KEY;
+  const key =
+    env.BUS_STATION_SERVICE_KEY ||
+    env.DATA_GO_KR_SERVICE_KEY ||
+    env.PUBLIC_DATA_SERVICE_KEY ||
+    env.SERVICE_KEY;
   if (!key) return json(fallback('missing-service-key', query));
   if (!query) return json(fallback('missing-query', query), 400);
 
