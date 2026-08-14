@@ -2973,6 +2973,48 @@ h3 { margin: 0; font-size: 20px; }
   font: inherit;
   cursor: pointer;
 }
+
+.section-more {
+  display: flex;
+  justify-content: center;
+  margin: 22px 0 0;
+}
+.section-more a,
+.portal-more summary {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border: 1px solid #c9dced;
+  border-radius: 13px;
+  color: #174a84;
+  background: #f7fbff;
+  font-size: 14px;
+  font-weight: 900;
+  text-decoration: none;
+}
+.section-more a:hover,
+.portal-more summary:hover { border-color: #8ab4de; background: #edf5ff; }
+.section-more a:focus-visible,
+.portal-more summary:focus-visible {
+  outline: 3px solid #f0c85a;
+  outline-offset: 3px;
+}
+.portal-more {
+  width: min(1120px, calc(100% - 32px));
+  margin: 20px auto 0;
+}
+.portal-more summary {
+  margin: 0 auto;
+  cursor: pointer;
+  list-style: none;
+}
+.portal-more summary::-webkit-details-marker { display: none; }
+.portal-more summary::after { content: "+"; font-size: 18px; line-height: 1; }
+.portal-more[open] summary::after { content: "-"; }
+.portal-more .portal-grid { margin-top: 18px; }
 .map-shell {
   display: grid;
   grid-template-columns: 360px minmax(0, 1fr);
