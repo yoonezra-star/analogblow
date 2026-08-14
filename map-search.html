@@ -8,7 +8,7 @@
     <title>운정 생활 지도 검색 | 운정라이프</title>
     <meta name="description" content="파주 운정의 주차장, 주유소, 정비소, 학교, 도서관, 병원, 약국, 문화시설, 공원, 캠핑장, 복지·일자리, 투표소 정보를 생활권별로 찾는 지도형 페이지입니다.">
     <link rel="canonical" href="https://analogblow.com/map-search">
-    <link rel="stylesheet" href="./styles.css?v=20260814-navigation-2">
+    <link rel="stylesheet" href="./styles.css?v=20260814-map-search">
     <link rel="icon" href="./logo.svg" type="image/svg+xml">
     <script>
       if (location.hostname === "www.analogblow.com") {
@@ -50,10 +50,11 @@
               name="q"
               type="search"
               inputmode="search"
-              placeholder="예: 야당역 환승주차장, 운정 소아청소년과, 운정호수공원 브런치">
-            <button type="submit">지도 키워드 찾기</button>
+              placeholder="예: 운정 소아과, 야당역 주차장">
+            <button type="submit">검색하기</button>
           </div>
         </form>
+        <p class="map-search-helper">검색어와 카테고리를 함께 고르면 지도 핀과 목록이 바로 바뀝니다.</p>
         <div class="map-search-suggestions" aria-label="추천 검색어">
           <a href="./map-search?q=야당역%20환승주차장">야당역 환승주차장</a>
           <a href="./map-search?q=운정역%20환승주차장">운정역 환승주차장</a>
@@ -62,12 +63,12 @@
           <a href="./map-search?q=운정중앙역%20주차장">운정중앙역 주차장</a>
         </div>
         <div class="page-action-row map-quick-actions" aria-label="자주 찾는 지도 항목">
-          <a class="page-action" href="./map-search?filter=parking">주차장</a>
-          <a class="page-action" href="./map-search?filter=hospital">병원</a>
-          <a class="page-action" href="./map-search?filter=pharmacy">약국</a>
-          <a class="page-action" href="./map-search?filter=school">학교</a>
-          <a class="page-action" href="./map-search?filter=restaurant">가족 외식</a>
-          <a class="page-action" href="./map-search?filter=park">공원</a>
+          <button class="page-action map-quick-filter" type="button" data-filter="parking" aria-controls="mapResults">주차장</button>
+          <button class="page-action map-quick-filter" type="button" data-filter="hospital" aria-controls="mapResults">병원</button>
+          <button class="page-action map-quick-filter" type="button" data-filter="pharmacy" aria-controls="mapResults">약국</button>
+          <button class="page-action map-quick-filter" type="button" data-filter="school" aria-controls="mapResults">학교</button>
+          <button class="page-action map-quick-filter" type="button" data-filter="restaurant" aria-controls="mapResults">가족 외식</button>
+          <button class="page-action map-quick-filter" type="button" data-filter="park" aria-controls="mapResults">공원</button>
         </div>
       </section>
 
@@ -137,6 +138,7 @@
           <div class="map-results-head">
             <strong id="mapResultsTitle">운정 생활 지도 전체</strong>
             <span id="mapResultsMeta">생활권 기준으로 정리한 검색 결과를 보여줍니다.</span>
+            <button class="map-results-reset" id="mapResultsReset" type="button" hidden>검색 조건 지우기</button>
           </div>
           <div class="map-results" id="mapResults" aria-live="polite"></div>
         </aside>
@@ -167,7 +169,7 @@
 
           <div class="map-tooltip" id="mapTooltip">
             <strong>운정 생활 지도 검색</strong>
-            <p>왼쪽 필터를 누르거나 지도 핀을 선택하면 장소 설명과 네이버 지도 검색 링크가 표시됩니다.</p>
+            <p>카테고리를 고르거나 지도 핀을 선택하면 장소 설명과 네이버 지도 확인 링크가 표시됩니다.</p>
           </div>
         </div>
       </section>
@@ -342,6 +344,7 @@
       const results = document.getElementById("mapResults");
       const resultsTitle = document.getElementById("mapResultsTitle");
       const resultsMeta = document.getElementById("mapResultsMeta");
+      const resultsReset = document.getElementById("mapResultsReset");
       const tooltip = document.getElementById("mapTooltip");
       const mapStage = document.getElementById("mapStage");
       const mapApiNotice = document.getElementById("mapApiNotice");
@@ -362,6 +365,17 @@
       let naverMapInitStarted = false;
       let naverMapLoadAttempt = 0;
       let naverMapTimeoutId = null;
+
+      function matchesPlace(place, filter = currentFilter, query = currentQuery) {
+        const categoryMatched = filter === "all" || place.category === filter;
+        const normalizedQuery = query.toLowerCase();
+        const queryTokens = normalizedQuery.split(/\s+/).filter(Boolean);
+
+        if (!normalizedQuery) return categoryMatched;
+
+        const text = `${place.title} ${place.searchQuery || ""} ${place.aliases || ""} ${place.area} ${place.desc}`.toLowerCase();
+        return categoryMatched && queryTokens.every((token) => text.includes(token));
+      }
 
       function updateMapStageHelp(status) {
         if (!mapStageHelp || !mapStageHelpTitle || !mapStageHelpBody) return;
@@ -471,7 +485,7 @@
       }
 
       function placeTooltip(place) {
-        tooltip.innerHTML = `<strong>${place.title}</strong><p>${place.desc}</p><p><a href="${naverSearchUrl(place)}" target="_blank" rel="noopener">네이버 지도에서 "${naverSearchQuery(place)}" 검색</a></p>`;
+        tooltip.innerHTML = `<strong>${place.title}</strong><p>${place.desc}</p><p><a href="${naverSearchUrl(place)}" target="_blank" rel="noopener">네이버 지도에서 실제 위치 보기</a></p>`;
       }
 
       function attachFallbackPinEvents() {
@@ -498,7 +512,7 @@
         let visibleCount = 0;
 
         naverMarkers.forEach(({ marker, place, position }) => {
-          const visible = filter === "all" || place.category === filter;
+          const visible = matchesPlace(place, filter);
           marker.setMap(visible ? naverMap : null);
           if (visible) {
             bounds.extend(position);
@@ -659,30 +673,28 @@
       }
 
       function render(filter = "all") {
-        filters.forEach((button) => button.classList.toggle("active", button.dataset.filter === filter));
+        filters.forEach((button) => {
+          const isActive = button.dataset.filter === filter;
+          button.classList.toggle("active", isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
         pins.forEach((pin) => {
-          const visible = filter === "all" || pin.dataset.category === filter;
+          const place = places.find((item) => item.id === pin.dataset.id);
+          const visible = place && matchesPlace(place, filter);
           pin.classList.toggle("is-hidden", !visible);
         });
 
-        const query = requestedQuery.toLowerCase();
-        const queryTokens = query.split(/\s+/).filter(Boolean);
-        const filtered = places.filter((place) => {
-          const categoryMatched = filter === "all" || place.category === filter;
-          if (!query) return categoryMatched;
-          const text = `${place.title} ${place.searchQuery || ""} ${place.aliases || ""} ${place.area} ${place.desc}`.toLowerCase();
-          return categoryMatched && queryTokens.every((token) => text.includes(token));
-        });
+        const filtered = places.filter((place) => matchesPlace(place, filter));
         results.innerHTML = filtered.map((place) => `
           <article class="map-result">
             <strong>${place.title}</strong>
             <span>${labels[place.category]} · ${place.area}</span>
             <span>${place.desc}</span>
-            <a href="${naverSearchUrl(place)}" target="_blank" rel="noopener">네이버 지도에서 "${naverSearchQuery(place)}" 검색</a>
+            <a href="${naverSearchUrl(place)}" target="_blank" rel="noopener">네이버 지도에서 실제 위치 보기</a>
           </article>
         `).join("");
 
-        const title = query ? `"${requestedQuery}" 검색 결과` : (filter === "all" ? "운정 생활 지도 전체" : labels[filter]);
+        const title = currentQuery ? `"${currentQuery}" 검색 결과` : (filter === "all" ? "운정 생활 지도 전체" : labels[filter]);
         tooltip.innerHTML = `<strong>${title}</strong><p>${filtered.length}개 장소를 표시 중입니다. 목록에서 네이버 지도 검색으로 실제 위치와 길찾기를 확인하세요.</p>`;
         updateNaverMarkers(filter);
       }
@@ -692,11 +704,23 @@
           currentFilter = button.dataset.filter;
           syncMapUrl();
           render(currentFilter);
+          updateResultsChrome();
+        });
+      });
+
+      document.querySelectorAll(".map-quick-filter").forEach((button) => {
+        button.addEventListener("click", () => {
+          currentFilter = button.dataset.filter;
+          currentQuery = "";
+          mapSearchInput.value = "";
+          syncMapUrl();
+          render(currentFilter);
+          updateResultsChrome();
         });
       });
 
       function updateResultsChrome() {
-        const query = requestedQuery;
+        const query = currentQuery;
         const activeFilter = document.querySelector(".map-filter.active")?.dataset.filter || "all";
         const categoryTitle = activeFilter === "all" ? "운정 생활 지도 전체" : (labels[activeFilter] || "운정 생활 지도");
         const actualResults = results.querySelectorAll(".map-result:not(.map-result-empty)").length;
@@ -717,6 +741,7 @@
           : (activeFilter === "all"
             ? `${actualResults}곳을 생활권 기준으로 정리했습니다.`
             : `${categoryTitle} 관련 ${actualResults}곳을 보여줍니다.`);
+        resultsReset.hidden = !query && activeFilter === "all";
       }
 
       mapSearchInput.value = requestedQuery;
@@ -724,7 +749,18 @@
         event.preventDefault();
         currentQuery = mapSearchInput.value.trim();
         syncMapUrl();
-        window.location.assign(new URL(window.location.href).toString());
+        render(currentFilter);
+        updateResultsChrome();
+      });
+
+      resultsReset.addEventListener("click", () => {
+        currentFilter = "all";
+        currentQuery = "";
+        mapSearchInput.value = "";
+        syncMapUrl();
+        render(currentFilter);
+        updateResultsChrome();
+        mapSearchInput.focus();
       });
 
       const resultsObserver = new MutationObserver(() => updateResultsChrome());
