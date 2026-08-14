@@ -4912,11 +4912,23 @@ h3 { margin: 0; font-size: 20px; }
   .site-menu-groups { gap: 18px; }
   .site-menu-groups section { grid-template-columns: 1fr; }
 
+  .hero,
   .unjeong-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .unjeong-hero {
+    min-height: 0;
     padding: 28px 18px 30px;
   }
 
   .unjeong-hero .life-dashboard { display: none; }
+
+  .unjeong-hero .hero-copy {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
 
   .unjeong-hero h1 {
     max-width: 9.8em;
