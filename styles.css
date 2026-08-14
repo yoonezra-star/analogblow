@@ -31,7 +31,7 @@ h1, h2, h3, p, li { word-break: keep-all; }
   top: 0;
   z-index: 30;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-columns: auto auto minmax(0, 1fr);
   align-items: center;
   gap: 24px;
   padding: 14px clamp(18px, 4vw, 58px);
@@ -96,6 +96,105 @@ h1, h2, h3, p, li { word-break: keep-all; }
   box-shadow: 0 8px 18px rgba(31, 94, 220, 0.04);
 }
 .nav a:hover { background: #eff5ff; color: var(--blue); }
+
+.site-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 42px;
+  padding: 9px 13px;
+  border: 1px solid #dbe7f6;
+  border-radius: 13px;
+  color: #173d78;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(31, 94, 220, 0.06);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.site-menu-toggle > span:first-child { font-size: 18px; line-height: 1; }
+.site-menu-toggle:hover { border-color: #a8c7ee; background: #eff6ff; }
+.site-menu-toggle:focus-visible,
+.site-menu-close:focus-visible,
+.site-menu-groups a:focus-visible,
+.search-panel input:focus-visible,
+.search-panel button:focus-visible {
+  outline: 3px solid #f0c85a;
+  outline-offset: 3px;
+}
+.site-menu-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+}
+.site-menu-drawer[hidden] { display: none; }
+.site-menu-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(15, 23, 42, 0.48);
+  cursor: pointer;
+}
+.site-menu-panel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 24px;
+  width: min(460px, calc(100vw - 28px));
+  max-height: calc(100dvh - 28px);
+  margin: 14px 14px 14px auto;
+  padding: 22px;
+  overflow-y: auto;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.3);
+}
+.site-menu-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.site-menu-heading strong,
+.site-menu-heading span { display: block; }
+.site-menu-heading strong { color: #17211b; font-size: 21px; }
+.site-menu-heading span { margin-top: 5px; color: #5d6b62; font-size: 14px; line-height: 1.45; }
+.site-menu-close {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dbe7f6;
+  border-radius: 13px;
+  color: #173d78;
+  background: #f8fbff;
+  font-size: 29px;
+  line-height: 1;
+  cursor: pointer;
+}
+.site-menu-groups { display: grid; gap: 22px; }
+.site-menu-groups section { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.site-menu-groups h2 { grid-column: 1 / -1; margin: 0 0 2px; color: #52709a; font-size: 13px; }
+.site-menu-groups a {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #e6eef8;
+  border-radius: 12px;
+  color: #223552;
+  background: #fbfdff;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.site-menu-groups a:hover { border-color: #a8c7ee; background: #eff6ff; color: #1d4ed8; }
+.site-menu-open { overflow: hidden; }
 
 .hero {
   display: grid;
@@ -4776,104 +4875,105 @@ h3 { margin: 0; font-size: 20px; }
   }
 
   .site-header {
-    position: relative;
+    position: sticky;
     z-index: 20;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
   }
 
-  .nav {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-bottom: 4px;
-    scrollbar-width: none;
-  }
-
-  .nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .nav a {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    word-break: keep-all;
-  }
-
-  .hero,
-  .unjeong-hero {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .unjeong-hero {
-    min-height: 0;
-    padding: 32px 22px 34px;
-  }
-
-  .unjeong-hero .life-dashboard {
-    display: none;
-  }
-
-  .unjeong-hero .hero-copy {
-    width: 100%;
-    max-width: none;
+  .site-header .brand {
+    width: auto;
     min-width: 0;
   }
 
+  .site-header .brand-logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .site-header .brand-copy strong { font-size: 17px; }
+  .site-header .brand-copy small { display: none; }
+  .site-header .nav { display: none; }
+  .site-menu-toggle {
+    min-height: 44px;
+    padding: 10px 12px;
+    border-radius: 12px;
+  }
+  .site-menu-panel {
+    width: calc(100vw - 24px);
+    max-height: calc(100dvh - 24px);
+    margin: 12px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+  .site-menu-groups { gap: 18px; }
+  .site-menu-groups section { grid-template-columns: 1fr; }
+
+  .unjeong-hero {
+    padding: 28px 18px 30px;
+  }
+
+  .unjeong-hero .life-dashboard { display: none; }
+
   .unjeong-hero h1 {
-    max-width: 10.5em;
-    font-size: clamp(31px, 8.8vw, 36px);
-    line-height: 1.13;
-    text-wrap: balance;
+    max-width: 9.8em;
+    font-size: clamp(30px, 8.2vw, 34px);
   }
 
   .unjeong-hero .lead {
-    max-width: 100%;
-    margin-top: 16px;
-    font-size: 15px;
-    line-height: 1.62;
-    word-break: break-word;
-    overflow-wrap: anywhere;
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.58;
   }
 
   .hero-paths {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-    max-width: none;
-    margin: 18px 0 0;
-    padding: 0;
-    overflow: visible;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    margin-top: 16px;
   }
 
   .hero-paths a {
-    min-width: 0;
-    min-height: 46px;
-    grid-template-columns: 32px minmax(0, 1fr);
-    gap: 8px;
-    align-items: center;
-    padding: 7px 10px;
-    border-radius: 15px;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    min-height: 70px;
+    padding: 8px 6px;
+    text-align: center;
   }
 
   .hero-paths b {
-    width: 32px;
-    height: 32px;
-    border-radius: 11px;
-    font-size: 12px;
+    width: 29px;
+    height: 29px;
+    border-radius: 10px;
+    font-size: 10px;
   }
 
   .hero-paths span {
-    display: block;
-    max-width: none;
-    font-size: 12px;
-    line-height: 1.25;
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: clip;
+    font-size: 11px;
+    line-height: 1.2;
   }
 
-  .search-panel,
-  .hero-actions {
-    margin-top: 16px;
+  .search-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px;
+    margin-top: 14px;
+    padding: 6px;
+    border-radius: 16px;
+  }
+
+  .search-panel input {
+    min-width: 0;
+    padding: 11px 10px;
+    font-size: 14px;
+  }
+
+  .search-panel button {
+    width: auto;
+    padding: 11px 13px;
+    font-size: 13px;
   }
 
   .unjeong-hero .hero-actions {
