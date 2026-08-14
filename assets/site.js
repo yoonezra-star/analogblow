@@ -175,8 +175,26 @@
       });
 
       if (window.matchMedia('(hover: hover) and (min-width: 721px)').matches) {
-        category.addEventListener('mouseenter', function () { openCategory(category, false); });
-        category.addEventListener('mouseleave', function () { closeCategory(category); });
+        var hoverCloseTimer;
+
+        function cancelHoverClose() {
+          window.clearTimeout(hoverCloseTimer);
+        }
+
+        function scheduleHoverClose() {
+          cancelHoverClose();
+          // Keep the menu available while the pointer crosses the visual gap.
+          hoverCloseTimer = window.setTimeout(function () {
+            if (!category.matches(':hover')) closeCategory(category);
+          }, 240);
+        }
+
+        category.addEventListener('pointerenter', function () {
+          cancelHoverClose();
+          openCategory(category, false);
+        });
+        category.addEventListener('pointerleave', scheduleHoverClose);
+        menu.addEventListener('pointerenter', cancelHoverClose);
       }
 
     });
