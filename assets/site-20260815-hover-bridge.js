@@ -104,7 +104,7 @@
   var categoryNav = document.querySelector('.site-header .nav');
   if (categoryNav && !categoryNav.classList.contains('site-category-nav')) {
     categoryNav.classList.add('site-category-nav');
-    categoryNav.setAttribute('aria-label', '운정라이프 카테고리');
+    categoryNav.setAttribute('aria-label', '파주운정라이프 카테고리');
     categoryNav.innerHTML = categoryGroups.map(function (group, groupIndex) {
       var menuId = 'siteCategoryMenu' + groupIndex;
       return [
@@ -242,12 +242,12 @@
   drawer.hidden = true;
   drawer.setAttribute('role', 'dialog');
   drawer.setAttribute('aria-modal', 'true');
-  drawer.setAttribute('aria-label', '운정라이프 전체 메뉴');
+  drawer.setAttribute('aria-label', '파주운정라이프 전체 메뉴');
   drawer.innerHTML = [
     '<button class="site-menu-backdrop" type="button" aria-label="전체 메뉴 닫기"></button>',
     '<div class="site-menu-panel">',
       '<div class="site-menu-heading">',
-        '<div><strong>운정라이프</strong><span>필요한 생활 정보를 바로 찾으세요.</span></div>',
+        '<div><strong>파주운정라이프</strong><span>필요한 생활 정보를 바로 찾으세요.</span></div>',
         '<button class="site-menu-close" type="button" aria-label="전체 메뉴 닫기">×</button>',
       '</div>',
       '<nav class="site-menu-groups" aria-label="전체 메뉴 목록">',
