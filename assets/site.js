@@ -34,7 +34,8 @@
         { href: '/weather-life', label: '날씨 생활' },
         { href: '/calendar', label: '생활 캘린더' },
         { href: '/map-search', label: '운정 생활 지도' },
-        { href: '/public-contacts', label: '공공 연락처' }
+        { href: '/public-contacts', label: '공공 연락처' },
+        { href: '/fortune', label: '운세·해몽' }
       ]
     },
     {
@@ -65,6 +66,7 @@
         { href: '/parking-data', label: '주차 데이터' },
         { href: '/posts/gtx-unjeong-station-transfer-parking-guide-2026', label: 'GTX-A 환승·주차' },
         { href: '/posts/mobility-ddokbus-unjeong-guide', label: '똑버스 이용' },
+        { href: '/posts/mobility-paprika-school-bus-guide', label: '파프리카 통학버스' },
         { href: '/map-search', label: '지도에서 찾기' }
       ]
     },
