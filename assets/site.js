@@ -87,7 +87,6 @@
         { href: '/future-plan', label: '미래계획' },
         { href: '/policy-news', label: '정책 뉴스' },
         { href: '/movein', label: '입주 첫 달' },
-        { href: 'https://local.114-service.co.kr/news/list', label: '정책뉴스', external: true },
         { href: 'https://local.114-service.co.kr/pollingPlace/list', label: '투표소', external: true }
       ]
     }
