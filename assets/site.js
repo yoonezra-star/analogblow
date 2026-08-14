@@ -34,7 +34,7 @@
         { href: '/weather-life', label: '날씨 생활' },
         { href: '/calendar', label: '생활 캘린더' },
         { href: '/map-search', label: '운정 생활 지도' },
-        { href: 'https://local.114-service.co.kr/phone-search', label: '전화번호 검색', external: true }
+        { href: '/public-contacts', label: '공공 연락처' }
       ]
     },
     {
@@ -65,7 +65,7 @@
         { href: '/parking-data', label: '주차 데이터' },
         { href: '/posts/gtx-unjeong-station-transfer-parking-guide-2026', label: 'GTX-A 환승·주차' },
         { href: '/posts/mobility-ddokbus-unjeong-guide', label: '똑버스 이용' },
-        { href: 'https://local.114-service.co.kr/mapSearch', label: '지도 검색', external: true }
+        { href: '/map-search', label: '지도에서 찾기' }
       ]
     },
     {
@@ -75,8 +75,7 @@
         { href: '/weekend', label: '가족 나들이' },
         { href: '/kids-play', label: '키즈·실내놀이' },
         { href: '/cafes', label: '카페' },
-        { href: '/restaurants', label: '가족 외식' },
-        { href: 'https://local.114-service.co.kr/map/list', label: '지역 소상공인 조회', external: true }
+        { href: '/restaurants', label: '운정 상권 가이드' }
       ]
     },
     {
@@ -87,7 +86,7 @@
         { href: '/future-plan', label: '미래계획' },
         { href: '/policy-news', label: '정책 뉴스' },
         { href: '/movein', label: '입주 첫 달' },
-        { href: 'https://local.114-service.co.kr/pollingPlace/list', label: '투표소', external: true }
+        { href: '/polling-place', label: '투표소 확인' }
       ]
     }
   ];
