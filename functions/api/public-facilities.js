@@ -101,7 +101,7 @@ export async function onRequestGet({ request, env }) {
 
   try {
     const response = await fetch(apiUrl.toString(), {
-      headers: { Authorization: key, Accept: 'application/json' },
+      headers: { Authorization: `Infuser ${key}`, Accept: 'application/json' },
       cf: { cacheTtl: source.cacheSeconds, cacheEverything: true }
     });
     const payload = await response.json();
