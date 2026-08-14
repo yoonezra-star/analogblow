@@ -26,6 +26,154 @@
     var linkPath = new URL(link.href).pathname.replace(/\/$/, '') || '/';
     if (linkPath === path) link.setAttribute('aria-current', 'page');
   });
+  var categoryGroups = [
+    {
+      label: '오늘의 운정',
+      items: [
+        { href: '/', label: '홈으로' },
+        { href: '/weather-life', label: '날씨 생활' },
+        { href: '/calendar', label: '생활 캘린더' },
+        { href: '/map-search', label: '운정 생활 지도' }
+      ]
+    },
+    {
+      label: '아이생활',
+      items: [
+        { href: '/kids', label: '아이생활 전체' },
+        { href: '/school-roadmap', label: '학교·등원' },
+        { href: '/kids-play', label: '키즈·실내놀이' },
+        { href: '/posts/kids-after-school-route', label: '하교 후 루틴' },
+        { href: '/health', label: '아이 병원 동선' }
+      ]
+    },
+    {
+      label: '병원·약국',
+      items: [
+        { href: '/health', label: '병원·약국 전체' },
+        { href: '/map-search?filter=hospital', label: '병원 찾기' },
+        { href: '/map-search?filter=pharmacy', label: '약국 찾기' },
+        { href: '/posts/health-night-holiday-pharmacy-guide', label: '야간·휴일 약국' },
+        { href: '/posts/health-call-before-visit', label: '방문 전 전화 확인' }
+      ]
+    },
+    {
+      label: '지도·이동',
+      items: [
+        { href: '/map-search', label: '운정 생활 지도' },
+        { href: '/mobility', label: '교통·주차 전체' },
+        { href: '/parking-data', label: '주차 데이터' },
+        { href: '/posts/gtx-unjeong-station-transfer-parking-guide-2026', label: 'GTX-A 환승·주차' },
+        { href: '/posts/mobility-ddokbus-unjeong-guide', label: '똑버스 이용' }
+      ]
+    },
+    {
+      label: '주말·외식',
+      items: [
+        { href: '/culture-leisure', label: '주말·외식 전체' },
+        { href: '/weekend', label: '가족 나들이' },
+        { href: '/kids-play', label: '키즈·실내놀이' },
+        { href: '/cafes', label: '카페' },
+        { href: '/restaurants', label: '가족 외식' }
+      ]
+    },
+    {
+      label: '생활권·미래',
+      items: [
+        { href: '/neighborhoods', label: '생활권 가이드' },
+        { href: '/unjeong-intro', label: '운정 소개' },
+        { href: '/future-plan', label: '미래계획' },
+        { href: '/policy-news', label: '정책 뉴스' },
+        { href: '/movein', label: '입주 첫 달' }
+      ]
+    }
+  ];
+
+  var categoryNav = document.querySelector('.site-header .nav');
+  if (categoryNav && !categoryNav.classList.contains('site-category-nav')) {
+    categoryNav.classList.add('site-category-nav');
+    categoryNav.setAttribute('aria-label', '운정라이프 카테고리');
+    categoryNav.innerHTML = categoryGroups.map(function (group, groupIndex) {
+      var menuId = 'siteCategoryMenu' + groupIndex;
+      return [
+        '<div class="site-category">',
+          '<button class="site-category-toggle" type="button" aria-expanded="false" aria-controls="', menuId, '">',
+            '<span>', group.label, '</span><span class="site-category-chevron" aria-hidden="true"></span>',
+          '</button>',
+          '<div class="site-category-menu" id="', menuId, '" role="menu" hidden>',
+            group.items.map(function (item, itemIndex) {
+              var itemUrl = new URL(item.href, window.location.origin);
+              var current = (itemUrl.pathname.replace(/\/$/, '') || '/') + itemUrl.search;
+              var active = current === path + window.location.search;
+              return '<a role="menuitem" href="' + item.href + '"' + (active ? ' aria-current="page"' : '') + (itemIndex === 0 ? ' class="site-category-all"' : '') + '>' + item.label + '</a>';
+            }).join(''),
+          '</div>',
+        '</div>'
+      ].join('');
+    }).join('');
+
+    function closeCategory(category) {
+      var button = category.querySelector('.site-category-toggle');
+      var menu = category.querySelector('.site-category-menu');
+      button.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+      category.classList.remove('is-open');
+    }
+
+    function openCategory(category, focusFirst) {
+      categoryNav.querySelectorAll('.site-category.is-open').forEach(function (other) {
+        if (other !== category) closeCategory(other);
+      });
+      var button = category.querySelector('.site-category-toggle');
+      var menu = category.querySelector('.site-category-menu');
+      button.setAttribute('aria-expanded', 'true');
+      menu.hidden = false;
+      category.classList.add('is-open');
+      if (focusFirst) menu.querySelector('a').focus();
+    }
+
+    categoryNav.querySelectorAll('.site-category').forEach(function (category) {
+      var button = category.querySelector('.site-category-toggle');
+      var menu = category.querySelector('.site-category-menu');
+
+      button.addEventListener('click', function () {
+        if (category.classList.contains('is-open')) closeCategory(category); else openCategory(category, false);
+      });
+
+      button.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          openCategory(category, true);
+        }
+        if (event.key === 'Escape') closeCategory(category);
+      });
+
+      menu.addEventListener('keydown', function (event) {
+        var links = Array.prototype.slice.call(menu.querySelectorAll('a'));
+        var currentIndex = links.indexOf(document.activeElement);
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeCategory(category);
+          button.focus();
+        }
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+          event.preventDefault();
+          links[(currentIndex + (event.key === 'ArrowDown' ? 1 : links.length - 1)) % links.length].focus();
+        }
+      });
+
+      if (window.matchMedia('(hover: hover) and (min-width: 721px)').matches) {
+        category.addEventListener('mouseenter', function () { openCategory(category, false); });
+        category.addEventListener('mouseleave', function () { closeCategory(category); });
+      }
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!categoryNav.contains(event.target)) {
+        categoryNav.querySelectorAll('.site-category.is-open').forEach(closeCategory);
+      }
+    });
+  }
+
   var nav = document.createElement('nav');
   nav.className = 'mobile-bottom-nav';
   nav.setAttribute('aria-label', '모바일 빠른 메뉴');
