@@ -73,6 +73,24 @@
           </a>
         </section>
 
+        <section class="api-live-panel" aria-labelledby="stationSearchTitle">
+          <div class="api-live-head">
+            <div>
+              <h3 id="stationSearchTitle">운정 버스 정류소 공식 검색</h3>
+              <p>정류소명이나 번호를 입력하면 경기도 정류소 데이터를 기준으로 위치와 번호를 확인합니다. 도착 시간은 경기버스정보에서 다시 확인하세요.</p>
+            </div>
+            <span id="stationStatus" class="feed-status">공식 데이터 확인 중</span>
+          </div>
+          <form class="station-form" id="stationSearchForm">
+            <label for="stationQuery">정류소명 또는 번호</label>
+            <div>
+              <input id="stationQuery" name="query" type="search" value="운정" placeholder="예: 운정역, 야당역, 30886" autocomplete="off">
+              <button type="submit">정류소 찾기</button>
+            </div>
+          </form>
+          <div id="stationFeed" class="live-feed" aria-live="polite"></div>
+        </section>
+
         <nav class="hub-switcher" aria-label="운정 생활 허브">
           <p>다른 생활 주제</p>
           <div>
@@ -312,6 +330,7 @@
       </div>
       <div class="footer-bottom"><span>&copy; Since 2026 파주운정라이프. All rights reserved.</span><nav><a href="./about">소개</a><a href="./contact">문의</a><a href="./editorial-policy">편집기준</a><a href="./privacy">개인정보처리방침</a><a href="./terms">이용안내</a></nav></div>
     </footer>
+    <script defer src="./assets/bus-stations.js?v=20260815-1"></script>
     <script defer src="./assets/site-20260815-brand-1.js"></script>
     <script defer src="./assets/accessibility.js?v=20260815-1"></script>
   </body>

@@ -2878,6 +2878,46 @@ h3 { margin: 0; font-size: 20px; }
   font-weight: 900;
   cursor: pointer;
 }
+.station-form {
+  margin: 18px 0;
+}
+.station-form label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+.station-form > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+}
+.station-form input {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #dfe7ea;
+  border-radius: 14px;
+  padding: 0 14px;
+  color: var(--ink);
+  background: #fff;
+  font: inherit;
+}
+.station-form button {
+  border: 0;
+  border-radius: 14px;
+  padding: 14px 18px;
+  color: #fff;
+  background: var(--blue);
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+.station-form input:focus-visible,
+.station-form button:focus-visible {
+  outline: 3px solid rgba(45, 108, 223, 0.35);
+  outline-offset: 2px;
+}
 .editor-note {
   margin-top: 18px;
   padding: 18px;
@@ -4402,6 +4442,12 @@ h3 { margin: 0; font-size: 20px; }
   }
   .polling-form {
     grid-template-columns: 1fr;
+  }
+  .station-form > div {
+    grid-template-columns: 1fr;
+  }
+  .station-form button {
+    width: 100%;
   }
   .today-signal-list li,
   .weekly-list a,
