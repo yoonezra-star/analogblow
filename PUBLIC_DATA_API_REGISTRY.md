@@ -17,7 +17,14 @@
 | --- | --- | --- | --- | --- |
 | 정책뉴스 | 파주시 보도자료, 정책브리핑 | 파주시, 대한민국 정책브리핑 | `/policy-news` | 발행일, 제목, 원문 URL을 수집해 생활 주제별로 분류한다. |
 | 도서관 | [파주시 작은도서관 정보](https://www.data.go.kr/data/3044643/fileData.do) | 경기도 파주시 | `/public-facilities`, `/kids` | 명칭, 주소, 연락처, 운영시간, 휴관일, 좌표를 생활권별로 정리한다. 원본은 정기 점검한다. |
-| 주차 | [파주시 주차장 정보](https://www.data.go.kr/data/15154067/fileData.do) | 경기도 파주시 | `/parking-data`, `/map-search` | 주차장명, 주소, 주차면, 요금, 운영 정보를 표시하고 통합주차포털 링크를 유지한다. |
+| 주차 | [파주시 주차장 정보](https://www.data.go.kr/data/15154067/fileData.do) | 경기도 파주시 | `/parking-data`, `/map-search` | 주차장명, 주소, 위치, 공식 안내 주소를 표시하고 통합주차포털 링크를 유지한다. |
+
+### 자동 변환 OpenAPI 주소
+
+- 도서관: `https://api.odcloud.kr/api/3044643/v1/uddi:bf1f93a2-0fdb-4723-ba1e-f7717e1aa1e9`
+- 주차: `https://api.odcloud.kr/api/15154067/v1/uddi:52acbc31-6f4f-4e30-b868-d6cc832e0eed`
+- 두 API는 요청 헤더의 `Authorization: Infuser {서비스키}` 인증을 사용한다.
+- 활용신청 승인 전에는 `/api/public-facilities`가 공식 원문 링크만 반환해야 한다.
 
 ## 2차 연동
 
