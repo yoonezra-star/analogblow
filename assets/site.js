@@ -1,6 +1,7 @@
 (function () {
   var main = document.querySelector('main');
   if (main && !main.id) main.id = 'site-main-content';
+  if (main && !main.hasAttribute('tabindex')) main.setAttribute('tabindex', '-1');
 
   if (main && !document.querySelector('.skip-link')) {
     var skipLink = document.createElement('a');
