@@ -1,6 +1,5 @@
 const HIRA_ENDPOINT = 'https://apis.data.go.kr/B551182/hospInfoServicev2/getHospBasisList';
-const PAJU_SIDO_CD = '41';
-const PAJU_SGGU_CD = '41480';
+const UNJEONG_CENTER = { longitude: '126.771', latitude: '37.727', radiusMeters: '12000' };
 const UNJEONG_AREAS = ['운정', '야당', '동패', '목동', '와동', '다율', '상지석', '교하', '산내', '한빛', '해솔'];
 
 function json(data, status = 200) {
@@ -86,8 +85,10 @@ export async function onRequestGet({ request, env }) {
   apiUrl.searchParams.set('ServiceKey', key);
   apiUrl.searchParams.set('pageNo', '1');
   apiUrl.searchParams.set('numOfRows', '100');
-  apiUrl.searchParams.set('sidoCd', PAJU_SIDO_CD);
-  apiUrl.searchParams.set('sgguCd', PAJU_SGGU_CD);
+  // HIRA's regional codes are provider-specific, so use the documented radius search.
+  apiUrl.searchParams.set('xPos', UNJEONG_CENTER.longitude);
+  apiUrl.searchParams.set('yPos', UNJEONG_CENTER.latitude);
+  apiUrl.searchParams.set('radius', UNJEONG_CENTER.radiusMeters);
   if (query) apiUrl.searchParams.set('yadmNm', query);
 
   const controller = new AbortController();
