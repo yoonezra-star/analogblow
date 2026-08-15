@@ -11,6 +11,33 @@
     document.body.insertBefore(skipLink, document.body.firstChild);
   }
 
+  // Supply basic page context for hub pages that do not define their own JSON-LD.
+  if (main && !document.querySelector('script[type="application/ld+json"]')) {
+    var canonicalLink = document.querySelector('link[rel="canonical"]');
+    var pageDescription = document.querySelector('meta[name="description"]');
+    var pageHeading = main.querySelector('h1');
+    var pageUrl = canonicalLink ? canonicalLink.href : window.location.href;
+
+    if (pageHeading && pageUrl) {
+      var pageSchema = document.createElement('script');
+      pageSchema.type = 'application/ld+json';
+      pageSchema.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: pageHeading.textContent.trim(),
+        description: pageDescription ? pageDescription.content : '',
+        url: pageUrl,
+        inLanguage: 'ko-KR',
+        isPartOf: {
+          '@type': 'WebSite',
+          name: '파주운정라이프',
+          url: 'https://analogblow.com/'
+        }
+      });
+      document.head.appendChild(pageSchema);
+    }
+  }
+
   if (document.querySelector('.mobile-bottom-nav')) return;
 
   var items = [
