@@ -5570,6 +5570,16 @@ h3 { margin: 0; font-size: 20px; }
   text-underline-offset: 3px;
 }
 
+/* The home page is an entry point, not a complete directory. */
+.home-page .home-proof,
+.home-page .local-rank,
+.home-page .popular-guide,
+.home-page .decision-lab,
+.home-page .service-hub,
+.home-page .section.dark {
+  display: none;
+}
+
 .site-menu-groups .site-external-mark {
   margin-left: 6px;
 }
