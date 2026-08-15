@@ -2,3 +2,10 @@
 /rss /rss.xml 301
 /posts/:slug.html /posts/:slug 301
 /:slug.html /:slug 301
+/posts/rainy-day-indoor-play-route /posts/culture-rainy-day-course 301
+/posts/weekend-low-cost-indoor-park-course /posts/culture-free-indoor-weekend 301
+/posts/unjeong-brunch-cafe-check /cafes 301
+/posts/yadang-station-cafe-guide /cafes 301
+/posts/yadang-dinner-parking-guide /posts/culture-restaurant-parking-check 301
+/posts/unjeong-kids-menu-restaurant-check /posts/culture-family-restaurant-check 301
+/posts/unjeong-family-restaurant-guide /restaurants 301
