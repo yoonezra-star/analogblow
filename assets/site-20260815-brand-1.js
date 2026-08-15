@@ -38,6 +38,26 @@
     }
   }
 
+  // Keep the editorial owner and verification path visible on every article.
+  document.querySelectorAll('.article-page').forEach(function (article) {
+    if (article.querySelector('.article-attribution')) return;
+
+    var attribution = document.createElement('section');
+    attribution.className = 'article-attribution';
+    attribution.setAttribute('aria-label', '콘텐츠 작성 및 검토 정보');
+    attribution.innerHTML = [
+      '<span><strong>작성·검토</strong> 파주운정라이프 운영팀</span>',
+      '<span>공식 기관과 공공데이터를 우선 확인합니다.</span>',
+      '<a href="/data">공식 출처</a>',
+      '<a href="/editorial-policy">편집 기준</a>',
+      '<a href="/contact">오류 제보</a>'
+    ].join('');
+
+    var standard = article.querySelector('.info-standard');
+    if (standard) standard.insertAdjacentElement('afterend', attribution);
+    else article.insertBefore(attribution, article.firstChild);
+  });
+
   if (document.querySelector('.mobile-bottom-nav')) return;
 
   var items = [

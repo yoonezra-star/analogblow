@@ -5545,6 +5545,31 @@ h3 { margin: 0; font-size: 20px; }
   line-height: 1;
 }
 
+.article-attribution {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin: 14px 0 20px;
+  padding: 11px 14px;
+  border: 1px solid #dbe7f6;
+  border-radius: 14px;
+  color: #52637a;
+  background: #f8fbff;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.article-attribution strong {
+  color: #223552;
+}
+
+.article-attribution a {
+  color: var(--blue);
+  font-weight: 800;
+  text-underline-offset: 3px;
+}
+
 .site-menu-groups .site-external-mark {
   margin-left: 6px;
 }
