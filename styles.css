@@ -437,6 +437,53 @@ h3 { margin: 0; font-size: 20px; }
   z-index: 2;
   box-shadow: 0 20px 48px rgba(3, 17, 66, 0.12);
 }
+.info-standard-home {
+  display: block;
+  padding: 0;
+}
+.info-standard-home summary {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  list-style: none;
+}
+.info-standard-home summary::-webkit-details-marker { display: none; }
+.info-standard-home summary strong { flex: 0 0 auto; }
+.info-standard-home summary span {
+  width: auto;
+  color: var(--muted);
+}
+.info-standard-home summary::after {
+  content: "+";
+  margin-left: auto;
+  color: var(--green);
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+}
+.info-standard-home[open] summary {
+  border-bottom: 1px solid rgba(59, 130, 160, 0.16);
+}
+.info-standard-home[open] summary::after { content: "-"; }
+.info-standard-detail {
+  display: grid;
+  gap: 12px;
+  padding: 14px 16px 16px;
+}
+.info-standard-detail p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.info-standard-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+.info-standard-links a { width: auto; }
 
 .page-action-row {
   display: flex;
