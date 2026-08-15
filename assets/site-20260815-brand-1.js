@@ -38,6 +38,74 @@
     }
   }
 
+  var refreshedArticlePaths = {
+    '/posts/policy-government24-family-documents': '2026-08-15',
+    '/posts/parking-gtx-check': '2026-08-15',
+    '/posts/culture-rainy-day-course': '2026-08-15',
+    '/posts/yadang-station-life-guide': '2026-08-15',
+    '/posts/facility-library-welfare-routine': '2026-08-15',
+    '/posts/culture-restaurant-parking-check': '2026-08-15',
+    '/posts/culture-family-restaurant-check': '2026-08-15',
+    '/posts/policy-childcare-after-school-check': '2026-08-15',
+    '/posts/kids-kindergarten-first-week': '2026-08-15',
+    '/posts/unjeong-cafe-parking-guide': '2026-08-15',
+    '/posts/kids-library-after-school': '2026-08-15',
+    '/posts/weekend-kids-play-parking-check': '2026-08-15',
+    '/posts/health-child-dental-check': '2026-08-15',
+    '/posts/health-child-ent-visit-guide': '2026-08-15',
+    '/posts/culture-park-before-visit': '2026-08-15',
+    '/posts/health-call-before-visit': '2026-08-15',
+    '/posts/kids-after-school-route': '2026-08-15',
+    '/posts/parking-rainy-day-dropoff': '2026-08-15',
+    '/posts/policy-paju-local-currency-check': '2026-08-15',
+    '/posts/mobility-bus-commute-check': '2026-08-15',
+    '/posts/health-weekend-pharmacy': '2026-08-15',
+    '/posts/kids-school-route-check': '2026-08-15',
+    '/posts/mobility-unjeong-commute-transfer-guide': '2026-08-15',
+    '/posts/unjeong-rent-check-guide': '2026-08-15',
+    '/posts/unjeong-real-estate-transaction-guide': '2026-08-15',
+    '/posts/culture-free-indoor-weekend': '2026-08-15',
+    '/posts/facility-library-happycenter-guide': '2026-08-15',
+    '/posts/unjeong-kids-cafe-check': '2026-08-15',
+    '/posts/parking-restaurant-shopping-route': '2026-08-15',
+    '/posts/gyoha-dongpae-life-guide': '2026-08-15',
+    '/posts/weather-school-weekend-prep': '2026-08-15',
+    '/posts/sannae-haesol-life-guide': '2026-08-15',
+    '/posts/unjeong-station-life-guide': '2026-08-15',
+    '/posts/weekly-unjeong-family-calendar-check': '2026-08-15',
+    '/posts/unjeong-cafe-family-guide': '2026-08-15',
+    '/posts/kids-library-routine': '2026-08-15',
+    '/posts/mobility-ddokbus-unjeong-guide': '2026-08-15',
+    '/posts/paju-event-source-check': '2026-08-15',
+    '/posts/unjeong-lake-cafe-walk-course': '2026-08-15',
+    '/posts/unjeong-apartment-living-zone-check': '2026-08-15'
+  };
+  var normalizedPath = window.location.pathname.replace(/\/$/, '');
+  var refreshedDate = refreshedArticlePaths[normalizedPath];
+
+  if (refreshedDate) {
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (node) {
+      try {
+        var schema = JSON.parse(node.textContent);
+        var entries = Array.isArray(schema) ? schema : [schema];
+        var changed = false;
+
+        entries.forEach(function (entry) {
+          if (entry && entry['@type'] === 'Article') {
+            entry.dateModified = refreshedDate;
+            changed = true;
+          }
+        });
+
+        if (changed) {
+          node.textContent = JSON.stringify(Array.isArray(schema) ? entries : entries[0]);
+        }
+      } catch (error) {
+        // Leave malformed third-party schema untouched.
+      }
+    });
+  }
+
   // Keep the editorial owner and verification path visible on every article.
   document.querySelectorAll('.article-page').forEach(function (article) {
     if (article.querySelector('.article-attribution')) return;
