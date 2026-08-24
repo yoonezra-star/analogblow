@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://analogblow.com/sitemap.xml
+Sitemap: https://analogblow.com/sitemap-local.xml
