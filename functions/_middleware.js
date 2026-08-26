@@ -29,6 +29,15 @@ function articleMeta(path) {
   return { href:'/guides', label:'생활글' };
 }
 
+function repairService(path) {
+  const slug = path.toLowerCase();
+  if (slug.indexOf('aircon') !== -1) return { anchor:'aircon', label:'에어컨 설치·수리·청소', copy:'냉매·배관·설치·분해청소는 작업 범위가 다릅니다. 업체별 출장범위와 추가비용을 먼저 확인하세요.' };
+  if (slug.indexOf('boiler') !== -1) return { anchor:'boiler', label:'보일러·온수 서비스', copy:'보일러는 안전과 부품 호환 때문에 제조사 공식 A/S 또는 공식 대리점을 우선 확인하는 편이 좋습니다.' };
+  if (slug.indexOf('washer') !== -1 || slug.indexOf('dishwasher') !== -1 || slug.indexOf('refrigerator') !== -1) return { anchor:'appliance', label:'가전 공식 A/S', copy:'세탁기·식기세척기·냉장고는 모델별 부품이 달라 제조사 공식 A/S를 먼저 확인하면 수리 범위를 판단하기 쉽습니다.' };
+  if (['bathroom','basin','toilet','shower','bidet','sink','faucet'].some(function(term){ return slug.indexOf(term) !== -1; })) return { anchor:'plumbing', label:'누수·배관 서비스', copy:'물샘·배수·수전 문제는 원인 확인과 수리 범위를 나눠 문의하고 출장비·부품비·마감 복구 포함 여부를 확인하세요.' };
+  return { anchor:'general', label:'종합 집수리', copy:'문·도어락·창호·수납·전기처럼 소규모 생활수리는 작업 범위와 부품비, 출장비를 먼저 확인하세요.' };
+}
+
 function hubMarkup(activeKey) {
   return '<p>다른 생활 주제</p><div>' + HUBS.map(function (item) {
     if (item.key === activeKey) return '<span class="hub-switcher__current" aria-current="page"><i aria-hidden="true">' + item.icon + '</i>' + item.label + '</span>';
@@ -73,6 +82,10 @@ export async function onRequest(context) {
   const activeKey = ACTIVE_BY_PATH[path];
   const isArticle = path.indexOf('/posts/') === 0;
   const meta = isArticle ? articleMeta(path) : null;
+  const isRepairArticle = isArticle && meta && meta.href === '/local-services';
+  const service = isRepairArticle ? repairService(path) : null;
+  let repairSectionCount = 0;
+  let serviceInserted = false;
 
   let rewriter = new HTMLRewriter()
     .on('head', {
@@ -100,13 +113,25 @@ export async function onRequest(context) {
       }
     })
     .on('script[src*="site-20260815-brand-1.js"]', {
-      element(element) { element.setAttribute('src', '/assets/site-20260815-brand-1.js?v=20260826-design-v2-4'); }
+      element(element) { element.setAttribute('src', '/assets/site-20260815-brand-1.js?v=20260826-design-v2-5'); }
     });
 
   if (isArticle) {
     rewriter = rewriter.on('.article-page h1', {
       element(element) {
         element.before('<nav class="tc-breadcrumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><a href="' + meta.href + '">' + meta.label + '</a></nav>', { html: true });
+      }
+    });
+  }
+
+  if (isRepairArticle) {
+    rewriter = rewriter.on('.article-page .rich-section', {
+      element(element) {
+        repairSectionCount += 1;
+        if (repairSectionCount === 2 && !serviceInserted) {
+          serviceInserted = true;
+          element.after('<aside class="tc-service-next" aria-label="수리 문의 정보"><span>어디에 문의할까?</span><strong>' + service.label + '</strong><p>' + service.copy + '</p><a href="/local-repair-shops#' + service.anchor + '">업체·공식 A/S 확인</a></aside>', { html: true });
+        }
       }
     });
   }
