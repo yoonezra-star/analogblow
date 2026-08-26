@@ -47,7 +47,7 @@
   addStyle('/global-nav-v2.css?v=20260826-1');
   addStyle('/footer-v2.css?v=20260826-1');
   if(activeKey)addStyle('/category-v2.css?v=20260826-4');
-  if(isArticle)addStyle('/article-v2.css?v=20260826-2');
+  if(isArticle)addStyle('/article-v2.css?v=20260827-1');
 
   var body=document.body;
   if(body){
@@ -78,4 +78,5 @@
 
   addScript('/assets/site-v2.js?v=20260826-3');
   if(activeKey&&activeKey!=='repair')addScript('/assets/category-v2.js?v=20260826-1');
+  if(isArticle)addScript('/assets/article-density-v2.js?v=20260827-1');
 })();
