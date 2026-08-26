@@ -1,0 +1,72 @@
+:root{
+  --tc-color-border-hover:#cbd5e1;
+  --tc-target-min:44px;
+  --tc-sticky-offset:84px;
+}
+
+html,body{max-width:100%}
+body.tc-v2{overflow-x:clip}
+.tc-v2 :where(img,svg,video,canvas){max-width:100%}
+.tc-v2 :where(.site-header,.site-category-nav,.site-global-actions,.page-main,.page-card,.home-v2,.search-v2-page,.article-page,.tc-footer__inner,.tc-footer__bottom)>*{min-width:0}
+.tc-v2 :where([id],:target){scroll-margin-top:var(--tc-sticky-offset)}
+
+/* WCAG 2.2 AA interaction target consistency */
+.tc-v2 :where(
+  .site-category-toggle,
+  .site-category-menu a,
+  .site-global-search,
+  .site-menu-toggle,
+  .site-menu-close,
+  .site-menu-groups a,
+  .hub-switcher a,
+  .hub-switcher__current,
+  .page-action,
+  .primary-link,
+  .secondary-link,
+  .repair-provider-link,
+  .search-v2-filter,
+  .search-v2-map-link,
+  .category-v2-toggle,
+  .article-density-toggle,
+  .tc-footer__group a,
+  .tc-footer__legal a
+){min-height:var(--tc-target-min)}
+
+.tc-v2 :where(
+  .site-category-toggle,
+  .site-global-search,
+  .site-menu-toggle,
+  .site-menu-close,
+  .search-v2-filter,
+  .category-v2-toggle,
+  .article-density-toggle
+){min-width:var(--tc-target-min)}
+
+/* Semantic hover border; no one-off raw component colors */
+.tc-v2 :where(
+  .hub-switcher a,
+  .article-card,
+  .directory-card,
+  .page-priority-card,
+  .start-flow-card,
+  .quick-card,
+  .hub-panel,
+  .search-v2-card,
+  .search-v2-filter,
+  .search-v2-map-link
+):hover{border-color:var(--tc-color-border-hover)}
+
+/* Long labels and dense content must not break layout */
+.tc-v2 :where(a,button,summary,strong,p,li,h1,h2,h3){overflow-wrap:anywhere}
+.tc-v2 :where(.site-category-menu a,.site-menu-groups a,.tc-footer__group a,.tc-footer__legal a){white-space:normal}
+.tc-v2 :where(.article-list,.directory-grid,.home-v2-grid,.search-v2-list){min-width:0}
+
+/* Horizontal chip rows remain usable without page overflow */
+@media(max-width:720px){
+  .tc-v2 :where(.search-v2-filters,.page-action-row,.hub-switcher>div){max-width:100%;overscroll-behavior-inline:contain}
+  .tc-v2 .search-v2-filters{scroll-padding-inline:var(--tc-space-4)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .tc-v2 :where(a,button,summary){transform:none!important}
+}
