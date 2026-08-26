@@ -78,9 +78,15 @@ export async function onRequest(context) {
     .on('head', {
       element(element) {
         if (path !== '/') element.append('<link rel="stylesheet" href="/design-system-v2.css?v=20260826-3">', { html: true });
+        if (path === '/') element.append('<link rel="stylesheet" href="/home-v2.css?v=20260826-1">', { html: true });
         element.append('<link rel="stylesheet" href="/footer-v2.css?v=20260826-1">', { html: true });
         if (activeKey) element.append('<link rel="stylesheet" href="/category-v2.css?v=20260826-4">', { html: true });
         if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260826-2">', { html: true });
+      }
+    })
+    .on('style', {
+      element(element) {
+        if (path === '/') element.remove();
       }
     })
     .on('body', {
