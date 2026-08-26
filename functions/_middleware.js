@@ -83,7 +83,7 @@ export async function onRequest(context) {
         if (path === '/') element.append('<link rel="stylesheet" href="/home-v2.css?v=20260826-1">', { html: true });
         if (!sourceV2) element.append('<link rel="stylesheet" href="/footer-v2.css?v=20260826-1">', { html: true });
         if (activeKey && !sourceV2) element.append('<link rel="stylesheet" href="/category-v2.css?v=20260826-4">', { html: true });
-        if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260826-2">', { html: true });
+        if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260827-1">', { html: true });
       }
     })
     .on('style', {
@@ -101,6 +101,7 @@ export async function onRequest(context) {
         element.setAttribute('class', Array.from(next).join(' '));
         if (path !== '/' && !sourceV2) element.append('<script defer src="/assets/site-v2.js?v=20260826-3"></script>', { html: true });
         if (activeKey && activeKey !== 'repair' && !sourceV2) element.append('<script defer src="/assets/category-v2.js?v=20260826-1"></script>', { html: true });
+        if (isArticle) element.append('<script defer src="/assets/article-density-v2.js?v=20260827-1"></script>', { html: true });
       }
     })
     .on('.site-header .nav', {
