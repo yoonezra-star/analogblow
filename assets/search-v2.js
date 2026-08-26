@@ -99,8 +99,9 @@
   function updateMapLink(){var link=qs('#searchMapLink');if(link)link.href='/map-search?q='+encodeURIComponent(state.query||'운정');}
   function render(){
     var root=qs('#searchResults');if(!root)return;root.innerHTML='';updateMapLink();
-    var q=state.query;
-    var ranked=state.items.map(function(item){return {item:item,score:score(item,q)};}).filter(function(row){return row.score>0;}).sort(function(a,b){return b.score-a.score||a.item.title.localeCompare(b.item.title,'ko');}).map(function(row){return row.item;});
+    var q=state.query;var ranked;
+    if(!q&&state.type==='all')ranked=state.items.filter(function(item){return item.type==='category';});
+    else ranked=state.items.map(function(item){return {item:item,score:score(item,q)};}).filter(function(row){return row.score>0;}).sort(function(a,b){return b.score-a.score||a.item.title.localeCompare(b.item.title,'ko');}).map(function(row){return row.item;});
     if(state.type!=='all')ranked=ranked.filter(function(item){return item.type===state.type;});
     if(!ranked.length){
       var empty=document.createElement('div');empty.className='search-v2-empty';var h=document.createElement('h2');h.textContent=q?'검색 결과가 없습니다.':'찾을 내용을 입력하세요.';var p=document.createElement('p');p.textContent=q?'검색어를 조금 줄이거나, 장소라면 지도검색을 이용해보세요.':'예: 소아과, 세탁기 문, 야당역 주차, 에어컨';empty.append(h,p);root.appendChild(empty);setStatus(q?'“'+q+'” 검색 결과 0개':'검색어를 입력하면 카테고리, 글, 업체 정보를 함께 찾습니다.');return;
@@ -108,7 +109,8 @@
     var groups=[['category','카테고리'],['article','생활정보 글'],['provider','업체·공식 A/S']];
     if(state.type==='all')groups.forEach(function(pair){var list=ranked.filter(function(item){return item.type===pair[0];});if(list.length)root.appendChild(createGroup(pair[1],list.slice(0,30)));});
     else root.appendChild(createGroup(typeLabel(state.type),ranked.slice(0,50)));
-    setStatus((q?'“'+q+'” ':'')+'검색 결과 '+ranked.length+'개'+(state.failed?' · 일부 자료를 불러오지 못했습니다.':''));
+    if(!q&&state.type==='all')setStatus('생활 카테고리 7개 · 검색어를 입력하면 글과 업체까지 함께 찾습니다.');
+    else setStatus((q?'“'+q+'” ':'')+'검색 결과 '+ranked.length+'개'+(state.failed?' · 일부 자료를 불러오지 못했습니다.':''));
   }
 
   function setLoading(on){var box=qs('#searchLoading');if(box)box.hidden=!on;var form=qs('#siteSearchForm');if(form)form.setAttribute('aria-busy',on?'true':'false');}
