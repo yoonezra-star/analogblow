@@ -16,6 +16,7 @@ const ACTIVE_BY_PATH = {
 };
 
 const REPAIR_TERMS = ['washer','dishwasher','refrigerator','aircon','boiler','bathroom','basin','toilet','shower','bidet','kitchen','sink','faucet','middle-door','interior-door','doorlock','fire-door','window','screen','sash','balcony','wardrobe','ceiling-fan','outlet','drying-rack','induction'];
+const LEGACY_CATEGORY_BLOCKS = ['.page-priority-grid','.content-visual','.category-brief','.community-check','.callout-strip','.api-live-panel','.weather-live-card','.feature-article'];
 
 function articleMeta(path) {
   const slug = path.toLowerCase();
@@ -67,9 +68,9 @@ export async function onRequest(context) {
   let rewriter = new HTMLRewriter()
     .on('head', {
       element(element) {
-        element.append('<link rel="stylesheet" href="/design-system-v2.css?v=20260826-2">', { html: true });
-        if (activeKey) element.append('<link rel="stylesheet" href="/category-v2.css?v=20260826-1">', { html: true });
-        if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260826-1">', { html: true });
+        element.append('<link rel="stylesheet" href="/design-system-v2.css?v=20260826-3">', { html: true });
+        if (activeKey) element.append('<link rel="stylesheet" href="/category-v2.css?v=20260826-2">', { html: true });
+        if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260826-2">', { html: true });
       }
     })
     .on('body', {
@@ -80,7 +81,7 @@ export async function onRequest(context) {
         if (activeKey) next.add('tc-category-page');
         if (isArticle) next.add('tc-article-page');
         element.setAttribute('class', Array.from(next).join(' '));
-        element.append('<script defer src="/assets/site-v2.js?v=20260826-1"></script>', { html: true });
+        element.append('<script defer src="/assets/site-v2.js?v=20260826-2"></script>', { html: true });
       }
     })
     .on('.site-header .nav', {
@@ -92,6 +93,12 @@ export async function onRequest(context) {
     .on('script[src*="site-20260815-brand-1.js"]', {
       element(element) { element.remove(); }
     });
+
+  if (activeKey) {
+    LEGACY_CATEGORY_BLOCKS.forEach(function(selector) {
+      rewriter = rewriter.on(selector, { element(element) { element.remove(); } });
+    });
+  }
 
   if (isArticle) {
     rewriter = rewriter.on('.article-page h1', {
