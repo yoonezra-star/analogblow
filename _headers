@@ -46,5 +46,8 @@
 /assets/search-v2.js
   Cache-Control: no-cache, must-revalidate
 
+/assets/article-density-v2.js
+  Cache-Control: no-cache, must-revalidate
+
 /assets/site-20260815-brand-1.js
   Cache-Control: no-cache, must-revalidate
