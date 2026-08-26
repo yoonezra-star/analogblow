@@ -15,6 +15,20 @@ const ACTIVE_BY_PATH = {
   '/local-services': 'repair', '/local-repair-shops': 'repair'
 };
 
+const PAGE_VISUALS = {
+  '/': { src:'/assets/visual-home.svg', alt:'운정의 집과 생활 동선을 표현한 파주운정라이프 생활정보 일러스트' },
+  '/kids': { src:'/assets/visual-kids.svg', alt:'학교와 통학, 아이생활 동선을 표현한 운정 아이생활 일러스트' },
+  '/health': { src:'/assets/visual-health.svg', alt:'병원과 약국 이용 흐름을 표현한 운정 의료생활 일러스트' },
+  '/mobility': { src:'/assets/visual-mobility.svg', alt:'교통과 주차, 이동 동선을 표현한 운정 이동생활 일러스트' },
+  '/map-search': { src:'/assets/visual-mobility.svg', alt:'운정의 장소와 이동 경로를 표현한 생활지도 일러스트' },
+  '/culture-leisure': { src:'/assets/visual-culture.svg', alt:'공원과 가족 외출을 표현한 운정 주말생활 일러스트' },
+  '/neighborhoods': { src:'/assets/visual-mobility.svg', alt:'운정 생활권과 주요 이동 축을 표현한 생활권 일러스트' },
+  '/future-plan': { src:'/assets/visual-policy.svg', alt:'도시계획과 지역 변화를 표현한 운정 미래계획 일러스트' },
+  '/local-services': { src:'/assets/visual-home.svg', alt:'집 안의 생활수리와 가전 점검을 표현한 생활서비스 일러스트' },
+  '/local-repair-shops': { src:'/assets/visual-home.svg', alt:'운정 생활수리 업체와 공식 서비스 연결을 표현한 일러스트' },
+  '/search': { src:'/assets/visual-data.svg', alt:'생활정보를 분류하고 찾는 과정을 표현한 통합검색 일러스트' }
+};
+
 const SOURCE_V2_PATHS = new Set(['/kids', '/health', '/mobility', '/culture-leisure', '/neighborhoods', '/future-plan']);
 const REPAIR_TERMS = ['washer','dishwasher','refrigerator','aircon','boiler','bathroom','basin','toilet','shower','bidet','kitchen','sink','faucet','middle-door','interior-door','doorlock','fire-door','window','screen','sash','balcony','wardrobe','ceiling-fan','outlet','drying-rack','induction'];
 const LEGACY_CATEGORY_BLOCKS = ['.page-priority-grid','.content-visual','.category-brief','.community-check','.callout-strip','.api-live-panel','.weather-live-card','.feature-article'];
@@ -60,6 +74,12 @@ function footerMarkup() {
     + '</div>'
     + '<div class="tc-footer__bottom"><span>© Since 2026 파주운정라이프</span><nav class="tc-footer__legal" aria-label="법적 안내"><a href="/privacy">개인정보처리방침</a><a href="/terms">이용안내</a></nav></div>';
 }
+function pageVisualMarkup(visual, path) {
+  if (!visual) return '';
+  const priority = path === '/' ? ' fetchpriority="high"' : '';
+  const loading = path === '/' ? 'eager' : 'lazy';
+  return '<figure class="tc-page-visual"><img src="' + visual.src + '" alt="' + visual.alt + '" loading="' + loading + '" decoding="async"' + priority + '></figure>';
+}
 
 export async function onRequest(context) {
   const response = await context.next();
@@ -68,6 +88,7 @@ export async function onRequest(context) {
 
   const path = new URL(context.request.url).pathname.replace(/\/$/, '') || '/';
   const activeKey = ACTIVE_BY_PATH[path];
+  const pageVisual = PAGE_VISUALS[path] || null;
   const sourceV2 = SOURCE_V2_PATHS.has(path);
   const isArticle = path.indexOf('/posts/') === 0;
   const meta = isArticle ? articleMeta(path) : null;
@@ -84,6 +105,7 @@ export async function onRequest(context) {
         if (!sourceV2) element.append('<link rel="stylesheet" href="/footer-v2.css?v=20260826-1">', { html: true });
         if (activeKey && !sourceV2) element.append('<link rel="stylesheet" href="/category-v2.css?v=20260826-4">', { html: true });
         if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260827-1">', { html: true });
+        if (pageVisual) element.append('<link rel="stylesheet" href="/page-visual-v2.css?v=20260827-1">', { html: true });
       }
     })
     .on('style', {
@@ -102,6 +124,11 @@ export async function onRequest(context) {
         if (path !== '/' && !sourceV2) element.append('<script defer src="/assets/site-v2.js?v=20260826-3"></script>', { html: true });
         if (activeKey && activeKey !== 'repair' && !sourceV2) element.append('<script defer src="/assets/category-v2.js?v=20260826-1"></script>', { html: true });
         if (isArticle) element.append('<script defer src="/assets/article-density-v2.js?v=20260827-1"></script>', { html: true });
+      }
+    })
+    .on('main h1', {
+      element(element) {
+        if (pageVisual) element.after(pageVisualMarkup(pageVisual, path), { html: true });
       }
     })
     .on('.site-header .nav', {
