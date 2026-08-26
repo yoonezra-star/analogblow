@@ -37,6 +37,9 @@
 /search-v2.css
   Cache-Control: no-cache, must-revalidate
 
+/page-visual-v2.css
+  Cache-Control: no-cache, must-revalidate
+
 /assets/site-v2.js
   Cache-Control: no-cache, must-revalidate
 
