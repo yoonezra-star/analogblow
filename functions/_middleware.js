@@ -3,27 +3,21 @@ const HUBS = [
   { key: 'health', href: '/health', icon: '🏥', label: '병원·약국' },
   { key: 'mobility', href: '/mobility', icon: '🗺️', label: '지도·이동' },
   { key: 'weekend', href: '/culture-leisure', icon: '🌿', label: '주말·외식' },
-  { key: 'neighborhoods', href: '/neighborhoods', icon: '🏘️', label: '생활권 가이드' },
+  { key: 'neighborhoods', href: '/neighborhoods', icon: '🏘️', label: '생활권' },
   { key: 'future', href: '/future-plan', icon: '🏗️', label: '미래·정책' },
   { key: 'repair', href: '/local-services', icon: '🏠', label: '생활수리·가전' }
 ];
 
 const ACTIVE_BY_PATH = {
-  '/kids': 'kids',
-  '/health': 'health',
-  '/mobility': 'mobility',
-  '/culture-leisure': 'weekend',
-  '/neighborhoods': 'neighborhoods',
-  '/future-plan': 'future',
-  '/local-services': 'repair',
-  '/local-repair-shops': 'repair'
+  '/kids': 'kids', '/health': 'health', '/mobility': 'mobility',
+  '/culture-leisure': 'weekend', '/weekend': 'weekend',
+  '/neighborhoods': 'neighborhoods', '/future-plan': 'future', '/policy-news': 'future',
+  '/local-services': 'repair', '/local-repair-shops': 'repair'
 };
 
 function hubMarkup(activeKey) {
   return '<p>다른 생활 주제</p><div>' + HUBS.map(function (item) {
-    if (item.key === activeKey) {
-      return '<span class="hub-switcher__current" aria-current="page"><i aria-hidden="true">' + item.icon + '</i>' + item.label + '</span>';
-    }
+    if (item.key === activeKey) return '<span class="hub-switcher__current" aria-current="page"><i aria-hidden="true">' + item.icon + '</i>' + item.label + '</span>';
     return '<a href="' + item.href + '"><i aria-hidden="true">' + item.icon + '</i>' + item.label + '</a>';
   }).join('') + '</div>';
 }
@@ -32,10 +26,16 @@ function hubNavMarkup(activeKey) {
   return '<nav class="hub-switcher" aria-label="운정 생활 허브">' + hubMarkup(activeKey) + '</nav>';
 }
 
+function primaryNavMarkup(path) {
+  return HUBS.map(function (item) {
+    const activeKey = ACTIVE_BY_PATH[path];
+    return '<a href="' + item.href + '"' + (activeKey === item.key ? ' aria-current="page"' : '') + '>' + item.label + '</a>';
+  }).join('');
+}
+
 const repairMenuScript = `
 window.addEventListener('DOMContentLoaded', function () {
-  var groups = document.querySelectorAll('.site-category');
-  groups.forEach(function (group) {
+  document.querySelectorAll('.site-category').forEach(function (group) {
     var label = group.querySelector('.site-category-toggle span');
     if (!label || label.textContent.trim() !== '생활수리·가전') return;
     var menu = group.querySelector('.site-category-menu');
@@ -51,7 +51,7 @@ window.addEventListener('DOMContentLoaded', function () {
       '<a role="menuitem" href="/local-services#repair-boiler">보일러</a>',
       '<a role="menuitem" href="/local-services#repair-electric">전기·스마트홈</a>',
       '<a role="menuitem" href="/local-services#repair-window">창호·베란다</a>',
-      '<a role="menuitem" href="/local-repair-shops">업체·공식 A/S 찾기</a>'
+      '<a role="menuitem" href="/local-repair-shops">업체·공식 A/S</a>'
     ].join('');
   });
 });`;
@@ -63,34 +63,40 @@ export async function onRequest(context) {
 
   const path = new URL(context.request.url).pathname.replace(/\/$/, '') || '/';
   const activeKey = ACTIVE_BY_PATH[path];
-  if (!activeKey) return response;
-
-  let rewriter = new HTMLRewriter();
-
-  if (activeKey === 'repair') {
-    rewriter = rewriter.on('.info-standard', {
+  let rewriter = new HTMLRewriter()
+    .on('head', {
       element(element) {
-        element.after(hubNavMarkup(activeKey), { html: true });
-      }
-    });
-  } else {
-    rewriter = rewriter.on('nav.hub-switcher', {
-      element(element) {
-        element.setInnerContent(hubMarkup(activeKey), { html: true });
-      }
-    });
-  }
-
-  return rewriter
-    .on('script[src*="site-20260815-brand-1.js"]', {
-      element(element) {
-        element.setAttribute('src', '/assets/site-20260815-brand-1.js?v=20260826-category-nav-1');
+        element.append('<link rel="stylesheet" href="/design-system-v2.css?v=20260826-1">', { html: true });
       }
     })
     .on('body', {
       element(element) {
+        const classes = element.getAttribute('class') || '';
+        if (!classes.split(/\s+/).includes('tc-v2')) element.setAttribute('class', (classes + ' tc-v2').trim());
         element.append('<script>' + repairMenuScript + '</script>', { html: true });
       }
     })
-    .transform(response);
+    .on('.site-header .nav', {
+      element(element) {
+        element.setAttribute('aria-label', '주요 카테고리');
+        element.setInnerContent(primaryNavMarkup(path), { html: true });
+      }
+    })
+    .on('script[src*="site-20260815-brand-1.js"]', {
+      element(element) {
+        element.setAttribute('src', '/assets/site-20260815-brand-1.js?v=20260826-design-v2-1');
+      }
+    });
+
+  if (activeKey === 'repair') {
+    rewriter = rewriter.on('.info-standard', {
+      element(element) { element.after(hubNavMarkup(activeKey), { html: true }); }
+    });
+  } else if (activeKey) {
+    rewriter = rewriter.on('nav.hub-switcher', {
+      element(element) { element.setInnerContent(hubMarkup(activeKey), { html: true }); }
+    });
+  }
+
+  return rewriter.transform(response);
 }
