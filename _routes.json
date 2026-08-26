@@ -1,5 +1,16 @@
 {
   "version": 1,
-  "include": ["/api/*", "/local-services", "/local-services/"],
+  "include": [
+    "/api/*",
+    "/kids",
+    "/health",
+    "/mobility",
+    "/culture-leisure",
+    "/neighborhoods",
+    "/future-plan",
+    "/local-services",
+    "/local-services/",
+    "/local-repair-shops"
+  ],
   "exclude": []
 }
