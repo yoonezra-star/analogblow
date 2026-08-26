@@ -1,4 +1,4 @@
-import page from "../home-v2.html";
+import page from "../index.html";
 
 export function onRequest() {
   return new Response(page, {
