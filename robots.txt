@@ -4,3 +4,4 @@ Allow: /
 Sitemap: https://analogblow.com/sitemap.xml
 Sitemap: https://analogblow.com/sitemap-local.xml
 Sitemap: https://analogblow.com/sitemap-local-2.xml
+Sitemap: https://analogblow.com/sitemap-services.xml
