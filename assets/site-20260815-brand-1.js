@@ -126,6 +126,80 @@
     else article.insertBefore(attribution, article.firstChild);
   });
 
+  var path = window.location.pathname.replace(/\/$/, '') || '/';
+
+  var repairGroups = [
+    { href: '/local-services#service-door', label: '현관·문', description: '중문·방문·도어락·방화문' },
+    { href: '/local-services#service-bath', label: '욕실·배관', description: '세면대·양변기·수전·배수' },
+    { href: '/local-services#service-kitchen', label: '주방·수납', description: '싱크대·상판·수납장·후드' },
+    { href: '/local-services#service-laundry', label: '세탁·가전', description: '세탁기·식기세척기·냉장고' },
+    { href: '/local-services#service-appliance', label: '냉난방', description: '에어컨·보일러·온수' },
+    { href: '/local-services#service-laundry', label: '전기·스마트홈', description: '콘센트·조명·센서·스마트기기' },
+    { href: '/local-services#service-bath', label: '창호·베란다', description: '샷시·방충망·창틀·베란다' }
+  ];
+
+  if (path === '/') {
+    var homeFlow = document.querySelector('#start-flow .start-flow-grid');
+    var homeFlowTitle = document.querySelector('#startFlowTitle');
+    if (homeFlowTitle) homeFlowTitle.textContent = '운정 생활은 일곱 개 허브에서 시작하세요.';
+
+    if (homeFlow && !homeFlow.querySelector('[data-home-repair-hub]')) {
+      var repairHub = document.createElement('a');
+      repairHub.className = 'start-flow-card hub-card';
+      repairHub.href = '/local-services';
+      repairHub.setAttribute('data-home-repair-hub', 'true');
+      repairHub.innerHTML = '<i class="flow-mark" aria-hidden="true">집</i><span>07 생활수리·가전</span><strong>고장 증상부터 수리 범위까지 확인</strong><p>중문, 욕실, 주방, 세탁기, 냉장고, 에어컨, 보일러, 창호 문제를 증상별로 찾습니다.</p><em>생활수리 가이드 열기</em>';
+      homeFlow.appendChild(repairHub);
+    }
+
+    var startFlowSection = document.getElementById('start-flow');
+    if (startFlowSection && !document.querySelector('.home-repair-latest')) {
+      var latestRepair = document.createElement('section');
+      latestRepair.className = 'section weekly-edit home-repair-latest';
+      latestRepair.innerHTML = [
+        '<div class="section-head compact">',
+          '<p class="eyebrow">집에서 바로 필요한 정보</p>',
+          '<h2>최근 생활수리·가전 점검 글</h2>',
+          '<p>증상을 먼저 구분하고 직접 확인할 범위와 전문가에게 맡길 범위를 나눠 보세요.</p>',
+        '</div>',
+        '<div class="weekly-list">',
+          '<a href="/posts/unjeong-washer-door-lock-stuck-guide"><time>세탁기</time><strong>세탁기 도어 잠금·문 안열림</strong><span>배수 완료 여부, 잠금표시, 도어 정렬과 잠금장치를 구분합니다.</span></a>',
+          '<a href="/posts/unjeong-dishwasher-door-latch-not-closing-guide"><time>식기세척기</time><strong>식기세척기 도어 안닫힘·래치 잠금</strong><span>바스켓 간섭, 도어 정렬, 래치와 잠금 인식을 확인합니다.</span></a>',
+          '<a href="/posts/unjeong-aircon-pipe-insulation-condensation-guide"><time>에어컨</time><strong>에어컨 배관 보온재 결로·물방울</strong><span>보온재 손상과 배수 문제, 벽면 누수를 나눠 확인합니다.</span></a>',
+          '<a href="/posts/unjeong-refrigerator-shelf-drawer-jam-break-guide"><time>냉장고</time><strong>냉장고 선반·서랍 걸림·파손</strong><span>성에·적재 간섭·레일과 플라스틱 파손을 구분합니다.</span></a>',
+          '<a href="/posts/unjeong-entrance-door-viewer-lens-wobble-guide"><time>현관문</time><strong>현관문 도어뷰어·렌즈 흔들림</strong><span>렌즈 고정과 문 두께를 확인하고 방화문 임의 가공은 피합니다.</span></a>',
+        '</div>',
+        '<p class="section-more"><a href="/local-services">생활수리·가전 글 전체 보기 <span aria-hidden="true">→</span></a></p>'
+      ].join('');
+      startFlowSection.insertAdjacentElement('afterend', latestRepair);
+    }
+  }
+
+  if (path === '/local-services') {
+    var serviceSections = document.querySelectorAll('.rich-section');
+    serviceSections.forEach(function (section) {
+      var heading = section.querySelector('h3');
+      if (!heading) return;
+      if (heading.textContent.trim() === '현관·문·거실') section.id = 'service-door';
+      if (heading.textContent.trim() === '욕실·베란다·배관') section.id = 'service-bath';
+      if (heading.textContent.trim() === '주방·수납·가전') section.id = 'service-kitchen';
+      if (heading.textContent.trim() === '세탁·창호·전기·스마트홈') section.id = 'service-laundry';
+      if (heading.textContent.trim() === '바닥·벽·입주·가전') section.id = 'service-appliance';
+    });
+
+    var serviceArticle = document.querySelector('main article');
+    var serviceIntro = serviceArticle ? serviceArticle.querySelector('h1 + p') : null;
+    if (serviceArticle && serviceIntro && !serviceArticle.querySelector('.service-category-index')) {
+      var serviceIndex = document.createElement('section');
+      serviceIndex.className = 'rich-section service-category-index';
+      serviceIndex.setAttribute('aria-label', '생활수리 카테고리');
+      serviceIndex.innerHTML = '<h3>생활수리 카테고리 바로가기</h3><div class="article-list">' + repairGroups.map(function (item) {
+        return '<a class="article-card" href="' + item.href + '"><span>카테고리</span><strong>' + item.label + '</strong><p>' + item.description + '</p><em>관련 글 보기</em></a>';
+      }).join('') + '</div>';
+      serviceIntro.insertAdjacentElement('afterend', serviceIndex);
+    }
+  }
+
   if (document.querySelector('.mobile-bottom-nav')) return;
 
   var items = [
@@ -136,7 +210,6 @@
     { href: '/culture-leisure', label: '주말', key: 'culture-leisure', icon: '◌' }
   ];
 
-  var path = window.location.pathname.replace(/\/$/, '') || '/';
   document.querySelectorAll('.site-header .nav a').forEach(function (link) {
     var linkPath = new URL(link.href).pathname.replace(/\/$/, '') || '/';
     if (linkPath === path) link.setAttribute('aria-current', 'page');
@@ -193,6 +266,17 @@
         { href: '/kids-play', label: '키즈·실내놀이' },
         { href: '/cafes', label: '카페' },
         { href: '/restaurants', label: '운정 상권 가이드' }
+      ]
+    },
+    {
+      label: '생활수리·가전',
+      items: [
+        { href: '/local-services', label: '생활수리 전체' },
+        { href: '/local-services#service-door', label: '현관·문' },
+        { href: '/local-services#service-bath', label: '욕실·배관' },
+        { href: '/local-services#service-kitchen', label: '주방·수납' },
+        { href: '/local-services#service-laundry', label: '세탁·가전·전기' },
+        { href: '/local-services#service-appliance', label: '냉난방·생활가전' }
       ]
     },
     {
