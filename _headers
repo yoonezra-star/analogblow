@@ -3,3 +3,12 @@
 
 /index.html
   Cache-Control: no-cache, no-store, must-revalidate
+
+/local-services
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/local-services.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/assets/site-20260815-brand-1.js
+  Cache-Control: no-cache, must-revalidate
