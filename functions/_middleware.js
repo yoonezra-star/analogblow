@@ -28,6 +28,10 @@ function hubMarkup(activeKey) {
   }).join('') + '</div>';
 }
 
+function hubNavMarkup(activeKey) {
+  return '<nav class="hub-switcher" aria-label="운정 생활 허브">' + hubMarkup(activeKey) + '</nav>';
+}
+
 const repairMenuScript = `
 window.addEventListener('DOMContentLoaded', function () {
   var groups = document.querySelectorAll('.site-category');
@@ -61,12 +65,23 @@ export async function onRequest(context) {
   const activeKey = ACTIVE_BY_PATH[path];
   if (!activeKey) return response;
 
-  return new HTMLRewriter()
-    .on('nav.hub-switcher', {
+  let rewriter = new HTMLRewriter();
+
+  if (activeKey === 'repair') {
+    rewriter = rewriter.on('.info-standard', {
+      element(element) {
+        element.after(hubNavMarkup(activeKey), { html: true });
+      }
+    });
+  } else {
+    rewriter = rewriter.on('nav.hub-switcher', {
       element(element) {
         element.setInnerContent(hubMarkup(activeKey), { html: true });
       }
-    })
+    });
+  }
+
+  return rewriter
     .on('script[src*="site-20260815-brand-1.js"]', {
       element(element) {
         element.setAttribute('src', '/assets/site-20260815-brand-1.js?v=20260826-category-nav-1');
