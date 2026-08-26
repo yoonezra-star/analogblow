@@ -65,7 +65,10 @@ export async function onRequest(context) {
   const activeKey = ACTIVE_BY_PATH[path];
   let rewriter = new HTMLRewriter()
     .on('head', {
-      element(element) { element.append('<link rel="stylesheet" href="/design-system-v2.css?v=20260826-2">', { html: true }); }
+      element(element) {
+        element.append('<link rel="stylesheet" href="/design-system-v2.css?v=20260826-2">', { html: true });
+        if (activeKey) element.append('<link rel="stylesheet" href="/category-v2.css?v=20260826-1">', { html: true });
+      }
     })
     .on('body', {
       element(element) {
@@ -84,7 +87,7 @@ export async function onRequest(context) {
       }
     })
     .on('script[src*="site-20260815-brand-1.js"]', {
-      element(element) { element.setAttribute('src', '/assets/site-20260815-brand-1.js?v=20260826-design-v2-2'); }
+      element(element) { element.setAttribute('src', '/assets/site-20260815-brand-1.js?v=20260826-design-v2-3'); }
     });
 
   if (activeKey === 'repair') {
