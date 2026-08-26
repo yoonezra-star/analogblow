@@ -15,22 +15,30 @@ const ACTIVE_BY_PATH = {
   '/local-services': 'repair', '/local-repair-shops': 'repair'
 };
 
+const REPAIR_TERMS = ['washer','dishwasher','refrigerator','aircon','boiler','bathroom','basin','toilet','shower','bidet','kitchen','sink','faucet','middle-door','interior-door','doorlock','fire-door','window','screen','sash','balcony','wardrobe','ceiling-fan','outlet','drying-rack','induction'];
+
+function articleMeta(path) {
+  const slug = path.toLowerCase();
+  if (REPAIR_TERMS.some(function(term){ return slug.indexOf(term) !== -1; })) return { href:'/local-services', label:'생활수리·가전' };
+  if (slug.indexOf('/posts/health') === 0) return { href:'/health', label:'병원·약국' };
+  if (slug.indexOf('/posts/kids') === 0 || slug.indexOf('school') !== -1 || slug.indexOf('childcare') !== -1) return { href:'/kids', label:'아이생활' };
+  if (slug.indexOf('/posts/mobility') === 0 || slug.indexOf('/posts/parking') === 0 || slug.indexOf('gtx') !== -1) return { href:'/mobility', label:'지도·이동' };
+  if (slug.indexOf('/posts/culture') === 0 || slug.indexOf('/posts/weekend') === 0 || slug.indexOf('cafe') !== -1 || slug.indexOf('park') !== -1) return { href:'/culture-leisure', label:'주말·외식' };
+  if (slug.indexOf('apartment') !== -1 || slug.indexOf('yadang-station-life') !== -1 || slug.indexOf('unjeong-station-life') !== -1 || slug.indexOf('gyoha') !== -1 || slug.indexOf('sannae') !== -1) return { href:'/neighborhoods', label:'생활권' };
+  if (slug.indexOf('/posts/policy') === 0 || slug.indexOf('real-estate') !== -1 || slug.indexOf('rent-check') !== -1) return { href:'/future-plan', label:'미래·정책' };
+  return { href:'/guides', label:'생활글' };
+}
+
 function hubMarkup(activeKey) {
   return '<p>다른 생활 주제</p><div>' + HUBS.map(function (item) {
     if (item.key === activeKey) return '<span class="hub-switcher__current" aria-current="page"><i aria-hidden="true">' + item.icon + '</i>' + item.label + '</span>';
     return '<a href="' + item.href + '"><i aria-hidden="true">' + item.icon + '</i>' + item.label + '</a>';
   }).join('') + '</div>';
 }
-
-function hubNavMarkup(activeKey) {
-  return '<nav class="hub-switcher" aria-label="운정 생활 허브">' + hubMarkup(activeKey) + '</nav>';
-}
-
+function hubNavMarkup(activeKey) { return '<nav class="hub-switcher" aria-label="운정 생활 허브">' + hubMarkup(activeKey) + '</nav>'; }
 function primaryNavMarkup(path) {
   const activeKey = ACTIVE_BY_PATH[path];
-  return HUBS.map(function (item) {
-    return '<a href="' + item.href + '"' + (activeKey === item.key ? ' aria-current="page"' : '') + '>' + item.label + '</a>';
-  }).join('');
+  return HUBS.map(function (item) { return '<a href="' + item.href + '"' + (activeKey === item.key ? ' aria-current="page"' : '') + '>' + item.label + '</a>'; }).join('');
 }
 
 const repairMenuScript = `
@@ -63,11 +71,15 @@ export async function onRequest(context) {
 
   const path = new URL(context.request.url).pathname.replace(/\/$/, '') || '/';
   const activeKey = ACTIVE_BY_PATH[path];
+  const isArticle = path.indexOf('/posts/') === 0;
+  const meta = isArticle ? articleMeta(path) : null;
+
   let rewriter = new HTMLRewriter()
     .on('head', {
       element(element) {
         element.append('<link rel="stylesheet" href="/design-system-v2.css?v=20260826-2">', { html: true });
         if (activeKey) element.append('<link rel="stylesheet" href="/category-v2.css?v=20260826-1">', { html: true });
+        if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260826-1">', { html: true });
       }
     })
     .on('body', {
@@ -76,6 +88,7 @@ export async function onRequest(context) {
         const next = new Set(classes.split(/\s+/).filter(Boolean));
         next.add('tc-v2');
         if (activeKey) next.add('tc-category-page');
+        if (isArticle) next.add('tc-article-page');
         element.setAttribute('class', Array.from(next).join(' '));
         element.append('<script>' + repairMenuScript + '</script>', { html: true });
       }
@@ -87,17 +100,21 @@ export async function onRequest(context) {
       }
     })
     .on('script[src*="site-20260815-brand-1.js"]', {
-      element(element) { element.setAttribute('src', '/assets/site-20260815-brand-1.js?v=20260826-design-v2-3'); }
+      element(element) { element.setAttribute('src', '/assets/site-20260815-brand-1.js?v=20260826-design-v2-4'); }
     });
 
+  if (isArticle) {
+    rewriter = rewriter.on('.article-page h1', {
+      element(element) {
+        element.before('<nav class="tc-breadcrumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><a href="' + meta.href + '">' + meta.label + '</a></nav>', { html: true });
+      }
+    });
+  }
+
   if (activeKey === 'repair') {
-    rewriter = rewriter.on('.info-standard', {
-      element(element) { element.after(hubNavMarkup(activeKey), { html: true }); }
-    });
+    rewriter = rewriter.on('.info-standard', { element(element) { element.after(hubNavMarkup(activeKey), { html: true }); } });
   } else if (activeKey) {
-    rewriter = rewriter.on('nav.hub-switcher', {
-      element(element) { element.setInnerContent(hubMarkup(activeKey), { html: true }); }
-    });
+    rewriter = rewriter.on('nav.hub-switcher', { element(element) { element.setInnerContent(hubMarkup(activeKey), { html: true }); } });
   }
 
   return rewriter.transform(response);
