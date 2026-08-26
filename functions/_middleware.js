@@ -50,6 +50,15 @@ function primaryNavMarkup(path) {
   const activeKey = ACTIVE_BY_PATH[path];
   return HUBS.map(function (item) { return '<a href="' + item.href + '"' + (activeKey === item.key ? ' aria-current="page"' : '') + '>' + item.label + '</a>'; }).join('');
 }
+function footerMarkup() {
+  return '<div class="tc-footer__inner">'
+    + '<section class="tc-footer__brand" aria-label="사이트 소개"><a href="/"><img src="/logo.svg" alt=""><span>파주운정라이프</span></a><p>운정에서 자주 필요한 생활정보를 짧고 찾기 쉽게 정리합니다.</p></section>'
+    + '<nav class="tc-footer__group" aria-label="생활정보"><h2>생활정보</h2><a href="/kids">아이생활</a><a href="/health">병원·약국</a><a href="/local-services">생활수리·가전</a><a href="/local-repair-shops">업체·공식 A/S</a></nav>'
+    + '<nav class="tc-footer__group" aria-label="검색과 지도"><h2>검색·지도</h2><a href="/search">통합검색</a><a href="/map-search">운정 생활지도</a><a href="/mobility">교통·주차</a><a href="/culture-leisure">주말·외식</a></nav>'
+    + '<nav class="tc-footer__group" aria-label="운영정보"><h2>운영정보</h2><a href="/about">소개</a><a href="/editorial-policy">편집 기준</a><a href="/contact">문의·정보 제보</a><a href="/data">공식 출처</a></nav>'
+    + '</div>'
+    + '<div class="tc-footer__bottom"><span>© Since 2026 파주운정라이프</span><nav class="tc-footer__legal" aria-label="법적 안내"><a href="/privacy">개인정보처리방침</a><a href="/terms">이용안내</a></nav></div>';
+}
 
 export async function onRequest(context) {
   const response = await context.next();
@@ -69,6 +78,7 @@ export async function onRequest(context) {
     .on('head', {
       element(element) {
         if (path !== '/') element.append('<link rel="stylesheet" href="/design-system-v2.css?v=20260826-3">', { html: true });
+        element.append('<link rel="stylesheet" href="/footer-v2.css?v=20260826-1">', { html: true });
         if (activeKey) element.append('<link rel="stylesheet" href="/category-v2.css?v=20260826-3">', { html: true });
         if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260826-2">', { html: true });
       }
@@ -89,6 +99,12 @@ export async function onRequest(context) {
       element(element) {
         element.setAttribute('aria-label', '주요 카테고리');
         element.setInnerContent(primaryNavMarkup(path), { html: true });
+      }
+    })
+    .on('.footer', {
+      element(element) {
+        element.setAttribute('class', 'footer tc-footer');
+        element.setInnerContent(footerMarkup(), { html: true });
       }
     })
     .on('script[src*="site-20260815-brand-1.js"]', {
