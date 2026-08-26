@@ -3,14 +3,21 @@
   "include": [
     "/api/*",
     "/kids",
+    "/kids/",
     "/health",
+    "/health/",
     "/mobility",
+    "/mobility/",
     "/culture-leisure",
+    "/culture-leisure/",
     "/neighborhoods",
+    "/neighborhoods/",
     "/future-plan",
+    "/future-plan/",
     "/local-services",
     "/local-services/",
-    "/local-repair-shops"
+    "/local-repair-shops",
+    "/local-repair-shops/"
   ],
   "exclude": []
 }
