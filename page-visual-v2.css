@@ -1,0 +1,6 @@
+.tc-page-visual{width:min(100%,920px);margin:var(--tc-space-10) 0 var(--tc-space-11);overflow:hidden;border:1px solid var(--tc-color-border);border-radius:var(--tc-radius-md);background:var(--tc-color-surface-raised);box-shadow:var(--tc-shadow-1)}
+.tc-page-visual img{display:block;width:100%;aspect-ratio:16/7;max-height:320px;padding:var(--tc-space-8);object-fit:contain;object-position:center}
+.home-v2-hero .tc-page-visual{max-width:760px;margin:var(--tc-space-6) 0 var(--tc-space-8)}
+.search-v2 .tc-page-visual,.search-page .tc-page-visual{max-width:820px}
+.tc-category-page .tc-page-visual{max-width:880px}
+@media(max-width:720px){.tc-page-visual{margin:var(--tc-space-8) 0 var(--tc-space-10);border-radius:var(--tc-radius-sm)}.tc-page-visual img{aspect-ratio:16/9;max-height:220px;padding:var(--tc-space-6)}}
