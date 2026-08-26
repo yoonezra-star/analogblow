@@ -27,8 +27,8 @@ function hubNavMarkup(activeKey) {
 }
 
 function primaryNavMarkup(path) {
+  const activeKey = ACTIVE_BY_PATH[path];
   return HUBS.map(function (item) {
-    const activeKey = ACTIVE_BY_PATH[path];
     return '<a href="' + item.href + '"' + (activeKey === item.key ? ' aria-current="page"' : '') + '>' + item.label + '</a>';
   }).join('');
 }
@@ -65,14 +65,15 @@ export async function onRequest(context) {
   const activeKey = ACTIVE_BY_PATH[path];
   let rewriter = new HTMLRewriter()
     .on('head', {
-      element(element) {
-        element.append('<link rel="stylesheet" href="/design-system-v2.css?v=20260826-1">', { html: true });
-      }
+      element(element) { element.append('<link rel="stylesheet" href="/design-system-v2.css?v=20260826-2">', { html: true }); }
     })
     .on('body', {
       element(element) {
         const classes = element.getAttribute('class') || '';
-        if (!classes.split(/\s+/).includes('tc-v2')) element.setAttribute('class', (classes + ' tc-v2').trim());
+        const next = new Set(classes.split(/\s+/).filter(Boolean));
+        next.add('tc-v2');
+        if (activeKey) next.add('tc-category-page');
+        element.setAttribute('class', Array.from(next).join(' '));
         element.append('<script>' + repairMenuScript + '</script>', { html: true });
       }
     })
@@ -83,9 +84,7 @@ export async function onRequest(context) {
       }
     })
     .on('script[src*="site-20260815-brand-1.js"]', {
-      element(element) {
-        element.setAttribute('src', '/assets/site-20260815-brand-1.js?v=20260826-design-v2-1');
-      }
+      element(element) { element.setAttribute('src', '/assets/site-20260815-brand-1.js?v=20260826-design-v2-2'); }
     });
 
   if (activeKey === 'repair') {
