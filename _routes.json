@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "include": ["/api/*", "/local-services", "/local-services/"],
+  "exclude": []
+}
