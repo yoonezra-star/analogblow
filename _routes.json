@@ -1,23 +1,17 @@
 {
   "version": 1,
-  "include": [
-    "/api/*",
-    "/kids",
-    "/kids/",
-    "/health",
-    "/health/",
-    "/mobility",
-    "/mobility/",
-    "/culture-leisure",
-    "/culture-leisure/",
-    "/neighborhoods",
-    "/neighborhoods/",
-    "/future-plan",
-    "/future-plan/",
-    "/local-services",
-    "/local-services/",
-    "/local-repair-shops",
-    "/local-repair-shops/"
-  ],
-  "exclude": []
+  "include": ["/*"],
+  "exclude": [
+    "/assets/*",
+    "/*.css",
+    "/*.js",
+    "/*.xml",
+    "/*.svg",
+    "/*.webp",
+    "/*.png",
+    "/*.jpg",
+    "/*.jpeg",
+    "/robots.txt",
+    "/favicon.ico"
+  ]
 }
