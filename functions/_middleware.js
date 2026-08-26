@@ -68,7 +68,7 @@ export async function onRequest(context) {
   let rewriter = new HTMLRewriter()
     .on('head', {
       element(element) {
-        element.append('<link rel="stylesheet" href="/design-system-v2.css?v=20260826-3">', { html: true });
+        if (path !== '/') element.append('<link rel="stylesheet" href="/design-system-v2.css?v=20260826-3">', { html: true });
         if (activeKey) element.append('<link rel="stylesheet" href="/category-v2.css?v=20260826-3">', { html: true });
         if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260826-2">', { html: true });
       }
@@ -81,7 +81,7 @@ export async function onRequest(context) {
         if (activeKey) next.add('tc-category-page');
         if (isArticle) next.add('tc-article-page');
         element.setAttribute('class', Array.from(next).join(' '));
-        element.append('<script defer src="/assets/site-v2.js?v=20260826-2"></script>', { html: true });
+        if (path !== '/') element.append('<script defer src="/assets/site-v2.js?v=20260826-2"></script>', { html: true });
         if (activeKey && activeKey !== 'repair') element.append('<script defer src="/assets/category-v2.js?v=20260826-1"></script>', { html: true });
       }
     })
