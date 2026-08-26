@@ -10,7 +10,40 @@
 /local-services.html
   Cache-Control: no-cache, no-store, must-revalidate
 
+/search
+  Cache-Control: no-cache, must-revalidate
+
 /posts/*
+  Cache-Control: no-cache, must-revalidate
+
+/design-system-v2.css
+  Cache-Control: no-cache, must-revalidate
+
+/global-nav-v2.css
+  Cache-Control: no-cache, must-revalidate
+
+/footer-v2.css
+  Cache-Control: no-cache, must-revalidate
+
+/category-v2.css
+  Cache-Control: no-cache, must-revalidate
+
+/article-v2.css
+  Cache-Control: no-cache, must-revalidate
+
+/home-v2.css
+  Cache-Control: no-cache, must-revalidate
+
+/search-v2.css
+  Cache-Control: no-cache, must-revalidate
+
+/assets/site-v2.js
+  Cache-Control: no-cache, must-revalidate
+
+/assets/category-v2.js
+  Cache-Control: no-cache, must-revalidate
+
+/assets/search-v2.js
   Cache-Control: no-cache, must-revalidate
 
 /assets/site-20260815-brand-1.js
