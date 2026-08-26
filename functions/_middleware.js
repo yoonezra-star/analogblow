@@ -81,7 +81,7 @@ export async function onRequest(context) {
         if (activeKey) next.add('tc-category-page');
         if (isArticle) next.add('tc-article-page');
         element.setAttribute('class', Array.from(next).join(' '));
-        if (path !== '/') element.append('<script defer src="/assets/site-v2.js?v=20260826-2"></script>', { html: true });
+        if (path !== '/') element.append('<script defer src="/assets/site-v2.js?v=20260826-3"></script>', { html: true });
         if (activeKey && activeKey !== 'repair') element.append('<script defer src="/assets/category-v2.js?v=20260826-1"></script>', { html: true });
       }
     })
