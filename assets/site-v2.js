@@ -10,6 +10,35 @@
     {key:'repair',label:'생활수리·가전',match:['/local-services','/local-repair-shops'],items:[['/local-services','생활수리 전체'],['/local-services#repair-door','현관·문'],['/local-services#repair-bath','욕실·배관'],['/local-services#repair-kitchen','주방·수납'],['/local-services#repair-laundry','세탁'],['/local-services#repair-fridge','냉장고·식기세척기'],['/local-services#repair-aircon','에어컨'],['/local-services#repair-boiler','보일러'],['/local-services#repair-electric','전기·스마트홈'],['/local-services#repair-window','창호·베란다'],['/local-repair-shops','업체·공식 A/S']]}
   ];
 
+  var legacyTargets={
+    '/posts/rainy-day-indoor-play-route':'/posts/culture-rainy-day-course',
+    '/posts/weekend-low-cost-indoor-park-course':'/posts/culture-free-indoor-weekend',
+    '/posts/unjeong-brunch-cafe-check':'/cafes',
+    '/posts/yadang-station-cafe-guide':'/cafes',
+    '/posts/yadang-dinner-parking-guide':'/posts/culture-restaurant-parking-check',
+    '/posts/unjeong-kids-menu-restaurant-check':'/posts/culture-family-restaurant-check',
+    '/posts/unjeong-family-restaurant-guide':'/restaurants'
+  };
+  var mergedHubAlternatives={
+    '/posts/unjeong-brunch-cafe-check':'/posts/unjeong-kids-brunch-guide',
+    '/posts/yadang-station-cafe-guide':'/posts/yadang-date-course-guide',
+    '/posts/unjeong-family-restaurant-guide':'/posts/culture-family-restaurant-check'
+  };
+  function normalizeLegacyLinks(){
+    document.querySelectorAll('a[href]').forEach(function(anchor){
+      try{
+        var url=new URL(anchor.getAttribute('href'),window.location.origin);
+        if(url.origin!==window.location.origin)return;
+        var key=url.pathname.replace(/\.html$/,'').replace(/\/$/,'')||'/';
+        var target=legacyTargets[key];
+        if(!target)return;
+        if(target===path&&mergedHubAlternatives[key])target=mergedHubAlternatives[key];
+        anchor.setAttribute('href',target+(url.search||'')+(url.hash||''));
+      }catch(e){}
+    });
+  }
+  normalizeLegacyLinks();
+
   function ensureGlobalStyle(){if(document.querySelector('link[href*="global-nav-v2.css"]'))return;var link=document.createElement('link');link.rel='stylesheet';link.href='/global-nav-v2.css?v=20260826-1';document.head.appendChild(link);}
   ensureGlobalStyle();
   function isCurrent(group){return group.match.some(function(p){return path===p||path.indexOf(p+'/')===0;});}
