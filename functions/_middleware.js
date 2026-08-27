@@ -9,9 +9,12 @@ const HUBS = [
 ];
 
 const ACTIVE_BY_PATH = {
-  '/kids': 'kids', '/health': 'health', '/mobility': 'mobility',
-  '/culture-leisure': 'weekend', '/weekend': 'weekend',
-  '/neighborhoods': 'neighborhoods', '/future-plan': 'future', '/policy-news': 'future',
+  '/kids': 'kids', '/school-roadmap': 'kids', '/kids-play': 'kids',
+  '/health': 'health',
+  '/mobility': 'mobility', '/map-search': 'mobility', '/parking-data': 'mobility',
+  '/culture-leisure': 'weekend', '/weekend': 'weekend', '/cafes': 'weekend', '/restaurants': 'weekend', '/calendar': 'weekend',
+  '/neighborhoods': 'neighborhoods', '/public-facilities': 'neighborhoods',
+  '/future-plan': 'future', '/policy-news': 'future',
   '/local-services': 'repair', '/local-repair-shops': 'repair'
 };
 
@@ -20,7 +23,6 @@ const PAGE_VISUALS = {
   '/kids': { src:'/assets/visual-kids.svg', alt:'학교와 통학, 아이생활 동선을 표현한 운정 아이생활 일러스트' },
   '/health': { src:'/assets/visual-health.svg', alt:'병원과 약국 이용 흐름을 표현한 운정 의료생활 일러스트' },
   '/mobility': { src:'/assets/visual-mobility.svg', alt:'교통과 주차, 이동 동선을 표현한 운정 이동생활 일러스트' },
-  '/map-search': { src:'/assets/visual-mobility.svg', alt:'운정의 장소와 이동 경로를 표현한 생활지도 일러스트' },
   '/culture-leisure': { src:'/assets/visual-culture.svg', alt:'공원과 가족 외출을 표현한 운정 주말생활 일러스트' },
   '/neighborhoods': { src:'/assets/visual-mobility.svg', alt:'운정 생활권과 주요 이동 축을 표현한 생활권 일러스트' },
   '/future-plan': { src:'/assets/visual-policy.svg', alt:'도시계획과 지역 변화를 표현한 운정 미래계획 일러스트' },
@@ -29,7 +31,11 @@ const PAGE_VISUALS = {
   '/search': { src:'/assets/visual-data.svg', alt:'생활정보를 분류하고 찾는 과정을 표현한 통합검색 일러스트' }
 };
 
-const SOURCE_V2_PATHS = new Set(['/kids', '/health', '/mobility', '/culture-leisure', '/neighborhoods', '/future-plan']);
+const SOURCE_V2_PATHS = new Set([
+  '/kids', '/health', '/mobility', '/culture-leisure', '/neighborhoods', '/future-plan',
+  '/cafes', '/restaurants', '/weekend', '/kids-play',
+  '/school-roadmap', '/parking-data', '/public-facilities', '/calendar'
+]);
 const REPAIR_TERMS = ['washer','dishwasher','refrigerator','aircon','boiler','bathroom','basin','toilet','shower','bidet','kitchen','sink','faucet','middle-door','interior-door','doorlock','fire-door','window','screen','sash','balcony','wardrobe','ceiling-fan','outlet','drying-rack','induction'];
 const LEGACY_CATEGORY_BLOCKS = ['.page-priority-grid','.content-visual','.category-brief','.community-check','.callout-strip','.api-live-panel','.weather-live-card','.feature-article'];
 const LEGACY_LINK_TARGETS = {
@@ -136,7 +142,7 @@ export async function onRequest(context) {
         if (isArticle) next.add('tc-article-page');
         element.setAttribute('class', Array.from(next).join(' '));
         if (path !== '/' && !sourceV2) element.append('<script defer src="/assets/site-v2.js?v=20260827-2"></script>', { html: true });
-        if (activeKey && activeKey !== 'repair' && !sourceV2) element.append('<script defer src="/assets/category-v2.js?v=20260826-1"></script>', { html: true });
+        if (activeKey && activeKey !== 'repair' && !sourceV2) element.append('<script defer src="/assets/category-v2.js?v=20260827-2"></script>', { html: true });
         if (isArticle) element.append('<script defer src="/assets/article-density-v2.js?v=20260827-1"></script>', { html: true });
       }
     })
@@ -179,6 +185,12 @@ export async function onRequest(context) {
   if (activeKey) {
     LEGACY_CATEGORY_BLOCKS.forEach(function(selector) {
       rewriter = rewriter.on(selector, { element(element) { element.remove(); } });
+    });
+  }
+
+  if (path === '/map-search') {
+    rewriter = rewriter.on('main.map-page > section.page-main', {
+      element(element) { element.remove(); }
     });
   }
 
