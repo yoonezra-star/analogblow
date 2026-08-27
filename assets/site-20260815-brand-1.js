@@ -13,8 +13,11 @@
     {key:'repair',href:'/local-services',icon:'🏠',label:'생활수리·가전'}
   ];
   var activeByPath={
-    '/kids':'kids','/health':'health','/mobility':'mobility','/culture-leisure':'weekend','/weekend':'weekend',
-    '/neighborhoods':'neighborhoods','/future-plan':'future','/policy-news':'future','/local-services':'repair','/local-repair-shops':'repair'
+    '/kids':'kids','/school-roadmap':'kids','/kids-play':'kids','/health':'health',
+    '/mobility':'mobility','/map-search':'mobility','/parking-data':'mobility',
+    '/culture-leisure':'weekend','/weekend':'weekend','/cafes':'weekend','/restaurants':'weekend','/calendar':'weekend',
+    '/neighborhoods':'neighborhoods','/public-facilities':'neighborhoods',
+    '/future-plan':'future','/policy-news':'future','/local-services':'repair','/local-repair-shops':'repair'
   };
   var activeKey=activeByPath[path]||null;
   var isArticle=path.indexOf('/posts/')===0;
@@ -73,10 +76,15 @@
     }
   }
 
+  if(path==='/map-search'){
+    var mapInfo=document.querySelector('main.map-page > section.page-main');
+    if(mapInfo)mapInfo.remove();
+  }
+
   var footer=document.querySelector('.footer');
   if(footer){footer.className='footer tc-footer';footer.innerHTML=footerMarkup();}
 
-  addScript('/assets/site-v2.js?v=20260826-3');
-  if(activeKey&&activeKey!=='repair')addScript('/assets/category-v2.js?v=20260826-1');
+  addScript('/assets/site-v2.js?v=20260827-2');
+  if(activeKey&&activeKey!=='repair')addScript('/assets/category-v2.js?v=20260827-2');
   if(isArticle)addScript('/assets/article-density-v2.js?v=20260827-1');
 })();
