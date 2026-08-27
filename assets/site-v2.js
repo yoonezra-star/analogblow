@@ -2,6 +2,16 @@
   if(window.__tcSiteV2Loaded)return;
   window.__tcSiteV2Loaded=true;
   var path=window.location.pathname.replace(/\/$/,'')||'/';
+  var pageVisuals={
+    '/':{src:'/assets/photos/hero-main-v2.webp',alt:'아파트 단지 녹지에서 가족이 산책하는 생활 풍경'},
+    '/kids':{src:'/assets/photos/hero-kids-v2.webp',alt:'보호자와 아이가 학교로 걸어가는 등교 생활 풍경'},
+    '/health':{src:'/assets/photos/hero-health-v2.webp',alt:'보호자와 아이가 의료진과 상담하는 진료 안내 풍경'},
+    '/mobility':{src:'/assets/photos/hero-mobility-v2.webp',alt:'버스와 자전거, 보행 동선이 함께 보이는 도시 이동 풍경'},
+    '/culture-leisure':{src:'/assets/photos/hero-weekend-v2.webp',alt:'카페와 녹지가 이어진 보행 거리에서 가족이 걷는 주말 풍경'},
+    '/neighborhoods':{src:'/assets/photos/hero-neighborhoods-v2.webp',alt:'아파트와 상가, 녹지가 이어진 보행 생활권 풍경'},
+    '/future-plan':{src:'/assets/photos/hero-future-v2.webp',alt:'주거 단지와 공공 공간이 함께 보이는 계획도시 풍경'},
+    '/local-services':{src:'/assets/photos/hero-repair-v2.webp',alt:'아파트에서 기술자가 세탁기를 점검하며 설명하는 생활수리 풍경'}
+  };
   var groups=[
     {key:'kids',label:'아이생활',match:['/kids','/school-roadmap','/kids-play'],items:[['/kids','아이생활 전체'],['/school-roadmap','학교·등원'],['/kids-play','키즈·실내놀이'],['/posts/kids-after-school-route','하교 후 루틴'],['/health','아이 병원 동선']]},
     {key:'health',label:'병원·약국',match:['/health'],items:[['/health','병원·약국 전체'],['/map-search?filter=hospital','병원 찾기'],['/map-search?filter=pharmacy','약국 찾기'],['/posts/health-night-holiday-pharmacy-guide','야간·휴일 약국'],['/posts/health-call-before-visit','방문 전 전화 확인']]},
@@ -42,6 +52,7 @@
   normalizeLegacyLinks();
 
   function ensureGlobalStyle(){if(document.querySelector('link[href*="global-nav-v2.css"]'))return;var link=document.createElement('link');link.rel='stylesheet';link.href='/global-nav-v2.css?v=20260826-1';document.head.appendChild(link);}
+  function ensurePhotoVisual(){var visual=pageVisuals[path];if(!visual||document.querySelector('.tc-page-visual'))return;if(!document.querySelector('link[href*="page-visual-v2.css"]')){var style=document.createElement('link');style.rel='stylesheet';style.href='/page-visual-v2.css?v=20260827-photo-2';document.head.appendChild(style);}var h1=document.querySelector('main h1');if(!h1)return;var figure=document.createElement('figure');figure.className='tc-page-visual';var image=document.createElement('img');image.src=visual.src;image.alt=visual.alt;image.decoding='async';image.loading=path==='/'?'eager':'lazy';if(path==='/')image.fetchPriority='high';figure.appendChild(image);h1.insertAdjacentElement('afterend',figure);}
   ensureGlobalStyle();
   function isCurrent(group){return group.match.some(function(p){return path===p||path.indexOf(p+'/')===0;});}
   function navMarkup(){return groups.map(function(group,index){var id='tcCategoryMenu'+index;return '<div class="site-category'+(isCurrent(group)?' is-current':'')+'"><button class="site-category-toggle" type="button" aria-expanded="false" aria-controls="'+id+'"><span>'+group.label+'</span><span class="site-category-chevron" aria-hidden="true"></span></button><div class="site-category-menu" id="'+id+'" role="menu" hidden>'+group.items.map(function(item,i){var itemPath=new URL(item[0],window.location.origin).pathname.replace(/\/$/,'')||'/';var active=path===itemPath;return '<a role="menuitem" href="'+item[0]+'"'+(i===0?' class="site-category-all"':'')+(active?' aria-current="page"':'')+'>'+item[1]+'</a>';}).join('')+'</div></div>';}).join('');}
@@ -50,6 +61,7 @@
   if(main&&!main.id)main.id='site-main-content';
   if(main&&!main.hasAttribute('tabindex'))main.setAttribute('tabindex','-1');
   if(main&&!document.querySelector('.skip-link')){var skip=document.createElement('a');skip.className='skip-link';skip.href='#site-main-content';skip.textContent='본문으로 바로가기';document.body.insertBefore(skip,document.body.firstChild);}
+  ensurePhotoVisual();
 
   document.querySelectorAll('.article-page').forEach(function(article){if(article.querySelector('.article-attribution'))return;var info=document.createElement('section');info.className='article-attribution';info.setAttribute('aria-label','콘텐츠 작성 및 검토 정보');info.innerHTML='<span><strong>작성·검토</strong> 파주운정라이프 운영팀</span><span>공식 기관과 공개정보를 우선 확인합니다.</span><a href="/editorial-policy">편집 기준</a><a href="/contact">오류 제보</a>';var standard=article.querySelector('.info-standard');if(standard)standard.insertAdjacentElement('afterend',info);else article.insertBefore(info,article.firstChild);});
 
