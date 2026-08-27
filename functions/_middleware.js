@@ -19,16 +19,14 @@ const ACTIVE_BY_PATH = {
 };
 
 const PAGE_VISUALS = {
-  '/': { src:'/assets/visual-home.svg', alt:'운정의 집과 생활 동선을 표현한 파주운정라이프 생활정보 일러스트' },
-  '/kids': { src:'/assets/visual-kids.svg', alt:'학교와 통학, 아이생활 동선을 표현한 운정 아이생활 일러스트' },
-  '/health': { src:'/assets/visual-health.svg', alt:'병원과 약국 이용 흐름을 표현한 운정 의료생활 일러스트' },
-  '/mobility': { src:'/assets/visual-mobility.svg', alt:'교통과 주차, 이동 동선을 표현한 운정 이동생활 일러스트' },
-  '/culture-leisure': { src:'/assets/visual-culture.svg', alt:'공원과 가족 외출을 표현한 운정 주말생활 일러스트' },
-  '/neighborhoods': { src:'/assets/visual-mobility.svg', alt:'운정 생활권과 주요 이동 축을 표현한 생활권 일러스트' },
-  '/future-plan': { src:'/assets/visual-policy.svg', alt:'도시계획과 지역 변화를 표현한 운정 미래계획 일러스트' },
-  '/local-services': { src:'/assets/visual-home.svg', alt:'집 안의 생활수리와 가전 점검을 표현한 생활서비스 일러스트' },
-  '/local-repair-shops': { src:'/assets/visual-home.svg', alt:'운정 생활수리 업체와 공식 서비스 연결을 표현한 일러스트' },
-  '/search': { src:'/assets/visual-data.svg', alt:'생활정보를 분류하고 찾는 과정을 표현한 통합검색 일러스트' }
+  '/': { src:'/assets/photos/hero-main.webp', alt:'아파트 단지 녹지에서 가족이 산책하는 생활 풍경' },
+  '/kids': { src:'/assets/photos/hero-kids.webp', alt:'보호자와 아이가 학교로 걸어가는 등교 생활 풍경' },
+  '/health': { src:'/assets/photos/hero-health.webp', alt:'보호자와 아이가 의료진과 상담하는 진료 안내 풍경' },
+  '/mobility': { src:'/assets/photos/hero-mobility.webp', alt:'버스와 자전거, 보행 동선이 함께 보이는 도시 이동 풍경' },
+  '/culture-leisure': { src:'/assets/photos/hero-weekend.webp', alt:'카페와 녹지가 이어진 보행 거리에서 가족이 걷는 주말 풍경' },
+  '/neighborhoods': { src:'/assets/photos/hero-neighborhoods.webp', alt:'아파트와 상가, 녹지가 이어진 보행 생활권 풍경' },
+  '/future-plan': { src:'/assets/photos/hero-future.webp', alt:'주거 단지와 공공 공간이 함께 보이는 계획도시 풍경' },
+  '/local-services': { src:'/assets/photos/hero-repair.webp', alt:'아파트에서 기술자가 세탁기를 점검하며 설명하는 생활수리 풍경' }
 };
 
 const SOURCE_V2_PATHS = new Set([
@@ -125,7 +123,7 @@ export async function onRequest(context) {
         if (!sourceV2) element.append('<link rel="stylesheet" href="/footer-v2.css?v=20260826-1">', { html: true });
         if (activeKey && !sourceV2) element.append('<link rel="stylesheet" href="/category-v2.css?v=20260826-4">', { html: true });
         if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260827-1">', { html: true });
-        if (pageVisual) element.append('<link rel="stylesheet" href="/page-visual-v2.css?v=20260827-1">', { html: true });
+        if (pageVisual) element.append('<link rel="stylesheet" href="/page-visual-v2.css?v=20260827-photo-1">', { html: true });
       }
     })
     .on('style', {
