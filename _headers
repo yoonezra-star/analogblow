@@ -43,6 +43,9 @@
 /qa-v2.css
   Cache-Control: no-cache, must-revalidate
 
+/pastel-theme-v2.css
+  Cache-Control: no-cache, must-revalidate
+
 /assets/site-v2.js
   Cache-Control: no-cache, must-revalidate
 
