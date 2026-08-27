@@ -1,4 +1,6 @@
 (function(){
+  if(window.__tcCategoryV2Loaded)return;
+  window.__tcCategoryV2Loaded=true;
   var body=document.body;
   if(!body||!body.classList.contains('tc-category-page'))return;
   var path=window.location.pathname.replace(/\/$/,'')||'/';
