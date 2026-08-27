@@ -32,6 +32,20 @@ const PAGE_VISUALS = {
 const SOURCE_V2_PATHS = new Set(['/kids', '/health', '/mobility', '/culture-leisure', '/neighborhoods', '/future-plan']);
 const REPAIR_TERMS = ['washer','dishwasher','refrigerator','aircon','boiler','bathroom','basin','toilet','shower','bidet','kitchen','sink','faucet','middle-door','interior-door','doorlock','fire-door','window','screen','sash','balcony','wardrobe','ceiling-fan','outlet','drying-rack','induction'];
 const LEGACY_CATEGORY_BLOCKS = ['.page-priority-grid','.content-visual','.category-brief','.community-check','.callout-strip','.api-live-panel','.weather-live-card','.feature-article'];
+const LEGACY_LINK_TARGETS = {
+  '/posts/rainy-day-indoor-play-route':'/posts/culture-rainy-day-course',
+  '/posts/weekend-low-cost-indoor-park-course':'/posts/culture-free-indoor-weekend',
+  '/posts/unjeong-brunch-cafe-check':'/cafes',
+  '/posts/yadang-station-cafe-guide':'/cafes',
+  '/posts/yadang-dinner-parking-guide':'/posts/culture-restaurant-parking-check',
+  '/posts/unjeong-kids-menu-restaurant-check':'/posts/culture-family-restaurant-check',
+  '/posts/unjeong-family-restaurant-guide':'/restaurants'
+};
+const MERGED_HUB_ALTERNATIVES = {
+  '/posts/unjeong-brunch-cafe-check':'/posts/unjeong-kids-brunch-guide',
+  '/posts/yadang-station-cafe-guide':'/posts/yadang-date-course-guide',
+  '/posts/unjeong-family-restaurant-guide':'/posts/culture-family-restaurant-check'
+};
 
 function articleMeta(path) {
   const slug = path.toLowerCase();
@@ -121,7 +135,7 @@ export async function onRequest(context) {
         if (activeKey) next.add('tc-category-page');
         if (isArticle) next.add('tc-article-page');
         element.setAttribute('class', Array.from(next).join(' '));
-        if (path !== '/' && !sourceV2) element.append('<script defer src="/assets/site-v2.js?v=20260826-3"></script>', { html: true });
+        if (path !== '/' && !sourceV2) element.append('<script defer src="/assets/site-v2.js?v=20260827-2"></script>', { html: true });
         if (activeKey && activeKey !== 'repair' && !sourceV2) element.append('<script defer src="/assets/category-v2.js?v=20260826-1"></script>', { html: true });
         if (isArticle) element.append('<script defer src="/assets/article-density-v2.js?v=20260827-1"></script>', { html: true });
       }
@@ -141,6 +155,21 @@ export async function onRequest(context) {
       element(element) {
         element.setAttribute('class', 'footer tc-footer');
         element.setInnerContent(footerMarkup(), { html: true });
+      }
+    })
+    .on('a[href]', {
+      element(element) {
+        const raw = element.getAttribute('href');
+        if (!raw) return;
+        let url;
+        try { url = new URL(raw, context.request.url); } catch (e) { return; }
+        const origin = new URL(context.request.url).origin;
+        if (url.origin !== origin) return;
+        const key = url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+        let target = LEGACY_LINK_TARGETS[key];
+        if (!target) return;
+        if (target === path && MERGED_HUB_ALTERNATIVES[key]) target = MERGED_HUB_ALTERNATIVES[key];
+        element.setAttribute('href', target + url.search + url.hash);
       }
     })
     .on('script[src*="site-20260815-brand-1.js"]', {
