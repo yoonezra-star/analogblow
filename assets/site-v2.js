@@ -1,4 +1,6 @@
 (function(){
+  if(window.__tcSiteV2Loaded)return;
+  window.__tcSiteV2Loaded=true;
   var path=window.location.pathname.replace(/\/$/,'')||'/';
   var groups=[
     {key:'kids',label:'아이생활',match:['/kids','/school-roadmap','/kids-play'],items:[['/kids','아이생활 전체'],['/school-roadmap','학교·등원'],['/kids-play','키즈·실내놀이'],['/posts/kids-after-school-route','하교 후 루틴'],['/health','아이 병원 동선']]},
