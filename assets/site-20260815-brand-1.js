@@ -19,6 +19,16 @@
     '/neighborhoods':'neighborhoods','/public-facilities':'neighborhoods',
     '/future-plan':'future','/policy-news':'future','/local-services':'repair','/local-repair-shops':'repair'
   };
+  var pageVisuals={
+    '/':{src:'/assets/photos/hero-main.webp',alt:'아파트 단지 녹지에서 가족이 산책하는 생활 풍경'},
+    '/kids':{src:'/assets/photos/hero-kids.webp',alt:'보호자와 아이가 학교로 걸어가는 등교 생활 풍경'},
+    '/health':{src:'/assets/photos/hero-health.webp',alt:'보호자와 아이가 의료진과 상담하는 진료 안내 풍경'},
+    '/mobility':{src:'/assets/photos/hero-mobility.webp',alt:'버스와 자전거, 보행 동선이 함께 보이는 도시 이동 풍경'},
+    '/culture-leisure':{src:'/assets/photos/hero-weekend.webp',alt:'카페와 녹지가 이어진 보행 거리에서 가족이 걷는 주말 풍경'},
+    '/neighborhoods':{src:'/assets/photos/hero-neighborhoods.webp',alt:'아파트와 상가, 녹지가 이어진 보행 생활권 풍경'},
+    '/future-plan':{src:'/assets/photos/hero-future.webp',alt:'주거 단지와 공공 공간이 함께 보이는 계획도시 풍경'},
+    '/local-services':{src:'/assets/photos/hero-repair.webp',alt:'아파트에서 기술자가 세탁기를 점검하며 설명하는 생활수리 풍경'}
+  };
   var activeKey=activeByPath[path]||null;
   var isArticle=path.indexOf('/posts/')===0;
   var legacyBlocks=['.page-priority-grid','.content-visual','.category-brief','.community-check','.callout-strip','.api-live-panel','.weather-live-card','.feature-article'];
@@ -64,6 +74,18 @@
   if(main&&!main.hasAttribute('tabindex'))main.setAttribute('tabindex','-1');
   if(main&&!document.querySelector('.skip-link')){
     var skip=document.createElement('a');skip.className='skip-link';skip.href='#site-main-content';skip.textContent='본문으로 바로가기';document.body.insertBefore(skip,document.body.firstChild);
+  }
+
+  var pageVisual=pageVisuals[path]||null;
+  if(pageVisual&&!document.querySelector('.tc-page-visual')){
+    addStyle('/page-visual-v2.css?v=20260827-photo-1');
+    var h1=document.querySelector('main h1');
+    if(h1){
+      var figure=document.createElement('figure');figure.className='tc-page-visual';
+      var image=document.createElement('img');image.src=pageVisual.src;image.alt=pageVisual.alt;image.decoding='async';image.loading=path==='/'?'eager':'lazy';
+      if(path==='/')image.fetchPriority='high';
+      figure.appendChild(image);h1.insertAdjacentElement('afterend',figure);
+    }
   }
 
   if(activeKey){
