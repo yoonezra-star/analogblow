@@ -46,6 +46,9 @@
 /pastel-theme-v2.css
   Cache-Control: no-cache, must-revalidate
 
+/secondary-v2.css
+  Cache-Control: no-cache, must-revalidate
+
 /assets/site-v2.js
   Cache-Control: no-cache, must-revalidate
 
@@ -56,6 +59,9 @@
   Cache-Control: no-cache, must-revalidate
 
 /assets/article-density-v2.js
+  Cache-Control: no-cache, must-revalidate
+
+/assets/secondary-v2.js
   Cache-Control: no-cache, must-revalidate
 
 /assets/site-20260815-brand-1.js
