@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-08-30",
+  "scope": "파주 운정·야당 생활권",
+  "policy": "주소·영업시간·주차 등 변동 가능한 정보는 공개 지도·매장 정보·후기 플랫폼을 교차 확인하고, 후기 원문은 복제하지 않고 공통적으로 반복되는 특징만 요약한다.",
+  "cafes": [
+    {
+      "slug": "or-coffee-yadang",
+      "name": "OR COFFEE 오알커피",
+      "area": "야당동",
+      "address": "경기 파주시 송학1길 126",
+      "hours": "10:00~21:00 안내, 화요일 휴무 여부는 방문 전 재확인",
+      "parking": "매장 앞 무료주차 후기 다수",
+      "fit": ["커피", "디저트", "혼카페", "데이트"],
+      "reviewSummary": "직접 로스팅·원두 선택, 커피 맛, 1·2층 공간과 비교적 차분한 분위기가 반복적으로 언급됩니다.",
+      "reviewSource": "https://www.diningcode.com/profile.php?rid=f3giPhtIjKCZ",
+      "naverReviewSearch": "https://search.naver.com/search.naver?where=view&query=OR%20COFFEE%20%EC%95%BC%EB%8B%B9"
+    },
+    {
+      "slug": "navajo-yadang",
+      "name": "카페 나바호",
+      "area": "야당동",
+      "address": "경기 파주시 하우고개길 174",
+      "hours": "화~목·일 12:00~22:00, 금·토 연장 영업 안내, 월요일 휴무",
+      "parking": "전용 주차공간 안내",
+      "fit": ["이색카페", "데이트", "사진", "드라이브"],
+      "reviewSummary": "미국 서부·산장 콘셉트, 넓은 공간, 야외 좌석과 독특한 분위기가 후기에서 반복됩니다. 노키즈 운영 안내도 있어 동행 조건 확인이 필요합니다.",
+      "reviewSource": "https://www.diningcode.com/profile.php?rid=r7EQ7hT28rqg",
+      "naverReviewSearch": "https://search.naver.com/search.naver?where=view&query=%EC%B9%B4%ED%8E%98%20%EB%82%98%EB%B0%94%ED%98%B8%20%ED%8C%8C%EC%A3%BC"
+    },
+    {
+      "slug": "brunchbean-yadang",
+      "name": "브런치빈 파주점",
+      "area": "야당역",
+      "address": "경기 파주시 경의로 1090 삼융타워 802호",
+      "hours": "09:00~21:00, 라스트오더 20:00 안내",
+      "parking": "건물 지하주차장, 무료지원 시간은 방문 전 확인",
+      "fit": ["브런치", "아이동반", "모임", "루프탑"],
+      "reviewSummary": "넓은 실내, 브런치 메뉴 선택 폭, 가족·모임 이용과 루프탑이 자주 언급되며 피크 시간 혼잡 후기도 확인됩니다.",
+      "reviewSource": "https://www.diningcode.com/profile.php?rid=5mY7UoeqyvAu",
+      "naverReviewSearch": "https://search.naver.com/search.naver?where=view&query=%EB%B8%8C%EB%9F%B0%EC%B9%98%EB%B9%88%20%ED%8C%8C%EC%A3%BC%EC%A0%90%20%EC%95%BC%EB%8B%B9"
+    },
+    {
+      "slug": "levie-milk-yadang",
+      "name": "르븨밀크 야당역점",
+      "area": "야당역",
+      "address": "경기 파주시 경의로 1080 명동프라자 101호",
+      "hours": "10:00~22:00, 라스트오더 21:30 안내",
+      "parking": "무료주차 안내",
+      "fit": ["소금빵", "카이막", "디저트", "데이트"],
+      "reviewSummary": "카이막·소금빵과 크림라떼 계열 메뉴, 깔끔한 좌석과 접근성이 반복적으로 언급됩니다.",
+      "reviewSource": "https://www.diningcode.com/profile.php?rid=xrXTWrbXwKiP",
+      "naverReviewSearch": "https://search.naver.com/search.naver?where=view&query=%EB%A5%B4%EB%B8%A8%EB%B0%80%ED%81%AC%20%EC%95%BC%EB%8B%B9%EC%97%AD%EC%A0%90"
+    },
+    {
+      "slug": "poun-coffee-unjeong",
+      "name": "파운커피 운정 본점",
+      "area": "동패동",
+      "address": "경기 파주시 와석순환로192번길 20 1층",
+      "hours": "10:00~20:00 안내",
+      "parking": "매장 앞 주차 후기, 만차 시 주변 주차 확인 필요",
+      "fit": ["커피", "휘낭시에", "반려동물", "혼카페"],
+      "reviewSummary": "커피와 휘낭시에, 조용한 분위기와 반려동물 동반이 반복적으로 언급됩니다. 공개 후기 교차분석에서도 디저트·반려동물 관련 언급이 두드러집니다.",
+      "reviewSource": "https://www.diningcode.com/profile.php?rid=MaYD0mvQmkLU",
+      "naverReviewSearch": "https://search.naver.com/search.naver?where=view&query=%ED%8C%8C%EC%9A%B4%EC%BB%A4%ED%94%BC%20%EC%9A%B4%EC%A0%95%20%EB%B3%B8%EC%A0%90"
+    },
+    {
+      "slug": "heun-coffee-bar-unjeong",
+      "name": "흔커피바",
+      "area": "목동동",
+      "address": "경기 파주시 청암로48번길 16-9 1층",
+      "hours": "화~일 08:00~22:00, 월요일 휴무로 최근 후기 안내",
+      "parking": "매장 앞 소규모 주차, 피크 시간 대안 주차 필요",
+      "fit": ["감성카페", "디저트", "테라스", "데이트"],
+      "reviewSummary": "유리블록 인테리어, 시그니처 커피·휘낭시에, 작은 테라스와 감성적인 공간이 반복적으로 언급되며 주말 피크 시간 혼잡 후기도 있습니다.",
+      "reviewSource": "https://www.diningcode.com/profile.php?rid=NjypBFRUJqWV",
+      "naverReviewSearch": "https://search.naver.com/search.naver?where=view&query=%ED%9D%94%EC%BB%A4%ED%94%BC%EB%B0%94%20%ED%8C%8C%EC%A3%BC%20%EC%9A%B4%EC%A0%95"
+    }
+  ]
+}
