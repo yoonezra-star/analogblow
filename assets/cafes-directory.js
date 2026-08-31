@@ -14,7 +14,12 @@
     'jacob-yadang': './posts/yadang-cafe-jacob-view-parking-guide',
     'ink-coffee-starfield-unjeong': './posts/starfield-unjeong-ink-coffee-guide',
     'artisan-bakers-starfield-unjeong': './posts/starfield-unjeong-artisan-bakers-guide',
-    'vivamus-dongpae': './posts/dongpae-vivamus-cafe-guide'
+    'vivamus-dongpae': './posts/dongpae-vivamus-cafe-guide',
+    'or-coffee-yadang': './posts/yadang-or-coffee-roastery-guide',
+    'navajo-yadang': './posts/yadang-cafe-navajo-guide',
+    'brunchbean-yadang': './posts/yadang-brunchbean-paju-guide',
+    'cafedang-mokdong': './posts/mokdong-cafedang-dessert-guide',
+    'main-place-dongpae': './posts/dongpae-main-place-large-cafe-guide'
   };
 
   const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
@@ -29,7 +34,7 @@
     return `<article class="article-card cafe-directory-card"><span>${escapeHtml(cafe.area)} · ${escapeHtml(tags)}</span><strong>${escapeHtml(cafe.name)}</strong><p><b>주소</b> ${escapeHtml(cafe.address)}<br><b>운영</b> ${escapeHtml(cafe.hours)}<br><b>주차</b> ${escapeHtml(cafe.parking)}${phone}</p><p>${escapeHtml(cafe.reviewSummary)}</p><p>${detail}<a href="${escapeHtml(cafe.naverReviewSearch)}" target="_blank" rel="noopener noreferrer">네이버 후기 검색</a> · <a href="${escapeHtml(cafe.reviewSource)}" target="_blank" rel="noopener noreferrer">후기 근거 보기</a> · <a href="${mapHref}">지도 찾기</a></p></article>`;
   };
 
-  fetch('./data/cafes-verified.json?v=20260831-3')
+  fetch('./data/cafes-verified.json?v=20260831-4')
     .then((response) => {
       if (!response.ok) throw new Error('cafe-data');
       return response.json();
