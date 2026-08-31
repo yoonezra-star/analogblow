@@ -9,6 +9,14 @@
     starfield: { title: '스타필드빌리지 운정·와동동', description: '쇼핑 동선과 주차, 베이커리·북카페·LP 감성 카페를 한 번에 비교합니다.' }
   };
 
+  const detailPages = {
+    'pattio-unjeong': './posts/unjeong-pattio-cafe-review-guide',
+    'jacob-yadang': './posts/yadang-cafe-jacob-view-parking-guide',
+    'ink-coffee-starfield-unjeong': './posts/starfield-unjeong-ink-coffee-guide',
+    'artisan-bakers-starfield-unjeong': './posts/starfield-unjeong-artisan-bakers-guide',
+    'vivamus-dongpae': './posts/dongpae-vivamus-cafe-guide'
+  };
+
   const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[char]));
@@ -17,10 +25,11 @@
     const phone = cafe.phone ? `<br><b>전화</b> ${escapeHtml(cafe.phone)}` : '';
     const tags = Array.isArray(cafe.fit) ? cafe.fit.join(' · ') : '';
     const mapHref = `./map-search?q=${encodeURIComponent(cafe.name)}`;
-    return `<article class="article-card cafe-directory-card"><span>${escapeHtml(cafe.area)} · ${escapeHtml(tags)}</span><strong>${escapeHtml(cafe.name)}</strong><p><b>주소</b> ${escapeHtml(cafe.address)}<br><b>운영</b> ${escapeHtml(cafe.hours)}<br><b>주차</b> ${escapeHtml(cafe.parking)}${phone}</p><p>${escapeHtml(cafe.reviewSummary)}</p><p><a href="${escapeHtml(cafe.naverReviewSearch)}" target="_blank" rel="noopener noreferrer">네이버 후기 검색</a> · <a href="${escapeHtml(cafe.reviewSource)}" target="_blank" rel="noopener noreferrer">후기 근거 보기</a> · <a href="${mapHref}">지도 찾기</a></p></article>`;
+    const detail = detailPages[cafe.slug] ? `<a href="${detailPages[cafe.slug]}">상세 가이드</a> · ` : '';
+    return `<article class="article-card cafe-directory-card"><span>${escapeHtml(cafe.area)} · ${escapeHtml(tags)}</span><strong>${escapeHtml(cafe.name)}</strong><p><b>주소</b> ${escapeHtml(cafe.address)}<br><b>운영</b> ${escapeHtml(cafe.hours)}<br><b>주차</b> ${escapeHtml(cafe.parking)}${phone}</p><p>${escapeHtml(cafe.reviewSummary)}</p><p>${detail}<a href="${escapeHtml(cafe.naverReviewSearch)}" target="_blank" rel="noopener noreferrer">네이버 후기 검색</a> · <a href="${escapeHtml(cafe.reviewSource)}" target="_blank" rel="noopener noreferrer">후기 근거 보기</a> · <a href="${mapHref}">지도 찾기</a></p></article>`;
   };
 
-  fetch('./data/cafes-verified.json?v=20260831-2')
+  fetch('./data/cafes-verified.json?v=20260831-3')
     .then((response) => {
       if (!response.ok) throw new Error('cafe-data');
       return response.json();
