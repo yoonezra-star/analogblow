@@ -15,12 +15,11 @@
   var secondaryPaths=['/policy-news','/movein','/weather-life','/real-estate','/unjeong-intro','/polling-place'];
   var groups=[
     {key:'kids',label:'아이생활',match:['/kids','/school-roadmap','/kids-play'],items:[['/kids','아이생활 전체'],['/school-roadmap','학교·등원'],['/kids-play','키즈·실내놀이'],['/posts/kids-after-school-route','하교 후 루틴'],['/health','아이 병원 동선']]},
-    {key:'health',label:'병원·약국',match:['/health'],items:[['/health','병원·약국 전체'],['/map-search?filter=hospital','병원 찾기'],['/map-search?filter=pharmacy','약국 찾기'],['/posts/health-night-holiday-pharmacy-guide','야간·휴일 약국'],['/posts/health-call-before-visit','방문 전 전화 확인']]},
+    {key:'health',label:'병원·약국',match:['/health'],items:[['/health','병원·약국 전체'],['/map-search?filter=hospital','병원 찾기'],['/map-search?filter=pharmacy','약국 찾기'],['/posts/health-weekend-pharmacy','야간·휴일 약국'],['/posts/health-child-clinic-check','방문 전 전화 확인']]},
     {key:'mobility',label:'지도·이동',match:['/mobility','/map-search','/parking-data'],items:[['/map-search','운정 생활 지도'],['/mobility','교통·주차 전체'],['/parking-data','주차 데이터'],['/posts/gtx-unjeong-station-transfer-parking-guide-2026','GTX-A 환승·주차'],['/posts/mobility-ddokbus-unjeong-guide','똑버스 이용']]},
     {key:'weekend',label:'주말·외식',match:['/culture-leisure','/weekend','/cafes','/restaurants','/calendar','/weather-life'],items:[['/culture-leisure','주말·외식 전체'],['/weekend','가족 나들이'],['/kids-play','키즈·실내놀이'],['/cafes','카페'],['/restaurants','운정 상권 가이드'],['/calendar','생활 캘린더'],['/weather-life','날씨 생활']]},
-    {key:'neighborhoods',label:'생활권',match:['/neighborhoods','/unjeong-intro','/public-facilities','/real-estate'],items:[['/neighborhoods','생활권 전체'],['/unjeong-intro','운정 소개'],['/public-facilities','공공 생활시설'],['/real-estate','실거래·거주 체크'],['/posts/unjeong-station-life-guide','운정역 생활권'],['/posts/yadang-station-life-guide','야당역 생활권'],['/posts/gyoha-dongpae-life-guide','교하·동패 생활권']]},
-    {key:'future',label:'미래·정책',match:['/future-plan','/policy-news','/movein','/polling-place'],items:[['/future-plan','미래·정책 전체'],['/policy-news','정책 뉴스'],['/movein','입주 첫 달'],['/posts/policy-paju-local-currency-check','파주 생활정책'],['/polling-place','투표소 확인']]},
-    {key:'repair',label:'생활수리·가전',match:['/local-services','/local-repair-shops'],items:[['/local-services','생활수리 전체'],['/local-services#repair-door','현관·문'],['/local-services#repair-bath','욕실·배관'],['/local-services#repair-kitchen','주방·수납'],['/local-services#repair-laundry','세탁'],['/local-services#repair-fridge','냉장고·식기세척기'],['/local-services#repair-aircon','에어컨'],['/local-services#repair-boiler','보일러'],['/local-services#repair-electric','전기·스마트홈'],['/local-services#repair-window','창호·베란다'],['/local-repair-shops','업체·공식 A/S']]}
+    {key:'neighborhoods',label:'생활권',match:['/neighborhoods','/unjeong-intro','/public-facilities','/real-estate'],items:[['/neighborhoods','생활권 전체'],['/unjeong-intro','운정 소개'],['/public-facilities','공공 생활시설'],['/real-estate','실거래·거주 체크'],['/neighborhoods#unjeong-station','운정역 생활권'],['/neighborhoods#yadang-station','야당역 생활권'],['/neighborhoods#gyoha-dongpae','교하·동패 생활권']]},
+    {key:'future',label:'미래·정책',match:['/future-plan','/policy-news','/movein','/polling-place'],items:[['/future-plan','미래·정책 전체'],['/policy-news','정책 뉴스'],['/movein','입주 첫 달'],['/posts/policy-paju-local-currency-check','파주 생활정책'],['/polling-place','투표소 확인']]}
   ];
 
   var legacyTargets={
@@ -30,7 +29,15 @@
     '/posts/yadang-station-cafe-guide':'/cafes',
     '/posts/yadang-dinner-parking-guide':'/posts/culture-restaurant-parking-check',
     '/posts/unjeong-kids-menu-restaurant-check':'/posts/culture-family-restaurant-check',
-    '/posts/unjeong-family-restaurant-guide':'/restaurants'
+    '/posts/unjeong-family-restaurant-guide':'/restaurants',
+    '/posts/health-call-before-visit':'/posts/health-child-clinic-check',
+    '/posts/health-after-school-pediatric-check':'/posts/health-child-clinic-check',
+    '/posts/health-child-ent-visit-guide':'/posts/health-pediatric-ent-pharmacy-route',
+    '/posts/health-night-holiday-pharmacy-guide':'/posts/health-weekend-pharmacy',
+    '/posts/unjeong-station-life-guide':'/neighborhoods#unjeong-station',
+    '/posts/yadang-station-life-guide':'/neighborhoods#yadang-station',
+    '/posts/sannae-haesol-life-guide':'/neighborhoods#sannae-haesol',
+    '/posts/gyoha-dongpae-life-guide':'/neighborhoods#gyoha-dongpae'
   };
   var mergedHubAlternatives={
     '/posts/unjeong-brunch-cafe-check':'/posts/unjeong-kids-brunch-guide',

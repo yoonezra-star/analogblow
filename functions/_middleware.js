@@ -4,8 +4,7 @@ const HUBS = [
   { key: 'mobility', href: '/mobility', icon: '🗺️', label: '지도·이동' },
   { key: 'weekend', href: '/culture-leisure', icon: '🌿', label: '주말·외식' },
   { key: 'neighborhoods', href: '/neighborhoods', icon: '🏘️', label: '생활권' },
-  { key: 'future', href: '/future-plan', icon: '🏗️', label: '미래·정책' },
-  { key: 'repair', href: '/local-services', icon: '🏠', label: '생활수리·가전' }
+  { key: 'future', href: '/future-plan', icon: '🏗️', label: '미래·정책' }
 ];
 
 const ACTIVE_BY_PATH = {
@@ -43,13 +42,58 @@ const LEGACY_LINK_TARGETS = {
   '/posts/yadang-station-cafe-guide':'/cafes',
   '/posts/yadang-dinner-parking-guide':'/posts/culture-restaurant-parking-check',
   '/posts/unjeong-kids-menu-restaurant-check':'/posts/culture-family-restaurant-check',
-  '/posts/unjeong-family-restaurant-guide':'/restaurants'
+  '/posts/unjeong-family-restaurant-guide':'/restaurants',
+  '/posts/health-call-before-visit':'/posts/health-child-clinic-check',
+  '/posts/health-after-school-pediatric-check':'/posts/health-child-clinic-check',
+  '/posts/health-child-ent-visit-guide':'/posts/health-pediatric-ent-pharmacy-route',
+  '/posts/health-night-holiday-pharmacy-guide':'/posts/health-weekend-pharmacy',
+  '/posts/unjeong-station-life-guide':'/neighborhoods#unjeong-station',
+  '/posts/yadang-station-life-guide':'/neighborhoods#yadang-station',
+  '/posts/sannae-haesol-life-guide':'/neighborhoods#sannae-haesol',
+  '/posts/gyoha-dongpae-life-guide':'/neighborhoods#gyoha-dongpae'
 };
 const MERGED_HUB_ALTERNATIVES = {
   '/posts/unjeong-brunch-cafe-check':'/posts/unjeong-kids-brunch-guide',
   '/posts/yadang-station-cafe-guide':'/posts/yadang-date-course-guide',
   '/posts/unjeong-family-restaurant-guide':'/posts/culture-family-restaurant-check'
 };
+
+const CORE_POST_PREFIXES = [
+  '/posts/health-', '/posts/kids-', '/posts/mobility-', '/posts/parking-',
+  '/posts/policy-', '/posts/culture-', '/posts/facility-', '/posts/weather-',
+  '/posts/paju-', '/posts/weekend-', '/posts/library-'
+];
+const CORE_NAMED_POSTS = new Set([
+  '/posts/gtx-unjeong-station-transfer-parking-guide-2026',
+  '/posts/rainy-day-indoor-play-route',
+  '/posts/unjeong-apartment-living-zone-check',
+  '/posts/unjeong-brunch-cafe-check',
+  '/posts/unjeong-cafe-family-guide',
+  '/posts/unjeong-cafe-parking-guide',
+  '/posts/unjeong-family-restaurant-guide',
+  '/posts/unjeong-geumchon-linked-development-check-2026',
+  '/posts/unjeong-kids-cafe-check',
+  '/posts/unjeong-kids-menu-restaurant-check',
+  '/posts/unjeong-lake-cafe-walk-course',
+  '/posts/unjeong-large-parks-guide',
+  '/posts/unjeong-library-culture-application-calendar-2026',
+  '/posts/unjeong-movein-admin-waste-checklist-2026',
+  '/posts/unjeong-movein-first-month-family-routine-2026',
+  '/posts/unjeong-real-estate-transaction-guide',
+  '/posts/unjeong-rent-check-guide',
+  '/posts/unjeong3-school-transfer-assignment-guide',
+  '/posts/yadang-dinner-parking-guide',
+  '/posts/yadang-station-cafe-guide',
+  '/posts/weekly-unjeong-family-calendar-check'
+]);
+
+function shouldNoIndex(path) {
+  if (path === '/search' || path === '/fortune' || path === '/local-services' || path === '/local-services-v2' || path === '/local-repair-shops') return true;
+  if (path.indexOf('/posts/') !== 0) return false;
+  return !CORE_NAMED_POSTS.has(path) && !CORE_POST_PREFIXES.some(function(prefix) {
+    return path.indexOf(prefix) === 0;
+  });
+}
 
 function articleMeta(path) {
   const slug = path.toLowerCase();
@@ -86,7 +130,7 @@ function primaryNavMarkup(path) {
 function footerMarkup() {
   return '<div class="tc-footer__inner">'
     + '<section class="tc-footer__brand" aria-label="사이트 소개"><a href="/"><img src="/logo.svg" alt=""><span>파주운정라이프</span></a><p>운정에서 자주 필요한 생활정보를 짧고 찾기 쉽게 정리합니다.</p></section>'
-    + '<nav class="tc-footer__group" aria-label="생활정보"><h2>생활정보</h2><a href="/kids">아이생활</a><a href="/health">병원·약국</a><a href="/local-services">생활수리·가전</a><a href="/local-repair-shops">업체·공식 A/S</a></nav>'
+    + '<nav class="tc-footer__group" aria-label="생활정보"><h2>생활정보</h2><a href="/kids">아이생활</a><a href="/health">병원·약국</a><a href="/mobility">교통·주차</a><a href="/culture-leisure">주말·외식</a></nav>'
     + '<nav class="tc-footer__group" aria-label="검색과 지도"><h2>검색·지도</h2><a href="/search">통합검색</a><a href="/map-search">운정 생활지도</a><a href="/mobility">교통·주차</a><a href="/culture-leisure">주말·외식</a></nav>'
     + '<nav class="tc-footer__group" aria-label="운영정보"><h2>운영정보</h2><a href="/about">소개</a><a href="/editorial-policy">편집 기준</a><a href="/contact">문의·정보 제보</a><a href="/data">공식 출처</a></nav>'
     + '</div>'
@@ -105,6 +149,7 @@ export async function onRequest(context) {
   if (!contentType.includes('text/html')) return response;
 
   const path = new URL(context.request.url).pathname.replace(/\/$/, '') || '/';
+  const noIndex = shouldNoIndex(path);
   const activeKey = ACTIVE_BY_PATH[path];
   const pageVisual = PAGE_VISUALS[path] || null;
   const sourceV2 = SOURCE_V2_PATHS.has(path);
@@ -124,6 +169,16 @@ export async function onRequest(context) {
         if (activeKey && !sourceV2) element.append('<link rel="stylesheet" href="/category-v2.css?v=20260826-4">', { html: true });
         if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260827-1">', { html: true });
         if (pageVisual) element.append('<link rel="stylesheet" href="/page-visual-v2.css?v=20260827-photo-2">', { html: true });
+      }
+    })
+    .on('meta[name="robots"]', {
+      element(element) {
+        if (noIndex) element.setAttribute('content', 'noindex, follow');
+      }
+    })
+    .on('script[src*="pagead2.googlesyndication.com"]', {
+      element(element) {
+        if (noIndex) element.remove();
       }
     })
     .on('style', {
@@ -218,5 +273,7 @@ export async function onRequest(context) {
     rewriter = rewriter.on('nav.hub-switcher', { element(element) { element.setInnerContent(hubMarkup(activeKey), { html: true }); } });
   }
 
-  return rewriter.transform(response);
+  const transformed = rewriter.transform(response);
+  if (noIndex) transformed.headers.set('X-Robots-Tag', 'noindex, follow');
+  return transformed;
 }

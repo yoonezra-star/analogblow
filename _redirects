@@ -1,4 +1,9 @@
 # www -> apex is configured in Cloudflare Bulk Redirects, not Pages _redirects.
+/sitemap-local.xml /sitemap.xml 301
+/sitemap-local-2.xml /sitemap.xml 301
+/sitemap-local-3.xml /sitemap.xml 301
+/sitemap-services.xml /sitemap.xml 301
+/sitemap-cafes.xml /sitemap.xml 301
 /rss /rss.xml 301
 /posts/:slug.html /posts/:slug 301
 /:slug.html /:slug 301
@@ -9,3 +14,12 @@
 /posts/yadang-dinner-parking-guide /posts/culture-restaurant-parking-check 301
 /posts/unjeong-kids-menu-restaurant-check /posts/culture-family-restaurant-check 301
 /posts/unjeong-family-restaurant-guide /restaurants 301
+/fortune /guides 301
+/posts/health-call-before-visit /posts/health-child-clinic-check 301
+/posts/health-after-school-pediatric-check /posts/health-child-clinic-check 301
+/posts/health-child-ent-visit-guide /posts/health-pediatric-ent-pharmacy-route 301
+/posts/health-night-holiday-pharmacy-guide /posts/health-weekend-pharmacy 301
+/posts/unjeong-station-life-guide /neighborhoods#unjeong-station 301
+/posts/yadang-station-life-guide /neighborhoods#yadang-station 301
+/posts/sannae-haesol-life-guide /neighborhoods#sannae-haesol 301
+/posts/gyoha-dongpae-life-guide /neighborhoods#gyoha-dongpae 301
