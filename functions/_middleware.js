@@ -235,7 +235,7 @@ export async function onRequest(context) {
       element(element) { element.remove(); }
     });
 
-  if (activeKey) {
+  if (activeKey && !sourceV2) {
     LEGACY_CATEGORY_BLOCKS.forEach(function(selector) {
       rewriter = rewriter.on(selector, { element(element) { element.remove(); } });
     });

@@ -1,3 +1,5 @@
+import { OFFICIAL_PLACES } from '../../data/official-places.js';
+
 const DATASETS = {
   parking: {
     file: 'https://www.data.go.kr/cmm/cmm/fileDownload.do?atchFileId=FILE_000000003542139&fileDetailSn=1&insertDataPrcus=N',
@@ -134,21 +136,16 @@ export async function onRequestGet({ request }) {
   const dataset = DATASETS[type];
   if (!dataset) return json({ mode: 'official-source', items: [], guide: '지원하지 않는 데이터 유형입니다.' }, 400);
 
-  try {
-    const response = await fetch(dataset.file, { cf: { cacheTtl: 21600, cacheEverything: true } });
-    if (!response.ok) return json(fallback(dataset, `upstream-${response.status}`));
-    const rows = parseCsv(decodeCsv(await response.arrayBuffer()));
-    const normalizer = type === 'library' ? normalizeLibrary : normalizeParking;
-    const items = rows.filter(inUnjeong).map((row) => normalizer(row, dataset.source)).filter(Boolean);
-    return json({
-      mode: 'live',
-      provider: dataset.provider,
-      dataset: dataset.label,
-      fetchedAt: new Date().toISOString(),
-      source: dataset.source,
-      items
-    });
-  } catch (error) {
-    return json(fallback(dataset, 'request-failed'));
-  }
+  const items = (OFFICIAL_PLACES[type] || []).map((item) => ({
+    ...item,
+    source: dataset.source
+  }));
+  return json({
+    mode: 'live',
+    provider: dataset.provider,
+    dataset: dataset.label,
+    fetchedAt: new Date().toISOString(),
+    source: dataset.source,
+    items
+  });
 }
