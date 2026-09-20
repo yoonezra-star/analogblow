@@ -30,7 +30,7 @@ const PAGE_VISUALS = {
 
 const SOURCE_V2_PATHS = new Set([
   '/kids', '/health', '/mobility', '/culture-leisure', '/neighborhoods', '/future-plan',
-  '/cafes', '/restaurants', '/weekend', '/kids-play',
+  '/policy-news', '/cafes', '/restaurants', '/weekend', '/kids-play',
   '/school-roadmap', '/parking-data', '/public-facilities', '/calendar'
 ]);
 const REPAIR_TERMS = ['washer','dishwasher','refrigerator','aircon','boiler','bathroom','basin','toilet','shower','bidet','kitchen','sink','faucet','middle-door','interior-door','doorlock','fire-door','window','screen','sash','balcony','wardrobe','ceiling-fan','outlet','drying-rack','induction'];
