@@ -197,4 +197,11 @@
 - `unjeong-shoe-cabinet-door-hinge-guide`와 `unjeong-shoe-cabinet-ventilation-odor-mold-guide`를 대표 글로 301 처리했다.
 - 대표 글의 최종 점검일·Article JSON-LD `dateModified`·사이트맵 `lastmod`를 2026-09-21로 맞추고, 대표 URL만 색인 허용 목록과 메인 사이트맵에 추가했다.
 
+### 2026-09-21 공개 재검증
+
+- 메인 사이트맵 93개 URL을 공개 요청으로 검사한 결과 모두 `200`이며 `X-Robots-Tag` 차단이 없었다.
+- 누적 통합 하위 URL 19개는 대표 글로 301 처리했고, 대표 생활수리 글 8개만 색인 허용 목록과 메인 사이트맵에 포함했다.
+- 내부 품질 추정치는 기존 62점에서 현재 **약 74점**으로 조정한다. 이는 Google의 공식 점수나 승인 확률이 아니다.
+- 80점 이상을 위해서는 남은 347개 게시물의 유지·보강·통합 판정, 정책 API의 실제 원문 연결, 캘린더 확정 일정 수집 여부를 추가로 해결해야 한다.
+
 평가 참고: https://support.google.com/adsense/answer/10015918?hl=ko
