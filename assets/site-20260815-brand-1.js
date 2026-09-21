@@ -106,7 +106,7 @@
   var footer=document.querySelector('.footer');
   if(footer){footer.className='footer tc-footer';footer.innerHTML=footerMarkup();}
 
-  addScript('/assets/site-v2.js?v=20260827-2');
+  addScript('/assets/site-v2.js?v=20260921-1');
   if(activeKey&&activeKey!=='repair')addScript('/assets/category-v2.js?v=20260827-2');
   if(isArticle)addScript('/assets/article-density-v2.js?v=20260827-1');
 })();

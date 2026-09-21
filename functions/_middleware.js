@@ -140,7 +140,7 @@ function primaryNavMarkup(path) {
 function footerMarkup() {
   return '<div class="tc-footer__inner">'
     + '<section class="tc-footer__brand" aria-label="사이트 소개"><a href="/"><img src="/logo.svg" alt=""><span>파주운정라이프</span></a><p>운정에서 자주 필요한 생활정보를 짧고 찾기 쉽게 정리합니다.</p></section>'
-    + '<nav class="tc-footer__group" aria-label="생활정보"><h2>생활정보</h2><a href="/kids">아이생활</a><a href="/health">병원·약국</a><a href="/mobility">교통·주차</a><a href="/culture-leisure">주말·외식</a></nav>'
+    + '<nav class="tc-footer__group" aria-label="생활정보"><h2>생활정보</h2><a href="/kids">아이생활</a><a href="/health">병원·약국</a><a href="/mobility">교통·주차</a><a href="/culture-leisure">주말·외식</a><a href="/local-services">생활수리·가전</a></nav>'
     + '<nav class="tc-footer__group" aria-label="검색과 지도"><h2>검색·지도</h2><a href="/search">통합검색</a><a href="/map-search">운정 생활지도</a><a href="/mobility">교통·주차</a><a href="/culture-leisure">주말·외식</a></nav>'
     + '<nav class="tc-footer__group" aria-label="운영정보"><h2>운영정보</h2><a href="/about">소개</a><a href="/editorial-policy">편집 기준</a><a href="/contact">문의·정보 제보</a><a href="/data">공식 출처</a></nav>'
     + '</div>'
@@ -177,7 +177,7 @@ export async function onRequest(context) {
         if (path === '/') element.append('<link rel="stylesheet" href="/home-v2.css?v=20260826-1">', { html: true });
         if (!sourceV2) element.append('<link rel="stylesheet" href="/footer-v2.css?v=20260826-1">', { html: true });
         if (activeKey && !sourceV2) element.append('<link rel="stylesheet" href="/category-v2.css?v=20260826-4">', { html: true });
-        if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260827-1">', { html: true });
+        if (isArticle) element.append('<link rel="stylesheet" href="/article-v2.css?v=20260921-2">', { html: true });
         if (pageVisual) element.append('<link rel="stylesheet" href="/page-visual-v2.css?v=20260827-photo-2">', { html: true });
       }
     })
@@ -204,7 +204,7 @@ export async function onRequest(context) {
         if (activeKey) next.add('tc-category-page');
         if (isArticle) next.add('tc-article-page');
         element.setAttribute('class', Array.from(next).join(' '));
-        if (path !== '/' && !sourceV2) element.append('<script defer src="/assets/site-v2.js?v=20260827-2"></script>', { html: true });
+        if (path !== '/' && !sourceV2) element.append('<script defer src="/assets/site-v2.js?v=20260921-1"></script>', { html: true });
         if (activeKey && activeKey !== 'repair' && !sourceV2) element.append('<script defer src="/assets/category-v2.js?v=20260827-2"></script>', { html: true });
         if (isArticle) element.append('<script defer src="/assets/article-density-v2.js?v=20260827-1"></script>', { html: true });
       }
@@ -261,6 +261,7 @@ export async function onRequest(context) {
     rewriter = rewriter.on('.article-page h1', {
       element(element) {
         element.before('<nav class="tc-breadcrumb" aria-label="현재 위치"><a href="/">홈</a><span aria-hidden="true">›</span><a href="' + meta.href + '">' + meta.label + '</a></nav>', { html: true });
+        element.after('<aside class="tc-editor-note" aria-label="이 글의 편집 기준"><strong>이 글의 편집 기준</strong><p>특정 업체의 순위나 이용을 유도하지 않고, 확인 가능한 공식 안내와 방문·문의 전 확인 항목을 중심으로 정리했습니다. 운영시간·요금·재고·서비스 범위는 바뀔 수 있으므로 방문 전 원문과 기관·업체에 다시 확인하세요.</p><a href="/editorial-policy">편집 기준 보기</a><a href="/contact">정정·정보 제보</a></aside>', { html: true });
       }
     });
   }

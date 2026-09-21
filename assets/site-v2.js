@@ -19,7 +19,8 @@
     {key:'mobility',label:'지도·이동',match:['/mobility','/map-search','/parking-data'],items:[['/map-search','운정 생활 지도'],['/mobility','교통·주차 전체'],['/parking-data','주차 데이터'],['/posts/gtx-unjeong-station-transfer-parking-guide-2026','GTX-A 환승·주차'],['/posts/mobility-ddokbus-unjeong-guide','똑버스 이용']]},
     {key:'weekend',label:'주말·외식',match:['/culture-leisure','/weekend','/cafes','/restaurants','/calendar','/weather-life'],items:[['/culture-leisure','주말·외식 전체'],['/weekend','가족 나들이'],['/kids-play','키즈·실내놀이'],['/cafes','카페'],['/restaurants','운정 상권 가이드'],['/calendar','생활 캘린더'],['/weather-life','날씨 생활']]},
     {key:'neighborhoods',label:'생활권',match:['/neighborhoods','/unjeong-intro','/public-facilities','/real-estate'],items:[['/neighborhoods','생활권 전체'],['/unjeong-intro','운정 소개'],['/public-facilities','공공 생활시설'],['/real-estate','실거래·거주 체크'],['/neighborhoods#unjeong-station','운정역 생활권'],['/neighborhoods#yadang-station','야당역 생활권'],['/neighborhoods#gyoha-dongpae','교하·동패 생활권']]},
-    {key:'future',label:'미래·정책',match:['/future-plan','/policy-news','/movein','/polling-place'],items:[['/future-plan','미래·정책 전체'],['/policy-news','정책 뉴스'],['/movein','입주 첫 달'],['/posts/policy-paju-local-currency-check','파주 생활정책'],['/polling-place','투표소 확인']]}
+    {key:'future',label:'미래·정책',match:['/future-plan','/policy-news','/movein','/polling-place'],items:[['/future-plan','미래·정책 전체'],['/policy-news','정책 뉴스'],['/movein','입주 첫 달'],['/posts/policy-paju-local-currency-check','파주 생활정책'],['/polling-place','투표소 확인']]},
+    {key:'repair',label:'생활수리·가전',match:['/local-services','/local-repair-shops'],items:[['/local-services','생활수리·가전 전체'],['/local-repair-shops','업체·공식 A/S'],['/search?q=생활수리','생활수리 글 검색']]}
   ];
 
   var legacyTargets={
