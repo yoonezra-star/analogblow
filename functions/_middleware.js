@@ -91,6 +91,7 @@ const CORE_NAMED_POSTS = new Set([
   '/posts/unjeong-bathroom-mirror-cabinet-guide',
   '/posts/unjeong-shoe-cabinet-built-in-closet-guide',
   '/posts/unjeong-kitchen-hood-backdraft-damper-odor-guide',
+  '/posts/unjeong-washer-water-drainage-guide',
   '/posts/unjeong3-school-transfer-assignment-guide',
   '/posts/yadang-dinner-parking-guide',
   '/posts/yadang-station-cafe-guide',
