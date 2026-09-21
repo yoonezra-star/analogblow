@@ -265,7 +265,7 @@
       function renderPolicy(items, mode) {
         const feed = document.getElementById('policyFeed');
         const status = document.getElementById('policyStatus');
-        status.textContent = mode === 'live' ? '발행일 포함 원문 연결' : '공식 확인처 표시';
+        status.textContent = mode === 'live' ? '발행일 포함 원문 연결' : '최신 뉴스 대신 공식 확인처 표시';
         feed.innerHTML = items.map((item) => `
           <article class="feed-card">
             <span>${item.department || '정책브리핑'} ${item.date ? '· ' + item.date : ''}</span>
@@ -279,7 +279,7 @@
       fetch('/api/policy-news?type=policy&rows=8&keyword=' + encodeURIComponent('교육 복지 교통 문화'))
         .then((response) => response.ok ? response.json() : Promise.reject())
         .then((data) => renderPolicy(data.items && data.items.length ? data.items : fallbackPolicyItems, data.mode))
-        .catch(() => renderPolicy(fallbackPolicyItems, 'fallback'));
+        .catch(() => renderPolicy(fallbackPolicyItems, 'official-directory'));
     </script>
     <script defer src="./assets/site-20260815-brand-1.js"></script>
     <script defer src="./assets/accessibility.js?v=20260815-1"></script>

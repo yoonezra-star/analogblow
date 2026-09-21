@@ -96,6 +96,15 @@ function json(data, status = 200) {
   });
 }
 
+function officialDirectory(config, rows) {
+  return {
+    mode: 'official-directory',
+    source: config.fallback,
+    checkedAt: new Date().toISOString(),
+    items: FALLBACK_ITEMS.slice(0, rows)
+  };
+}
+
 export async function onRequestHead() {
   return new Response(null, {
     status: 200,
@@ -115,7 +124,7 @@ export async function onRequestGet({ request, env }) {
   const config = ENDPOINTS[type] || ENDPOINTS.policy;
 
   if (!key) {
-    return json({ mode: 'fallback', source: config.fallback, items: FALLBACK_ITEMS.slice(0, rows) });
+    return json(officialDirectory(config, rows));
   }
 
   for (const operation of config.operations) {
@@ -137,5 +146,5 @@ export async function onRequestGet({ request, env }) {
     }
   }
 
-  return json({ mode: 'fallback', source: config.fallback, items: FALLBACK_ITEMS.slice(0, rows) });
+  return json(officialDirectory(config, rows));
 }
