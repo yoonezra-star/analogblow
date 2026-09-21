@@ -4,7 +4,8 @@ const HUBS = [
   { key: 'mobility', href: '/mobility', icon: '🗺️', label: '지도·이동' },
   { key: 'weekend', href: '/culture-leisure', icon: '🌿', label: '주말·외식' },
   { key: 'neighborhoods', href: '/neighborhoods', icon: '🏘️', label: '생활권' },
-  { key: 'future', href: '/future-plan', icon: '🏗️', label: '미래·정책' }
+  { key: 'future', href: '/future-plan', icon: '🏗️', label: '미래·정책' },
+  { key: 'repair', href: '/local-services', icon: '🛠️', label: '생활수리·가전' }
 ];
 
 const ACTIVE_BY_PATH = {
