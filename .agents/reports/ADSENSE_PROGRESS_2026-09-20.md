@@ -191,4 +191,10 @@
 - 지도·주차 허브의 화면 편집일, 구조화 데이터 `dateModified`, 메인 사이트맵 `lastmod`를 2026-09-21로 맞췄다.
 - 실제 검증하지 않은 좌표·만차·요금·운영시간을 새로 추가하지 않고, 네이버 지도·파주시 주차포털에서 최종 확인하도록 유지했다.
 
+### 여섯 번째 URL 통합 묶음: 신발장·붙박이장
+
+- 신발장·붙박이장 설치 가이드에 문짝·경첩·댐퍼 점검과 환기·냄새·곰팡이·하부 물먹음 판단 기준을 추가했다.
+- `unjeong-shoe-cabinet-door-hinge-guide`와 `unjeong-shoe-cabinet-ventilation-odor-mold-guide`를 대표 글로 301 처리했다.
+- 대표 글의 최종 점검일·Article JSON-LD `dateModified`·사이트맵 `lastmod`를 2026-09-21로 맞추고, 대표 URL만 색인 허용 목록과 메인 사이트맵에 추가했다.
+
 평가 참고: https://support.google.com/adsense/answer/10015918?hl=ko
