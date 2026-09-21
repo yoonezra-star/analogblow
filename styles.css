@@ -492,6 +492,49 @@ h3 { margin: 0; font-size: 20px; }
   margin: 22px 0 10px;
 }
 
+.service-category-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 10px;
+  margin: 20px 0 10px;
+  padding: 14px;
+  border: 1px solid #e5edf7;
+  border-radius: 18px;
+  background: #f8fbff;
+}
+
+.service-category-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  color: #1e3a8a;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+}
+
+.service-category-nav a:hover,
+.service-category-nav a:focus-visible {
+  color: #fff;
+  background: #1f5edc;
+  border-color: #1f5edc;
+}
+
+#service-door,
+#service-bathroom,
+#service-kitchen,
+#service-window,
+#service-movein,
+#service-life {
+  scroll-margin-top: 88px;
+}
+
 .page-action {
   display: inline-flex;
   align-items: center;
