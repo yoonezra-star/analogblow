@@ -88,7 +88,7 @@ const CORE_NAMED_POSTS = new Set([
 ]);
 
 function shouldNoIndex(path) {
-  if (path === '/search' || path === '/fortune' || path === '/local-services' || path === '/local-services-v2' || path === '/local-repair-shops') return true;
+  if (path === '/search' || path === '/fortune' || path === '/local-services-v2' || path === '/local-repair-shops') return true;
   if (path.indexOf('/posts/') !== 0) return false;
   return !CORE_NAMED_POSTS.has(path) && !CORE_POST_PREFIXES.some(function(prefix) {
     return path.indexOf(prefix) === 0;
