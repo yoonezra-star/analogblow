@@ -34,7 +34,7 @@ const SOURCE_V2_PATHS = new Set([
   '/policy-news', '/cafes', '/restaurants', '/weekend', '/kids-play',
   '/school-roadmap', '/parking-data', '/public-facilities', '/calendar'
 ]);
-const REPAIR_TERMS = ['washer','dishwasher','refrigerator','aircon','boiler','bathroom','basin','toilet','shower','bidet','kitchen','sink','faucet','middle-door','interior-door','doorlock','fire-door','window','screen','sash','balcony','wardrobe','ceiling-fan','outlet','drying-rack','induction'];
+const REPAIR_TERMS = ['washer','dishwasher','refrigerator','aircon','boiler','bathroom','basin','toilet','shower','bidet','kitchen','sink','faucet','middle-door','interior-door','doorlock','fire-door','window','screen','window-sash','balcony','wardrobe','ceiling-fan','outlet','drying-rack','induction'];
 const LEGACY_CATEGORY_BLOCKS = ['.page-priority-grid','.content-visual','.category-brief','.community-check','.callout-strip','.api-live-panel','.weather-live-card','.feature-article'];
 const LEGACY_LINK_TARGETS = {
   '/posts/rainy-day-indoor-play-route':'/posts/culture-rainy-day-course',
