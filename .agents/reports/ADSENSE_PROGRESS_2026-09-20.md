@@ -125,4 +125,12 @@
 - 이번 감사에서는 즉시 삭제하거나 일괄 비색인하지 않았다. 먼저 카테고리 유입·내부 링크·중복 의도·보강 가능성을 대조해 `유지`, `보강`, `상위 글 통합 후 비색인`, `정리`로 판정한다.
 - 다음 URL 정리 작업은 우선 집수리 세부 페이지 묶음에서 시작하고, 변경 시 sitemap·내부 링크·canonical·robots를 함께 맞춘다.
 
+### 첫 URL 통합 묶음: 현관문·중문
+
+- 현관문·중문 통합 가이드에 손잡이·하부가이드·레일·도어클로저를 증상별로 나누는 표를 추가했다.
+- `unjeong-middle-door-handle-lock-guide`, `unjeong-middle-door-bottom-guide-stopper-guide`, `unjeong-middle-door-glass-rail-repair-guide`는 통합 가이드로 301 처리했다.
+- 기존 하위 주소는 보존해 방문 경로를 깨지 않았고, 두 서비스 sitemap에서 제거했다.
+- 통합 글의 `article:modified_time`, JSON-LD `dateModified`, sitemap `lastmod`를 2026-09-21로 맞췄다.
+- 공개 검증: 통합 글 200, 하위 3개 주소 301, sitemap 내 하위 주소 없음.
+
 평가 참고: https://support.google.com/adsense/answer/10015918?hl=ko
