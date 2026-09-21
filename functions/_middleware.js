@@ -94,6 +94,7 @@ const CORE_NAMED_POSTS = new Set([
   '/posts/unjeong-washer-water-drainage-guide',
   '/posts/unjeong-dishwasher-door-seal-lock-guide',
   '/posts/unjeong-refrigerator-door-seal-hinge-guide',
+  '/posts/unjeong-bathroom-fan-condensation-backdraft-guide',
   '/posts/unjeong3-school-transfer-assignment-guide',
   '/posts/yadang-dinner-parking-guide',
   '/posts/yadang-station-cafe-guide',
