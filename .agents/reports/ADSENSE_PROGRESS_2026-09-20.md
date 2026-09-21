@@ -133,4 +133,12 @@
 - 통합 글의 `article:modified_time`, JSON-LD `dateModified`, sitemap `lastmod`를 2026-09-21로 맞췄다.
 - 공개 검증: 통합 글 200, 하위 3개 주소 301, sitemap 내 하위 주소 없음.
 
+### 두 번째 URL 통합 묶음: 세면대 배수·수전
+
+- 세면대 통합 가이드에 수전·급수·폽업·트랩을 물이 새는 시점별로 나누는 표를 추가하고 JSON-LD Article과 수정일을 보강했다.
+- `unjeong-bathroom-basin-faucet-popup-guide`, `unjeong-bathroom-basin-angle-valve-supply-hose-guide`, `unjeong-bathroom-basin-drain-stopper-water-pooling-guide`는 통합 글로 301 처리했다.
+- 욕실 바닥 배수구·샤워수전처럼 검색 의도와 작업 범위가 다른 글은 이번 묶음에서 유지했다.
+- 기존 세부 주소는 보존하고 공개 sitemap 경로와 실제 제출 sitemap에서 하위 URL이 반복 노출되지 않도록 정리했다.
+- 공개 검증: 통합 글 200, 하위 3개 주소 301.
+
 평가 참고: https://support.google.com/adsense/answer/10015918?hl=ko
