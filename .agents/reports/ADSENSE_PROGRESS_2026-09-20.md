@@ -166,4 +166,11 @@
 - 메인 `sitemap.xml`에 `/local-services`를 직접 등록하고 `lastmod`를 2026-09-21로 맞췄다.
 - 공개 검증: `/local-services` 200, 카테고리 바로가기 표시, `2026.09.21` 표시, `X-Robots-Tag` 없음.
 
+### 다섯 번째 URL 통합 묶음: 욕실 거울장
+
+- 욕실 거울·수납장 설치 가이드에 LED·센서 작동불량과 슬라이딩 거울장 레일·문짝 걸림을 추가해 설치·전기·하드웨어 범위를 한 페이지에서 구분하도록 보강했다.
+- `unjeong-bathroom-mirror-cabinet-led-sensor-malfunction-guide`와 `unjeong-bathroom-sliding-mirror-cabinet-rail-jam-guide`는 대표 가이드로 301 처리했다.
+- 통합 글의 최종 점검일·Article JSON-LD `dateModified`·사이트맵 `lastmod`를 2026-09-21로 맞췄다.
+- 공개 sitemap에서 하위 2개 주소를 제거해 검색·사이트맵의 대표 URL을 일치시켰다.
+
 평가 참고: https://support.google.com/adsense/answer/10015918?hl=ko
